@@ -103,7 +103,6 @@ async def process_with_gemini(raw_text: str) -> Dict[str, Any]:
     try:
         response = model.generate_content(prompt)
         
-        # Extract JSON from response
         json_str = response.text[response.text.find('{'):response.text.rfind('}')+1]
         return json.loads(json_str)
     except Exception as e:
@@ -119,21 +118,42 @@ def initialize_resumes_file():
     if not Path(RESUMES_JSON_FILE).exists():
         with open(RESUMES_JSON_FILE, 'w') as f:
             json.dump([], f)
-def append_resume_to_file(new_resume: Dict[str, Any]):
-    """Append a new resume to the JSON file"""
+
+def append_resume_to_file(new_resume: Dict[str, Any]) -> bool:
+    """
+    Append a new resume to the JSON file if it doesn't already exist.
+    Returns True if resume was added, False if it already existed.
+    """
     try:
         # Read existing data
         with open(RESUMES_JSON_FILE, 'r') as f:
             existing_data: List[Dict[str, Any]] = json.load(f)
         
-        # Append new resume
+        if "email" in new_resume and new_resume["email"]:
+            for existing_resume in existing_data:
+                if "email" in existing_resume and existing_resume["email"] == new_resume["email"]:
+                    print(f"Resume with email {new_resume['email']} already exists. Skipping.")
+                    return False
+        
+        # As a fallback, also check by name if email is missing
+        elif "name" in new_resume and new_resume["name"]:
+            for existing_resume in existing_data:
+                if "name" in existing_resume and existing_resume["name"] == new_resume["name"]:
+                    print(f"Resume with name {new_resume['name']} already exists. Skipping.")
+                    return False
+        
+        # Append new resume only if it doesn't exist
         existing_data.append(new_resume)
         
         # Write back to file
         with open(RESUMES_JSON_FILE, 'w') as f:
             json.dump(existing_data, f, indent=2)
+        
+        print(f"Added new resume to file: {new_resume.get('email', new_resume.get('name', 'Unknown'))}")
+        return True
             
     except Exception as e:
+        print(f"Failed to update resumes file: {str(e)}")
         raise Exception(f"Failed to update resumes file: {str(e)}")
 
 # Initialize the file when module loads
@@ -150,13 +170,19 @@ async def send_data(file: UploadFile = File(...)):
         # 2. Send directly to Gemini for processing
         processed_data = await process_with_gemini(raw_text)
         
-        # 3. Append to JSON file
-        append_resume_to_file(processed_data)
+        # 3. Append to JSON file if not already exists
+        was_added = append_resume_to_file(processed_data)
         
-        return RawResumeData(
+        response_data = RawResumeData(
             raw_text=raw_text[:1000] + "... [truncated]",
             processed_data=processed_data
         )
+        
+        # Add a note about whether the resume was added or already existed
+        if not was_added:
+            response_data.processed_data["note"] = "Resume already exists in database"
+        
+        return response_data
         
     except HTTPException:
         raise

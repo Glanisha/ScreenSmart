@@ -74,112 +74,270 @@
   },
   {
     "personal_information": {
-      "name": "Amit Sharma",
-      "location": "Hyderabad, India",
-      "email": "amit.sharma@example.com",
-      "phone": "+91 78945 61230",
-      "linkedin": "linkedin.com/in/amitsharma"
+      "name": "Liza Glanisha Castelino",
+      "email": "lizacastelino@gmail.com",
+      "phone": "+91-9004898113",
+      "linkedin": "https://linkedin.com/in/slayde-sequeira-062660221",
+      "github": "https://github.com/Glanisha",
+      "location": "Mumbai, India"
     },
     "education": [
       {
-        "degree": "Bachelor of Science in Information Technology",
-        "university": "Osmania University",
-        "location": "Hyderabad, India",
-        "graduation_year": 2018,
-        "cgpa": 8.9
+        "degree": "Bachelor in Computer Engineering",
+        "institution": "Fr. Conceicao Rodrigues College of Engineering",
+        "years": "2023-2027",
+        "cgpa": "9.5",
+        "additional_info": "Second Year"
       }
     ],
     "work_experience": [
       {
-        "company": "NexGen Apps",
-        "location": "Hyderabad, India",
-        "position": "Mobile Application Developer",
-        "start_date": "February 2021",
-        "end_date": "Present",
-        "responsibilities": [
-          "Designed and developed cross-platform mobile applications using Flutter and Dart.",
-          "Integrated Firebase for real-time database management and push notifications.",
-          "Implemented CI/CD pipelines, reducing deployment time by 40%.",
-          "Worked on UI/UX optimization, increasing user engagement by 25%."
-        ]
-      },
-      {
-        "company": "BrightWave Technologies",
-        "location": "Remote",
-        "position": "Software Engineer",
-        "start_date": "August 2018",
-        "end_date": "January 2021",
-        "responsibilities": [
-          "Developed enterprise-level Android applications using Java and Kotlin.",
-          "Integrated RESTful APIs for seamless backend communication.",
-          "Optimized mobile app performance, reducing crash rates by 30%."
+        "company": "Innovation Hub",
+        "position": "Frontend Developer Intern",
+        "years": "Dec 2024 - Present",
+        "responsibilities": "Developed responsive web applications using React and Next.js, focusing on user experience and performance optimization.",
+        "tech_stack": [
+          "React",
+          "Next.js",
+          "Tailwind CSS",
+          "JavaScript",
+          "CSS"
         ]
       }
     ],
-    "skills": {
-      "mobile_development": [
-        "Flutter",
-        "Dart",
-        "Kotlin",
-        "Swift",
-        "React Native"
-      ],
-      "backend": [
-        "Firebase",
-        "Node.js",
-        "FastAPI",
-        "PostgreSQL"
-      ],
-      "tools": [
-        "Git",
-        "Jenkins",
-        "Docker",
-        "Jira",
-        "Android Studio",
-        "Xcode"
-      ],
-      "cloud": [
-        "AWS (Lambda, DynamoDB, S3)",
-        "Google Cloud",
-        "Firebase"
-      ]
-    },
-    "certifications": [
+    "hackathon_experience": [
       {
-        "name": "Google Associate Android Developer",
-        "year": 2023
+        "name": "TYNET 2.0: International Women Hackathon (Round 1)",
+        "project": "FinHer",
+        "description": "Developed a financial assistance platform for women, integrating personalized financial tools, Monte Carlo simulations, and a community chatroom for engagement.",
+        "achievement": "Cleared round one and reached the top 20 teams",
+        "tech_stack": [
+          "React",
+          "Django"
+        ]
       },
       {
-        "name": "Flutter & Dart Advanced Development",
-        "year": 2022
+        "name": "TYNET 2.0: International Women Hackathon (Round 2)",
+        "project": "WasteWise",
+        "description": "Created a waste management solution with route optimization for garbage trucks, gamification, and a community-driven events section.",
+        "tech_stack": [
+          "React",
+          "Django",
+          "GPS",
+          "Route Optimization Algorithms"
+        ]
+      },
+      {
+        "name": "Bit and Build Hackathon",
+        "organizer": "GDSC FRCRCE",
+        "role": "Organizer/Graphic Designer",
+        "description": "Assisted in organizing and coordinating logistics for the hackathon, ensuring smooth event execution and team collaboration. Contributed as a graphic designer, creating visual assets for the event and promoting the hackathon's branding."
+      }
+    ],
+    "skills": {
+      "web_development": [
+        "MongoDB",
+        "Express",
+        "React",
+        "Node.js",
+        "Django",
+        "Next.js",
+        "Tailwind CSS",
+        "JavaScript",
+        "CSS"
+      ],
+      "graphic_design": [
+        "Adobe Photoshop"
+      ]
+    },
+    "summary": "Computer Engineering student with a passion for web application development and graphic design. Creates intuitive, user-centered digital experiences and brings designs to life through both coding and visuals. Eager to apply skills and creativity to dynamic web development projects and contribute to innovative solutions."
+  },
+  {
+    "personal_information": {
+      "name": "Slayde Sequeira",
+      "email": "slaydes13@gmail.com",
+      "phone": "+91-8097276899",
+      "location": "Mumbai, India",
+      "linkedin": "https://linkedin.com/in/slayde-sequeira-062660221",
+      "github": "https://github.com/SlaydeSequeira"
+    },
+    "education": [
+      {
+        "degree": "Bachelor of Computer Engineering with honors in Data Science",
+        "institution": "Fr. Conceicao Rodrigues College of Engineering",
+        "years": "May 2021 - May 2025",
+        "cgpa": "8.99 (6 Semesters)"
+      }
+    ],
+    "work_experience": [
+      {
+        "company": "Hyperverge",
+        "position": "Jr. Solution Architect Intern",
+        "duration": "January 13, 2024 - Present",
+        "description": "Developed a native Android application for seamless video conferencing. Integrated the app with existing website functionalities. Developed a web application using Spring Boot for the backend and React for the frontend. The application scraped bond data from various websites and displayed it on the company's website.",
+        "tech_stack": [
+          "React Flow",
+          "APIs",
+          "Cloud Services"
+        ]
+      },
+      {
+        "company": "Svirtz Technologies Pvt Ltd",
+        "position": "Web and App Developer Intern",
+        "duration": "October 1, 2023 - June 30, 2024",
+        "description": "At HyperVerge (Note: This seems to be a typo and should likely be Svirtz Technologies), designed and optimized client onboarding workflows, ensuring seamless integration and scalability for enterprise solutions. Developed AI-driven system architectures that streamlined document verification while adhering to banking compliance norms and regulatory requirements. By automating key processes, enhanced operational efficiency, reduced friction in onboarding, and improved overall user experience.",
+        "tech_stack": [
+          "React",
+          "Spring Boot",
+          "Native Java",
+          "XML",
+          "Node.js",
+          "MySQL"
+        ]
+      },
+      {
+        "company": "DigiHelic Solutions Pvt Ltd",
+        "position": "Web Developer Intern",
+        "duration": "December 10, 2023 - March 31, 2024",
+        "description": "Built a user-centric immigration website with task management, document storage, and real-time updates to streamline processes.",
+        "tech_stack": [
+          "Next.js",
+          "Node.js",
+          "Express",
+          "MongoDB",
+          "Firebase"
+        ]
       }
     ],
     "projects": [
       {
-        "name": "HealthSync",
-        "description": "AI-Powered Fitness App",
-        "technologies": [
-          "Flutter",
-          "Firebase"
-        ],
-        "details": [
-          "Built a fitness tracking app with AI-based workout recommendations.",
-          "Integrated Google Fit and Apple Health for real-time health data synchronization.",
-          "Implemented a subscription-based model, increasing revenue by 20%."
+        "name": "Dimensionality Reduction using Metaheuristic Algorithms",
+        "description": "Developed a dimensionality reduction approach using metaheuristic algorithms to optimize feature selection in high-dimensional datasets. By leveraging techniques like Genetic Algorithms and Particle Swarm Optimization, improved computational efficiency while retaining essential data patterns for better machine learning performance.",
+        "duration": "May 2024 - Present",
+        "tech_stack": [
+          "Python",
+          "LIME",
+          "SHAP",
+          "ACO",
+          "PSO"
         ]
       },
       {
-        "name": "EduBridge",
-        "description": "E-Learning Platform",
-        "technologies": [
-          "React Native",
+        "name": "Smart Bin+",
+        "description": "Developed a smart waste management system integrating IoT and machine learning for responsible disposal with mobile app and cloud features.",
+        "duration": "May 2023 - April 2024",
+        "tech_stack": [
+          "Native Java",
+          "XML",
+          "Firebase",
+          "Node.js",
+          "IoT",
+          "Machine Learning"
+        ]
+      },
+      {
+        "name": "College Management System",
+        "description": "A responsive web platform for automating exam schedules, grading, and attendance tracking in universities.",
+        "duration": "January 2023 - March 2023",
+        "tech_stack": [
+          "React.js",
+          "Firebase",
+          "Node.js"
+        ]
+      }
+    ],
+    "co_curricular_activities": [
+      {
+        "role": "Technical Head",
+        "organization": "CSI CRCE",
+        "duration": "2023-2024",
+        "description": "Managed multiple tech events and hackathons."
+      },
+      {
+        "role": "Social Media Head",
+        "organization": "Computer Department at CRCE",
+        "duration": "2023-2024",
+        "description": "Managed social media handles of the Computer Department."
+      }
+    ],
+    "achievements": [
+      "First Place - Sun Hacks 2024 International Hackathon",
+      "First Place - S.P.I.T Hacks 2025 Hackathon",
+      "First Place - Ingenium 2.0 Hackathon",
+      "2nd Place - Techvista Coding Contest",
+      "3rd Place - Algoholics 2.0 Coding Contest",
+      "Finalist - Bit n Build 2024"
+    ],
+    "skills": {
+      "android_development": [
+        "Java",
+        "Kotlin",
+        "XML",
+        "Flutter (basic)"
+      ],
+      "web_development": [
+        "Next.js",
+        "React",
+        "HTML",
+        "CSS",
+        "JavaScript"
+      ],
+      "database": [
+        "MongoDB",
+        "SQL",
+        "Firebase"
+      ],
+      "backend": [
+        "Node.js",
+        "Express",
+        "Django",
+        "Flask"
+      ],
+      "cloud_services": [
+        "GCP",
+        "AWS"
+      ]
+    },
+    "courses": [
+      {
+        "name": "AWS Developing Course",
+        "institution": "AWS Academy",
+        "duration": "February 2024 - April 2024"
+      },
+      {
+        "name": "Complete Android Development Course",
+        "institution": "Udemy",
+        "duration": "January 2023 - March 2023"
+      },
+      {
+        "name": "Geodata Processing in Python",
+        "institution": "ISRO",
+        "duration": "February 20-24, 2024"
+      },
+      {
+        "name": "J.P. Morgan Chase and Co Virtual Internship",
+        "institution": "Forage",
+        "duration": "February 15-18, 2023"
+      },
+      {
+        "name": "Oasis Infobyte Virtual Internship in Android Dev",
+        "institution": "Oasis Infobyte",
+        "duration": "May 2023 - June 2023"
+      }
+    ],
+    "research_work": [
+      {
+        "title": "SmartBin+: Elevating Responsible Waste Disposal with Rewards",
+        "description": "Lead author of a research paper selected for the 4th International Conference on Sustainable Expert Systems, affiliated with IEEE. The research focuses on developing an intelligent waste management system utilizing IoT and machine learning to incentivize proper waste disposal.",
+        "tech_stack": [
+          "IoT",
+          "Machine Learning",
+          "App Development",
+          "Firebase",
           "Node.js"
         ],
-        "details": [
-          "Developed a mobile-first e-learning platform with interactive video courses.",
-          "Integrated live streaming capabilities using WebRTC and AWS Media Services.",
-          "Created an AI-powered chatbot for instant student support."
-        ]
+        "publication_status": "Presented at ICSES 4th Conference, published in IEEE Xplore",
+        "duration": "September 2023 - October 2024"
       }
     ]
   },
@@ -190,213 +348,6 @@
       "email": "vikram.singh@example.com",
       "phone": "+91 98765 43210",
       "linkedin": "linkedin.com/in/vikramsingh"
-    },
-    "education": [
-      {
-        "degree": "Bachelor of Technology in Computer Science",
-        "institution": "Indian Institute of Technology (IIT) Bombay",
-        "graduation_year": 2020,
-        "cgpa": 9.21
-      }
-    ],
-    "work_experience": [
-      {
-        "company": "Soares Tech",
-        "location": "Mumbai, India",
-        "position": "Software Engineer",
-        "start_date": "January 2022",
-        "end_date": "Present",
-        "responsibilities": [
-          "Developed and optimized React.js applications, improving performance by 30%.",
-          "Built REST APIs with Node.js and Express.js, enhancing data retrieval efficiency.",
-          "Migrated codebase to TypeScript, reducing production errors by 25%.",
-          "Collaborated with Agile teams to deliver scalable web applications."
-        ]
-      },
-      {
-        "company": "Thomas Corp",
-        "location": "Remote",
-        "position": "Web Developer",
-        "start_date": "June 2020",
-        "end_date": "December 2021",
-        "responsibilities": [
-          "Designed and developed responsive web applications using JavaScript, HTML, and CSS.",
-          "Optimized website speed by 40% using lazy loading and image compression techniques.",
-          "Integrated multiple third-party APIs for enhanced functionality."
-        ]
-      }
-    ],
-    "skills": {
-      "frontend": [
-        "React.js",
-        "Next.js",
-        "JavaScript",
-        "TypeScript",
-        "Redux",
-        "Tailwind CSS"
-      ],
-      "backend": [
-        "Node.js",
-        "Express.js",
-        "MongoDB",
-        "PostgreSQL",
-        "REST APIs"
-      ],
-      "tools": [
-        "Git",
-        "Docker",
-        "CI/CD",
-        "Jest",
-        "Postman",
-        "Webpack"
-      ],
-      "cloud": [
-        "AWS (Lambda, S3, EC2)",
-        "Firebase",
-        "Supabase"
-      ]
-    },
-    "certifications": [
-      {
-        "name": "AWS Certified Developer",
-        "year": 2023
-      },
-      {
-        "name": "Full-Stack Web Development",
-        "year": 2022
-      }
-    ],
-    "projects": [
-      {
-        "name": "UniJobs \u2013 Job Portal for Students",
-        "description": "Developed a job listing platform for students using React.js, Node.js, and MongoDB. Implemented resume parsing with Supabase for ATS automation. Created a real-time chat system for clients and companies.",
-        "tech_stack": "MERN Stack"
-      },
-      {
-        "name": "Carbon Emission Calculator",
-        "description": "Built an interactive carbon footprint tracker using Next.js and Tailwind CSS. Integrated Supabase authentication for user logins.",
-        "tech_stack": "Next.js & Supabase"
-      }
-    ]
-  },
-  {
-    "personal_information": {
-      "name": "Amit Sharma",
-      "email": "amit.sharma@example.com",
-      "phone": "+91 78945 61230",
-      "linkedin": "linkedin.com/in/amitsharma",
-      "location": "Hyderabad, India"
-    },
-    "education": [
-      {
-        "degree": "Bachelor of Science in Information Technology",
-        "institution": "Osmania University",
-        "location": "Hyderabad, India",
-        "graduation_year": 2018,
-        "cgpa": 8.9
-      }
-    ],
-    "work_experience": [
-      {
-        "company": "NexGen Apps",
-        "location": "Hyderabad, India",
-        "position": "Mobile Application Developer",
-        "start_date": "February 2021",
-        "end_date": "Present",
-        "responsibilities": [
-          "Designed and developed cross-platform mobile applications using Flutter and Dart.",
-          "Integrated Firebase for real-time database management and push notifications.",
-          "Implemented CI/CD pipelines, reducing deployment time by 40%.",
-          "Worked on UI/UX optimization, increasing user engagement by 25%."
-        ]
-      },
-      {
-        "company": "BrightWave Technologies",
-        "location": "Remote",
-        "position": "Software Engineer",
-        "start_date": "August 2018",
-        "end_date": "January 2021",
-        "responsibilities": [
-          "Developed enterprise-level Android applications using Java and Kotlin.",
-          "Integrated RESTful APIs for seamless backend communication.",
-          "Optimized mobile app performance, reducing crash rates by 30%."
-        ]
-      }
-    ],
-    "skills": {
-      "mobile_development": [
-        "Flutter",
-        "Dart",
-        "Kotlin",
-        "Swift",
-        "React Native"
-      ],
-      "backend": [
-        "Firebase",
-        "Node.js",
-        "FastAPI",
-        "PostgreSQL"
-      ],
-      "tools": [
-        "Git",
-        "Jenkins",
-        "Docker",
-        "Jira",
-        "Android Studio",
-        "Xcode"
-      ],
-      "cloud": [
-        "AWS (Lambda, DynamoDB, S3)",
-        "Google Cloud",
-        "Firebase"
-      ]
-    },
-    "certifications": [
-      {
-        "name": "Google Associate Android Developer",
-        "year": 2023
-      },
-      {
-        "name": "Flutter & Dart Advanced Development",
-        "year": 2022
-      }
-    ],
-    "projects": [
-      {
-        "name": "HealthSync",
-        "description": "AI-Powered Fitness App",
-        "technologies": [
-          "Flutter",
-          "Firebase"
-        ],
-        "details": [
-          "Built a fitness tracking app with AI-based workout recommendations.",
-          "Integrated Google Fit and Apple Health for real-time health data synchronization.",
-          "Implemented a subscription-based model, increasing revenue by 20%."
-        ]
-      },
-      {
-        "name": "EduBridge",
-        "description": "E-Learning Platform",
-        "technologies": [
-          "React Native",
-          "Node.js"
-        ],
-        "details": [
-          "Developed a mobile-first e-learning platform with interactive video courses.",
-          "Integrated live streaming capabilities using WebRTC and AWS Media Services.",
-          "Created an AI-powered chatbot for instant student support."
-        ]
-      }
-    ]
-  },
-  {
-    "personal_information": {
-      "name": "Vikram Singh",
-      "email": "vikram.singh@example.com",
-      "phone": "+91 98765 43210",
-      "linkedin": "linkedin.com/in/vikramsingh",
-      "location": "Mumbai, India"
     },
     "education": [
       {
@@ -489,640 +440,6 @@
         "description": [
           "Built an interactive carbon footprint tracker using Next.js and Tailwind CSS.",
           "Integrated Supabase authentication for user logins."
-        ]
-      }
-    ]
-  },
-  {
-    "personal_information": {
-      "name": "Slayde Sequeira",
-      "email": "slaydes13@gmail.com",
-      "phone": "+91-8097276899",
-      "location": "Mumbai, India",
-      "linkedin": "https://linkedin.com/in/slayde-sequeira-062660221",
-      "github": "https://github.com/SlaydeSequeira"
-    },
-    "education": [
-      {
-        "institution": "Fr. Conceicao Rodrigues College of Engineering",
-        "degree": "Bachelor in Computer Engineering",
-        "major": "Data Science",
-        "gpa": "8.99",
-        "start_date": "May 2021",
-        "end_date": "May 2025"
-      }
-    ],
-    "work_experience": [
-      {
-        "company": "Hyperverge",
-        "position": "Jr. Solution Architect Intern",
-        "start_date": "January 13, 2024",
-        "end_date": "Present",
-        "description": "Developed a native Android application for seamless video conferencing. Integrated the app with existing website functionalities. Developed a web application using Spring Boot for the backend and React for the frontend. The application scraped bond data from various websites and displayed it on the company's website.",
-        "tech_stack": [
-          "React Flow",
-          "APIs",
-          "Cloud Services"
-        ]
-      },
-      {
-        "company": "Svirtz Technologies Pvt Ltd",
-        "position": "Web and App Developer Intern",
-        "start_date": "October 1, 2023",
-        "end_date": "June 30, 2024",
-        "description": "At HyperVerge (Note: This description seems to belong to the Hyperverge experience), designed and optimized client onboarding workflows, ensuring seamless integration and scalability for enterprise solutions. Developed AI-driven system architectures that streamlined document verification while adhering to banking compliance norms and regulatory requirements. By automating key processes, enhanced operational efficiency, reduced friction in onboarding, and improved overall user experience.",
-        "tech_stack": [
-          "React",
-          "Spring Boot",
-          "Native Java",
-          "XML",
-          "Node.js",
-          "MySQL"
-        ]
-      },
-      {
-        "company": "DigiHelic Solutions Pvt Ltd",
-        "position": "Web Developer Intern",
-        "start_date": "December 10, 2023",
-        "end_date": "March 31, 2024",
-        "description": "Built a user-centric immigration website with task management, document storage, and real-time updates to streamline processes.",
-        "tech_stack": [
-          "Next.js",
-          "Node.js",
-          "Express",
-          "MongoDB",
-          "Firebase"
-        ]
-      }
-    ],
-    "projects": [
-      {
-        "name": "Dimensionality Reduction using Metaheuristic Algorithms",
-        "start_date": "May 2024",
-        "end_date": "Present",
-        "description": "Developed a dimensionality reduction approach using metaheuristic algorithms to optimize feature selection in high-dimensional datasets. By leveraging techniques like Genetic Algorithms and Particle Swarm Optimization, improved computational efficiency while retaining essential data patterns for better machine learning performance.",
-        "tech_stack": [
-          "Python",
-          "LIME",
-          "SHAP",
-          "ACO",
-          "PSO"
-        ]
-      },
-      {
-        "name": "Smart Bin+",
-        "start_date": "May 2023",
-        "end_date": "April 2024",
-        "description": "Developed a smart waste management system integrating IoT and machine learning for responsible disposal with mobile app and cloud features.",
-        "tech_stack": [
-          "Native Java",
-          "XML",
-          "Firebase",
-          "Node.js",
-          "IoT",
-          "Machine Learning"
-        ]
-      },
-      {
-        "name": "College Management System",
-        "start_date": "January 2023",
-        "end_date": "March 2023",
-        "description": "A responsive web platform for automating exam schedules, grading, and attendance tracking in universities.",
-        "tech_stack": [
-          "React.js",
-          "Firebase",
-          "Node.js"
-        ]
-      }
-    ],
-    "extracurricular_activities": [
-      {
-        "title": "Technical Head",
-        "organization": "CSI CRCE",
-        "start_date": "2023",
-        "end_date": "2024",
-        "description": "Managed multiple tech events and hackathons."
-      },
-      {
-        "title": "Social Media Head",
-        "organization": "Computer Department at CRCE",
-        "start_date": "2023",
-        "end_date": "2024",
-        "description": "Managed social media handles of the Computer Department."
-      }
-    ],
-    "achievements": [
-      "First Place - Sun Hacks 2024 International Hackathon",
-      "First Place - S.P.I.T Hacks 2025 Hackathon",
-      "First Place - Ingenium 2.0 Hackathon",
-      "2nd Place - Techvista Coding Contest",
-      "3rd Place - Algoholics 2.0 Coding Contest",
-      "Finalist - Bit n Build 2024"
-    ],
-    "skills": {
-      "android_development": [
-        "Java",
-        "Kotlin",
-        "XML",
-        "Flutter (basic)"
-      ],
-      "web_development": [
-        "Next.js",
-        "React",
-        "HTML",
-        "CSS",
-        "JavaScript"
-      ],
-      "database": [
-        "MongoDB",
-        "SQL",
-        "Firebase"
-      ],
-      "backend": [
-        "Node.js",
-        "Express",
-        "Django",
-        "Flask"
-      ],
-      "cloud_services": [
-        "GCP",
-        "AWS"
-      ]
-    },
-    "courses": [
-      {
-        "name": "AWS Developing Course",
-        "institution": "AWS Academy",
-        "start_date": "February 2024",
-        "end_date": "April 2024"
-      },
-      {
-        "name": "Complete Android Development Course",
-        "institution": "Udemy",
-        "start_date": "January 2023",
-        "end_date": "March 2023"
-      },
-      {
-        "name": "Geodata Processing in Python",
-        "institution": "ISRO",
-        "start_date": "February 20, 2024",
-        "end_date": "February 24, 2024"
-      },
-      {
-        "name": "J.P. Morgan Chase and Co Virtual Internship",
-        "institution": "Forage",
-        "start_date": "February 15, 2023",
-        "end_date": "February 18, 2023"
-      },
-      {
-        "name": "Oasis Infobyte Virtual Internship in Android Dev",
-        "institution": "Oasis Infobyte",
-        "start_date": "May 2023",
-        "end_date": "June 2023"
-      }
-    ],
-    "research": [
-      {
-        "title": "SmartBin+: Elevating Responsible Waste Disposal with Rewards",
-        "role": "Lead Author",
-        "conference": "4th International Conference on Sustainable Expert Systems (ICSES), affiliated with IEEE",
-        "publication_status": "Presented at ICSES 4th Conference, published in IEEE Xplore",
-        "start_date": "September 2023",
-        "end_date": "October 2024",
-        "tech_stack": [
-          "IoT",
-          "Machine Learning",
-          "App Development",
-          "Firebase",
-          "Node.js"
-        ]
-      }
-    ]
-  },
-  {
-    "personal_information": {
-      "name": "Amit Sharma",
-      "email": "amit.sharma@example.com",
-      "phone": "+91 78945 61230",
-      "location": "Hyderabad, India",
-      "linkedin": "linkedin.com/in/amitsharma"
-    },
-    "education": [
-      {
-        "degree": "Bachelor of Science in Information Technology",
-        "institution": "Osmania University",
-        "location": "Hyderabad, India",
-        "graduation_year": 2018,
-        "cgpa": 8.9
-      }
-    ],
-    "work_experience": [
-      {
-        "company": "NexGen Apps",
-        "location": "Hyderabad, India",
-        "position": "Mobile Application Developer",
-        "start_date": "February 2021",
-        "end_date": "Present",
-        "responsibilities": [
-          "Designed and developed cross-platform mobile applications using Flutter and Dart.",
-          "Integrated Firebase for real-time database management and push notifications.",
-          "Implemented CI/CD pipelines, reducing deployment time by 40%.",
-          "Worked on UI/UX optimization, increasing user engagement by 25%."
-        ]
-      },
-      {
-        "company": "BrightWave Technologies",
-        "location": "Remote",
-        "position": "Software Engineer",
-        "start_date": "August 2018",
-        "end_date": "January 2021",
-        "responsibilities": [
-          "Developed enterprise-level Android applications using Java and Kotlin.",
-          "Integrated RESTful APIs for seamless backend communication.",
-          "Optimized mobile app performance, reducing crash rates by 30%."
-        ]
-      }
-    ],
-    "skills": {
-      "mobile_development": [
-        "Flutter",
-        "Dart",
-        "Kotlin",
-        "Swift",
-        "React Native"
-      ],
-      "backend": [
-        "Firebase",
-        "Node.js",
-        "FastAPI",
-        "PostgreSQL"
-      ],
-      "tools": [
-        "Git",
-        "Jenkins",
-        "Docker",
-        "Jira",
-        "Android Studio",
-        "Xcode"
-      ],
-      "cloud": [
-        "AWS (Lambda, DynamoDB, S3)",
-        "Google Cloud",
-        "Firebase"
-      ]
-    },
-    "certifications": [
-      {
-        "name": "Google Associate Android Developer",
-        "year": 2023
-      },
-      {
-        "name": "Flutter & Dart Advanced Development",
-        "year": 2022
-      }
-    ],
-    "projects": [
-      {
-        "name": "HealthSync",
-        "description": "AI-Powered Fitness App",
-        "technologies": [
-          "Flutter",
-          "Firebase"
-        ],
-        "details": [
-          "Built a fitness tracking app with AI-based workout recommendations.",
-          "Integrated Google Fit and Apple Health for real-time health data synchronization.",
-          "Implemented a subscription-based model, increasing revenue by 20%."
-        ]
-      },
-      {
-        "name": "EduBridge",
-        "description": "E-Learning Platform",
-        "technologies": [
-          "React Native",
-          "Node.js"
-        ],
-        "details": [
-          "Developed a mobile-first e-learning platform with interactive video courses.",
-          "Integrated live streaming capabilities using WebRTC and AWS Media Services.",
-          "Created an AI-powered chatbot for instant student support."
-        ]
-      }
-    ]
-  },
-  {
-    "personal_information": {
-      "name": "Vikram Singh",
-      "email": "vikram.singh@example.com",
-      "phone": "+91 98765 43210",
-      "linkedin": "linkedin.com/in/vikramsingh",
-      "location": "Mumbai, India"
-    },
-    "education": [
-      {
-        "degree": "Bachelor of Technology in Computer Science",
-        "institution": "Indian Institute of Technology (IIT) Bombay",
-        "graduation_year": 2020,
-        "cgpa": 9.21
-      }
-    ],
-    "work_experience": [
-      {
-        "company": "Soares Tech",
-        "location": "Mumbai, India",
-        "position": "Software Engineer",
-        "start_date": "January 2022",
-        "end_date": "Present",
-        "responsibilities": [
-          "Developed and optimized React.js applications, improving performance by 30%",
-          "Built REST APIs with Node.js and Express.js, enhancing data retrieval efficiency",
-          "Migrated codebase to TypeScript, reducing production errors by 25%",
-          "Collaborated with Agile teams to deliver scalable web applications"
-        ]
-      },
-      {
-        "company": "Thomas Corp",
-        "location": "Remote",
-        "position": "Web Developer",
-        "start_date": "June 2020",
-        "end_date": "December 2021",
-        "responsibilities": [
-          "Designed and developed responsive web applications using JavaScript, HTML, and CSS",
-          "Optimized website speed by 40% using lazy loading and image compression techniques",
-          "Integrated multiple third-party APIs for enhanced functionality"
-        ]
-      }
-    ],
-    "skills": {
-      "frontend": [
-        "React.js",
-        "Next.js",
-        "JavaScript",
-        "TypeScript",
-        "Redux",
-        "Tailwind CSS"
-      ],
-      "backend": [
-        "Node.js",
-        "Express.js",
-        "MongoDB",
-        "PostgreSQL",
-        "REST APIs"
-      ],
-      "tools": [
-        "Git",
-        "Docker",
-        "CI/CD",
-        "Jest",
-        "Postman",
-        "Webpack"
-      ],
-      "cloud": [
-        "AWS (Lambda, S3, EC2)",
-        "Firebase",
-        "Supabase"
-      ]
-    },
-    "certifications": [
-      {
-        "name": "AWS Certified Developer",
-        "year": 2023
-      },
-      {
-        "name": "Full-Stack Web Development",
-        "year": 2022
-      }
-    ],
-    "projects": [
-      {
-        "name": "UniJobs \u2013 Job Portal for Students",
-        "technologies": "MERN Stack",
-        "description": [
-          "Developed a job listing platform for students using React.js, Node.js, and MongoDB",
-          "Implemented resume parsing with Supabase for ATS automation",
-          "Created a real-time chat system for clients and companies"
-        ]
-      },
-      {
-        "name": "Carbon Emission Calculator",
-        "technologies": "Next.js & Supabase",
-        "description": [
-          "Built an interactive carbon footprint tracker using Next.js and Tailwind CSS",
-          "Integrated Supabase authentication for user logins"
-        ]
-      }
-    ]
-  },
-  {
-    "personal_information": {
-      "name": "Amit Sharma",
-      "email": "amit.sharma@example.com",
-      "phone": "+91 78945 61230",
-      "linkedin": "linkedin.com/in/amitsharma",
-      "location": "Hyderabad, India"
-    },
-    "education": [
-      {
-        "degree": "Bachelor of Science in Information Technology",
-        "institution": "Osmania University",
-        "location": "Hyderabad, India",
-        "graduation_year": 2018,
-        "cgpa": 8.9
-      }
-    ],
-    "work_experience": [
-      {
-        "company": "NexGen Apps",
-        "location": "Hyderabad, India",
-        "position": "Mobile Application Developer",
-        "start_date": "February 2021",
-        "end_date": "Present",
-        "responsibilities": [
-          "Designed and developed cross-platform mobile applications using Flutter and Dart.",
-          "Integrated Firebase for real-time database management and push notifications.",
-          "Implemented CI/CD pipelines, reducing deployment time by 40%.",
-          "Worked on UI/UX optimization, increasing user engagement by 25%."
-        ]
-      },
-      {
-        "company": "BrightWave Technologies",
-        "location": "Remote",
-        "position": "Software Engineer",
-        "start_date": "August 2018",
-        "end_date": "January 2021",
-        "responsibilities": [
-          "Developed enterprise-level Android applications using Java and Kotlin.",
-          "Integrated RESTful APIs for seamless backend communication.",
-          "Optimized mobile app performance, reducing crash rates by 30%."
-        ]
-      }
-    ],
-    "skills": {
-      "mobile_development": [
-        "Flutter",
-        "Dart",
-        "Kotlin",
-        "Swift",
-        "React Native"
-      ],
-      "backend": [
-        "Firebase",
-        "Node.js",
-        "FastAPI",
-        "PostgreSQL"
-      ],
-      "tools": [
-        "Git",
-        "Jenkins",
-        "Docker",
-        "Jira",
-        "Android Studio",
-        "Xcode"
-      ],
-      "cloud": [
-        "AWS (Lambda, DynamoDB, S3)",
-        "Google Cloud",
-        "Firebase"
-      ]
-    },
-    "certifications": [
-      {
-        "name": "Google Associate Android Developer",
-        "year": 2023
-      },
-      {
-        "name": "Flutter & Dart Advanced Development",
-        "year": 2022
-      }
-    ],
-    "projects": [
-      {
-        "name": "HealthSync",
-        "description": "AI-Powered Fitness App",
-        "technologies": [
-          "Flutter",
-          "Firebase"
-        ],
-        "highlights": [
-          "Built a fitness tracking app with AI-based workout recommendations.",
-          "Integrated Google Fit and Apple Health for real-time health data synchronization.",
-          "Implemented a subscription-based model, increasing revenue by 20%."
-        ]
-      },
-      {
-        "name": "EduBridge",
-        "description": "E-Learning Platform",
-        "technologies": [
-          "React Native",
-          "Node.js"
-        ],
-        "highlights": [
-          "Developed a mobile-first e-learning platform with interactive video courses.",
-          "Integrated live streaming capabilities using WebRTC and AWS Media Services.",
-          "Created an AI-powered chatbot for instant student support."
-        ]
-      }
-    ]
-  },
-  {
-    "personal_information": {
-      "name": "Vikram Singh",
-      "location": "Mumbai, India",
-      "email": "vikram.singh@example.com",
-      "phone": "+91 98765 43210",
-      "linkedin": "linkedin.com/in/vikramsingh"
-    },
-    "education": [
-      {
-        "degree": "Bachelor of Technology in Computer Science",
-        "institution": "Indian Institute of Technology (IIT) Bombay",
-        "graduation_year": 2020,
-        "cgpa": 9.21
-      }
-    ],
-    "work_experience": [
-      {
-        "company": "Soares Tech",
-        "location": "Mumbai, India",
-        "position": "Software Engineer",
-        "start_date": "January 2022",
-        "end_date": "Present",
-        "responsibilities": [
-          "Developed and optimized React.js applications, improving performance by 30%",
-          "Built REST APIs with Node.js and Express.js, enhancing data retrieval efficiency",
-          "Migrated codebase to TypeScript, reducing production errors by 25%",
-          "Collaborated with Agile teams to deliver scalable web applications"
-        ]
-      },
-      {
-        "company": "Thomas Corp",
-        "location": "Remote",
-        "position": "Web Developer",
-        "start_date": "June 2020",
-        "end_date": "December 2021",
-        "responsibilities": [
-          "Designed and developed responsive web applications using JavaScript, HTML, and CSS",
-          "Optimized website speed by 40% using lazy loading and image compression techniques",
-          "Integrated multiple third-party APIs for enhanced functionality"
-        ]
-      }
-    ],
-    "skills": {
-      "frontend": [
-        "React.js",
-        "Next.js",
-        "JavaScript",
-        "TypeScript",
-        "Redux",
-        "Tailwind CSS"
-      ],
-      "backend": [
-        "Node.js",
-        "Express.js",
-        "MongoDB",
-        "PostgreSQL",
-        "REST APIs"
-      ],
-      "tools": [
-        "Git",
-        "Docker",
-        "CI/CD",
-        "Jest",
-        "Postman",
-        "Webpack"
-      ],
-      "cloud": [
-        "AWS (Lambda, S3, EC2)",
-        "Firebase",
-        "Supabase"
-      ]
-    },
-    "certifications": [
-      {
-        "name": "AWS Certified Developer",
-        "year": 2023
-      },
-      {
-        "name": "Full-Stack Web Development",
-        "year": 2022
-      }
-    ],
-    "projects": [
-      {
-        "name": "UniJobs \u2013 Job Portal for Students",
-        "technologies": "MERN Stack",
-        "description": [
-          "Developed a job listing platform for students using React.js, Node.js, and MongoDB",
-          "Implemented resume parsing with Supabase for ATS automation",
-          "Created a real-time chat system for clients and companies"
-        ]
-      },
-      {
-        "name": "Carbon Emission Calculator",
-        "technologies": "Next.js & Supabase",
-        "description": [
-          "Built an interactive carbon footprint tracker using Next.js and Tailwind CSS",
-          "Integrated Supabase authentication for user logins"
         ]
       }
     ]
