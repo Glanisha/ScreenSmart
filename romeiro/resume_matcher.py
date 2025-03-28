@@ -13,20 +13,16 @@ from sklearn.metrics.pairwise import cosine_similarity
 
 app = FastAPI(title="Resume Matching API")
 
-# Load the hiring prediction model
 MODEL_DIR = "models"
 STANDARD_MODEL_PATH = os.path.join(MODEL_DIR, "hiring_prediction_model.joblib")
 
-# Load the most recent model if standard model doesn't exist
 try:
     if os.path.exists(STANDARD_MODEL_PATH):
         hiring_model = joblib.load(STANDARD_MODEL_PATH)
         print(f"Loaded model from {STANDARD_MODEL_PATH}")
     else:
-        # Find the most recent model
         model_files = [f for f in os.listdir(MODEL_DIR) if f.startswith("hiring_model_") and f.endswith(".joblib")]
         if model_files:
-            # Sort by name (which contains timestamp)
             latest_model = sorted(model_files)[-1]
             model_path = os.path.join(MODEL_DIR, latest_model)
             hiring_model = joblib.load(model_path)
@@ -38,7 +34,6 @@ except Exception as e:
     print(f"Error loading model: {str(e)}")
     hiring_model = None
 
-# Add the new data models for prediction endpoint
 class HiringPredictionRequest(BaseModel):
     resume_text: str
     job_description: str  
