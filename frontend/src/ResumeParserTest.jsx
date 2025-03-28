@@ -1,21 +1,24 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 
-const ResumeParserTest = () => {
+const ResumePraser = () => {
   const [file, setFile] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [parsedData, setParsedData] = useState(null);
   const [error, setError] = useState(null);
+  const [result, setResult] = useState(null);
 
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
-    setParsedData(null);
     setError(null);
+    setResult(null);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!file) return;
+    if (!file) {
+      setError('Please select a PDF file');
+      return;
+    }
 
     setIsLoading(true);
     setError(null);
@@ -24,20 +27,16 @@ const ResumeParserTest = () => {
       const formData = new FormData();
       formData.append('file', file);
 
-      const response = await axios.post(
-        'http://localhost:8000/parse-resume/',
-        formData,
-        {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
+      const response = await axios.post('http://localhost:8000/send-data', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
         }
-      );
+      });
 
-      setParsedData(response.data);
+      setResult(response.data);
     } catch (err) {
-      setError(err.response?.data?.detail || 'Failed to parse resume');
-      console.error('Error parsing resume:', err);
+      setError(err.response?.data?.detail || 'Failed to process resume');
+      console.error('Error processing resume:', err);
     } finally {
       setIsLoading(false);
     }
@@ -45,7 +44,7 @@ const ResumeParserTest = () => {
 
   return (
     <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-md">
-      <h1 className="text-2xl font-bold text-gray-800 mb-6">Resume Parser Test</h1>
+      <h1 className="text-2xl font-bold text-gray-800 mb-6">Resume Processor</h1>
       
       <form onSubmit={handleSubmit} className="mb-8">
         <div className="flex flex-col space-y-4">
@@ -85,7 +84,7 @@ const ResumeParserTest = () => {
                 Processing...
               </span>
             ) : (
-              'Parse Resume'
+              'Process Resume'
             )}
           </button>
         </div>
@@ -98,90 +97,96 @@ const ResumeParserTest = () => {
         </div>
       )}
 
-      {parsedData && (
+      {result && (
         <div className="space-y-6">
           <div className="bg-gray-50 p-4 rounded-lg">
-            <h2 className="text-xl font-semibold text-gray-800 mb-3">Contact Information</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <p className="text-sm text-gray-500">Name</p>
-                <p className="font-medium">{parsedData.name || 'Not found'}</p>
-              </div>
-              <div>
-                <p className="text-sm text-gray-500">Email</p>
-                <p className="font-medium">{parsedData.email || 'Not found'}</p>
-              </div>
-              <div>
-                <p className="text-sm text-gray-500">Phone</p>
-                <p className="font-medium">{parsedData.phone || 'Not found'}</p>
-              </div>
+            <h2 className="text-xl font-semibold text-gray-800 mb-3">Raw Text Sample</h2>
+            <pre className="text-sm text-gray-600 whitespace-pre-wrap overflow-x-auto">
+              {result.raw_text}
+            </pre>
+          </div>
+
+          <div className="bg-gray-50 p-4 rounded-lg">
+            <h2 className="text-xl font-semibold text-gray-800 mb-3">Processed Data</h2>
+            <div className="bg-white p-4 rounded border border-gray-200">
+              <pre className="text-sm text-gray-800 overflow-x-auto">
+                {JSON.stringify(result.processed_data, null, 2)}
+              </pre>
             </div>
           </div>
 
           <div className="bg-gray-50 p-4 rounded-lg">
-            <h2 className="text-xl font-semibold text-gray-800 mb-3">Skills</h2>
-            {parsedData.extracted_skills?.length > 0 ? (
-              <div className="flex flex-wrap gap-2">
-                {parsedData.extracted_skills.map((skill, index) => (
-                  <span
-                    key={index}
-                    className="px-3 py-1 bg-blue-100 text-blue-800 text-sm font-medium rounded-full"
-                  >
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            ) : (
-              <p className="text-gray-500">No skills found</p>
-            )}
-          </div>
-
-          <div className="bg-gray-50 p-4 rounded-lg">
-            <h2 className="text-xl font-semibold text-gray-800 mb-3">Work Experience</h2>
-            {parsedData.work_experience?.length > 0 ? (
-              <div className="space-y-4">
-                {parsedData.work_experience.map((exp, index) => (
-                  <div key={index} className="border-l-4 border-blue-500 pl-4 py-2">
-                    <h3 className="font-medium text-gray-800">{exp.position}</h3>
-                    <p className="text-sm text-gray-600">
-                      {exp.company} • {exp.duration}
-                    </p>
-                    {exp.description && (
-                      <p className="mt-1 text-gray-700">{exp.description}</p>
-                    )}
+            <h2 className="text-xl font-semibold text-gray-800 mb-3">Formatted View</h2>
+            {result.processed_data.personal_info && (
+              <div className="mb-6">
+                <h3 className="text-lg font-medium text-gray-800">Personal Information</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
+                  <div>
+                    <p className="text-sm text-gray-500">Name</p>
+                    <p className="font-medium">{result.processed_data.personal_info.name || 'Not provided'}</p>
                   </div>
-                ))}
-              </div>
-            ) : (
-              <p className="text-gray-500">No work experience found</p>
-            )}
-          </div>
-
-          <div className="bg-gray-50 p-4 rounded-lg">
-            <h2 className="text-xl font-semibold text-gray-800 mb-3">Education</h2>
-            {parsedData.education?.length > 0 ? (
-              <div className="space-y-3">
-                {parsedData.education.map((edu, index) => (
-                  <div key={index}>
-                    <h3 className="font-medium text-gray-800">{edu.degree}</h3>
-                    <p className="text-sm text-gray-600">
-                      {edu.institution} • {edu.year || 'Year not specified'}
-                    </p>
+                  <div>
+                    <p className="text-sm text-gray-500">Email</p>
+                    <p className="font-medium">{result.processed_data.personal_info.email || 'Not provided'}</p>
                   </div>
-                ))}
+                  <div>
+                    <p className="text-sm text-gray-500">Phone</p>
+                    <p className="font-medium">{result.processed_data.personal_info.phone || 'Not provided'}</p>
+                  </div>
+                </div>
               </div>
-            ) : (
-              <p className="text-gray-500">No education information found</p>
             )}
-          </div>
 
-          <div className="bg-gray-50 p-4 rounded-lg">
-            <h2 className="text-xl font-semibold text-gray-800 mb-3">Raw Text</h2>
-            <textarea
-              readOnly
-              value={parsedData.resume_text}
-              className="w-full h-40 p-3 text-sm border border-gray-300 rounded-md bg-white"
-            />
+            {result.processed_data.education?.length > 0 && (
+              <div className="mb-6">
+                <h3 className="text-lg font-medium text-gray-800">Education</h3>
+                <div className="space-y-3 mt-2">
+                  {result.processed_data.education.map((edu, index) => (
+                    <div key={index} className="border-l-4 border-blue-500 pl-4 py-2">
+                      <p className="font-medium">{edu.degree}</p>
+                      <p className="text-sm text-gray-600">
+                        {edu.institution} • {edu.year || 'Year not specified'}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {result.processed_data.experience?.length > 0 && (
+              <div className="mb-6">
+                <h3 className="text-lg font-medium text-gray-800">Work Experience</h3>
+                <div className="space-y-4 mt-2">
+                  {result.processed_data.experience.map((exp, index) => (
+                    <div key={index} className="border-l-4 border-green-500 pl-4 py-2">
+                      <p className="font-medium">{exp.position}</p>
+                      <p className="text-sm text-gray-600">
+                        {exp.company} • {exp.duration}
+                      </p>
+                      {exp.description && (
+                        <p className="mt-1 text-gray-700 text-sm">{exp.description}</p>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {result.processed_data.skills?.technical?.length > 0 && (
+              <div className="mb-6">
+                <h3 className="text-lg font-medium text-gray-800">Skills</h3>
+                <div className="flex flex-wrap gap-2 mt-2">
+                  {result.processed_data.skills.technical.map((skill, index) => (
+                    <span
+                      key={index}
+                      className="px-3 py-1 bg-blue-100 text-blue-800 text-sm font-medium rounded-full"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </div>
       )}
@@ -189,4 +194,4 @@ const ResumeParserTest = () => {
   );
 };
 
-export default ResumeParserTest;
+export default ResumePraser;
