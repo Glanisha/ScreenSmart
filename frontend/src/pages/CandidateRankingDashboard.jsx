@@ -11,7 +11,7 @@ const CandidateRankingDashboard = () => {
       try {
         setIsLoading(true);
         // Simple GET request with no parameters
-        const response = await fetch("http://localhost:8000/process-and-match-resumes", {
+        const response = await fetch("http://localhost:8080/process-and-match-resumes", {
           method: "GET",
           headers: {
             "Accept": "application/json"

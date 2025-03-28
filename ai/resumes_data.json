@@ -11,14 +11,36 @@
         "max": 150000,
         "currency": "USD",
         "period": "yearly",
-        "benefits": ["Health insurance", "Stock options", "401(k) matching"]
+        "benefits": [
+          "Health insurance",
+          "Stock options",
+          "401(k) matching"
+        ]
       },
       "required_skills": {
-        "core_technologies": ["React.js", "TypeScript", "Next.js"],
-        "state_management": ["Redux", "Context API"],
-        "styling": ["CSS-in-JS", "SASS", "Tailwind CSS"],
-        "testing": ["Jest", "React Testing Library"],
-        "tools": ["Git", "Webpack", "Figma"],
+        "core_technologies": [
+          "React.js",
+          "TypeScript",
+          "Next.js"
+        ],
+        "state_management": [
+          "Redux",
+          "Context API"
+        ],
+        "styling": [
+          "CSS-in-JS",
+          "SASS",
+          "Tailwind CSS"
+        ],
+        "testing": [
+          "Jest",
+          "React Testing Library"
+        ],
+        "tools": [
+          "Git",
+          "Webpack",
+          "Figma"
+        ],
         "soft_skills": [
           "Problem-solving",
           "Team collaboration",
@@ -102,9 +124,25 @@
         "Swift",
         "React Native"
       ],
-      "backend": ["Firebase", "Node.js", "FastAPI", "PostgreSQL"],
-      "tools": ["Git", "Jenkins", "Docker", "Jira", "Android Studio", "Xcode"],
-      "cloud": ["AWS (Lambda, DynamoDB, S3)", "Google Cloud", "Firebase"]
+      "backend": [
+        "Firebase",
+        "Node.js",
+        "FastAPI",
+        "PostgreSQL"
+      ],
+      "tools": [
+        "Git",
+        "Jenkins",
+        "Docker",
+        "Jira",
+        "Android Studio",
+        "Xcode"
+      ],
+      "cloud": [
+        "AWS (Lambda, DynamoDB, S3)",
+        "Google Cloud",
+        "Firebase"
+      ]
     },
     "certifications": [
       {
@@ -120,7 +158,10 @@
       {
         "name": "HealthSync",
         "description": "AI-Powered Fitness App",
-        "technologies": ["Flutter", "Firebase"],
+        "technologies": [
+          "Flutter",
+          "Firebase"
+        ],
         "details": [
           "Built a fitness tracking app with AI-based workout recommendations.",
           "Integrated Google Fit and Apple Health for real-time health data synchronization.",
@@ -130,7 +171,10 @@
       {
         "name": "EduBridge",
         "description": "E-Learning Platform",
-        "technologies": ["React Native", "Node.js"],
+        "technologies": [
+          "React Native",
+          "Node.js"
+        ],
         "details": [
           "Developed a mobile-first e-learning platform with interactive video courses.",
           "Integrated live streaming capabilities using WebRTC and AWS Media Services.",
@@ -198,8 +242,19 @@
         "PostgreSQL",
         "REST APIs"
       ],
-      "tools": ["Git", "Docker", "CI/CD", "Jest", "Postman", "Webpack"],
-      "cloud": ["AWS (Lambda, S3, EC2)", "Firebase", "Supabase"]
+      "tools": [
+        "Git",
+        "Docker",
+        "CI/CD",
+        "Jest",
+        "Postman",
+        "Webpack"
+      ],
+      "cloud": [
+        "AWS (Lambda, S3, EC2)",
+        "Firebase",
+        "Supabase"
+      ]
     },
     "certifications": [
       {
@@ -276,9 +331,25 @@
         "Swift",
         "React Native"
       ],
-      "backend": ["Firebase", "Node.js", "FastAPI", "PostgreSQL"],
-      "tools": ["Git", "Jenkins", "Docker", "Jira", "Android Studio", "Xcode"],
-      "cloud": ["AWS (Lambda, DynamoDB, S3)", "Google Cloud", "Firebase"]
+      "backend": [
+        "Firebase",
+        "Node.js",
+        "FastAPI",
+        "PostgreSQL"
+      ],
+      "tools": [
+        "Git",
+        "Jenkins",
+        "Docker",
+        "Jira",
+        "Android Studio",
+        "Xcode"
+      ],
+      "cloud": [
+        "AWS (Lambda, DynamoDB, S3)",
+        "Google Cloud",
+        "Firebase"
+      ]
     },
     "certifications": [
       {
@@ -294,7 +365,10 @@
       {
         "name": "HealthSync",
         "description": "AI-Powered Fitness App",
-        "technologies": ["Flutter", "Firebase"],
+        "technologies": [
+          "Flutter",
+          "Firebase"
+        ],
         "details": [
           "Built a fitness tracking app with AI-based workout recommendations.",
           "Integrated Google Fit and Apple Health for real-time health data synchronization.",
@@ -304,7 +378,10 @@
       {
         "name": "EduBridge",
         "description": "E-Learning Platform",
-        "technologies": ["React Native", "Node.js"],
+        "technologies": [
+          "React Native",
+          "Node.js"
+        ],
         "details": [
           "Developed a mobile-first e-learning platform with interactive video courses.",
           "Integrated live streaming capabilities using WebRTC and AWS Media Services.",
@@ -372,8 +449,19 @@
         "PostgreSQL",
         "REST APIs"
       ],
-      "tools": ["Git", "Docker", "CI/CD", "Jest", "Postman", "Webpack"],
-      "cloud": ["AWS (Lambda, S3, EC2)", "Firebase", "Supabase"]
+      "tools": [
+        "Git",
+        "Docker",
+        "CI/CD",
+        "Jest",
+        "Postman",
+        "Webpack"
+      ],
+      "cloud": [
+        "AWS (Lambda, S3, EC2)",
+        "Firebase",
+        "Supabase"
+      ]
     },
     "certifications": [
       {
@@ -401,6 +489,212 @@
         "description": [
           "Built an interactive carbon footprint tracker using Next.js and Tailwind CSS.",
           "Integrated Supabase authentication for user logins."
+        ]
+      }
+    ]
+  },
+  {
+    "personal_information": {
+      "name": "Slayde Sequeira",
+      "email": "slaydes13@gmail.com",
+      "phone": "+91-8097276899",
+      "location": "Mumbai, India",
+      "linkedin": "https://linkedin.com/in/slayde-sequeira-062660221",
+      "github": "https://github.com/SlaydeSequeira"
+    },
+    "education": [
+      {
+        "institution": "Fr. Conceicao Rodrigues College of Engineering",
+        "degree": "Bachelor in Computer Engineering",
+        "major": "Data Science",
+        "gpa": "8.99",
+        "start_date": "May 2021",
+        "end_date": "May 2025"
+      }
+    ],
+    "work_experience": [
+      {
+        "company": "Hyperverge",
+        "position": "Jr. Solution Architect Intern",
+        "start_date": "January 13, 2024",
+        "end_date": "Present",
+        "description": "Developed a native Android application for seamless video conferencing. Integrated the app with existing website functionalities. Developed a web application using Spring Boot for the backend and React for the frontend. The application scraped bond data from various websites and displayed it on the company's website.",
+        "tech_stack": [
+          "React Flow",
+          "APIs",
+          "Cloud Services"
+        ]
+      },
+      {
+        "company": "Svirtz Technologies Pvt Ltd",
+        "position": "Web and App Developer Intern",
+        "start_date": "October 1, 2023",
+        "end_date": "June 30, 2024",
+        "description": "At HyperVerge (Note: This description seems to belong to the Hyperverge experience), designed and optimized client onboarding workflows, ensuring seamless integration and scalability for enterprise solutions. Developed AI-driven system architectures that streamlined document verification while adhering to banking compliance norms and regulatory requirements. By automating key processes, enhanced operational efficiency, reduced friction in onboarding, and improved overall user experience.",
+        "tech_stack": [
+          "React",
+          "Spring Boot",
+          "Native Java",
+          "XML",
+          "Node.js",
+          "MySQL"
+        ]
+      },
+      {
+        "company": "DigiHelic Solutions Pvt Ltd",
+        "position": "Web Developer Intern",
+        "start_date": "December 10, 2023",
+        "end_date": "March 31, 2024",
+        "description": "Built a user-centric immigration website with task management, document storage, and real-time updates to streamline processes.",
+        "tech_stack": [
+          "Next.js",
+          "Node.js",
+          "Express",
+          "MongoDB",
+          "Firebase"
+        ]
+      }
+    ],
+    "projects": [
+      {
+        "name": "Dimensionality Reduction using Metaheuristic Algorithms",
+        "start_date": "May 2024",
+        "end_date": "Present",
+        "description": "Developed a dimensionality reduction approach using metaheuristic algorithms to optimize feature selection in high-dimensional datasets. By leveraging techniques like Genetic Algorithms and Particle Swarm Optimization, improved computational efficiency while retaining essential data patterns for better machine learning performance.",
+        "tech_stack": [
+          "Python",
+          "LIME",
+          "SHAP",
+          "ACO",
+          "PSO"
+        ]
+      },
+      {
+        "name": "Smart Bin+",
+        "start_date": "May 2023",
+        "end_date": "April 2024",
+        "description": "Developed a smart waste management system integrating IoT and machine learning for responsible disposal with mobile app and cloud features.",
+        "tech_stack": [
+          "Native Java",
+          "XML",
+          "Firebase",
+          "Node.js",
+          "IoT",
+          "Machine Learning"
+        ]
+      },
+      {
+        "name": "College Management System",
+        "start_date": "January 2023",
+        "end_date": "March 2023",
+        "description": "A responsive web platform for automating exam schedules, grading, and attendance tracking in universities.",
+        "tech_stack": [
+          "React.js",
+          "Firebase",
+          "Node.js"
+        ]
+      }
+    ],
+    "extracurricular_activities": [
+      {
+        "title": "Technical Head",
+        "organization": "CSI CRCE",
+        "start_date": "2023",
+        "end_date": "2024",
+        "description": "Managed multiple tech events and hackathons."
+      },
+      {
+        "title": "Social Media Head",
+        "organization": "Computer Department at CRCE",
+        "start_date": "2023",
+        "end_date": "2024",
+        "description": "Managed social media handles of the Computer Department."
+      }
+    ],
+    "achievements": [
+      "First Place - Sun Hacks 2024 International Hackathon",
+      "First Place - S.P.I.T Hacks 2025 Hackathon",
+      "First Place - Ingenium 2.0 Hackathon",
+      "2nd Place - Techvista Coding Contest",
+      "3rd Place - Algoholics 2.0 Coding Contest",
+      "Finalist - Bit n Build 2024"
+    ],
+    "skills": {
+      "android_development": [
+        "Java",
+        "Kotlin",
+        "XML",
+        "Flutter (basic)"
+      ],
+      "web_development": [
+        "Next.js",
+        "React",
+        "HTML",
+        "CSS",
+        "JavaScript"
+      ],
+      "database": [
+        "MongoDB",
+        "SQL",
+        "Firebase"
+      ],
+      "backend": [
+        "Node.js",
+        "Express",
+        "Django",
+        "Flask"
+      ],
+      "cloud_services": [
+        "GCP",
+        "AWS"
+      ]
+    },
+    "courses": [
+      {
+        "name": "AWS Developing Course",
+        "institution": "AWS Academy",
+        "start_date": "February 2024",
+        "end_date": "April 2024"
+      },
+      {
+        "name": "Complete Android Development Course",
+        "institution": "Udemy",
+        "start_date": "January 2023",
+        "end_date": "March 2023"
+      },
+      {
+        "name": "Geodata Processing in Python",
+        "institution": "ISRO",
+        "start_date": "February 20, 2024",
+        "end_date": "February 24, 2024"
+      },
+      {
+        "name": "J.P. Morgan Chase and Co Virtual Internship",
+        "institution": "Forage",
+        "start_date": "February 15, 2023",
+        "end_date": "February 18, 2023"
+      },
+      {
+        "name": "Oasis Infobyte Virtual Internship in Android Dev",
+        "institution": "Oasis Infobyte",
+        "start_date": "May 2023",
+        "end_date": "June 2023"
+      }
+    ],
+    "research": [
+      {
+        "title": "SmartBin+: Elevating Responsible Waste Disposal with Rewards",
+        "role": "Lead Author",
+        "conference": "4th International Conference on Sustainable Expert Systems (ICSES), affiliated with IEEE",
+        "publication_status": "Presented at ICSES 4th Conference, published in IEEE Xplore",
+        "start_date": "September 2023",
+        "end_date": "October 2024",
+        "tech_stack": [
+          "IoT",
+          "Machine Learning",
+          "App Development",
+          "Firebase",
+          "Node.js"
         ]
       }
     ]
