@@ -9,6 +9,12 @@ import Profile from './components/Profile'
 import JobDetails from './components/JobDetails'
 import JobApplication from './components/JobApplication'
 
+// HR routes
+import HRDashboard from './pages/hr/HRDashboard';
+import HRProfile from './pages/hr/HRProfile';
+import AddJobListing from './pages/hr/AddJobListing';
+import EditJobListing from './pages/hr/EditJobListing';
+
 function App() {
   return (
     <>
@@ -24,6 +30,11 @@ function App() {
         <Route path="/job/:jobId" element={<JobDetails />} />
         
         <Route path="/job/:jobId/apply" element={<JobApplication />} />
+
+        <Route path="/hr/dashboard" element={<HRDashboard />} />
+        <Route path="/hr/profile" element={<HRProfile />} />
+        <Route path="/hr/jobs/new" element={<AddJobListing />} />
+        <Route path="/hr/jobs/:jobId/edit" element={<EditJobListing />} />
       </Routes>
     </BrowserRouter>  
     </>
