@@ -443,5 +443,211 @@
         ]
       }
     ]
+  },
+  {
+    "personal_information": {
+      "name": "Vikram Singh",
+      "email": "vikram.singh@example.com",
+      "phone": "+91 98765 43210",
+      "location": "Mumbai, India",
+      "linkedin": "linkedin.com/in/vikramsingh"
+    },
+    "education": [
+      {
+        "degree": "Bachelor of Technology in Computer Science",
+        "institution": "Indian Institute of Technology (IIT) Bombay",
+        "graduation_year": 2020,
+        "cgpa": 9.21
+      }
+    ],
+    "work_experience": [
+      {
+        "company": "Soares Tech",
+        "location": "Mumbai, India",
+        "position": "Software Engineer",
+        "start_date": "January 2022",
+        "end_date": "Present",
+        "responsibilities": [
+          "Developed and optimized React.js applications, improving performance by 30%",
+          "Built REST APIs with Node.js and Express.js, enhancing data retrieval efficiency",
+          "Migrated codebase to TypeScript, reducing production errors by 25%",
+          "Collaborated with Agile teams to deliver scalable web applications"
+        ]
+      },
+      {
+        "company": "Thomas Corp",
+        "location": "Remote",
+        "position": "Web Developer",
+        "start_date": "June 2020",
+        "end_date": "December 2021",
+        "responsibilities": [
+          "Designed and developed responsive web applications using JavaScript, HTML, and CSS",
+          "Optimized website speed by 40% using lazy loading and image compression techniques",
+          "Integrated multiple third-party APIs for enhanced functionality"
+        ]
+      }
+    ],
+    "skills": {
+      "frontend": [
+        "React.js",
+        "Next.js",
+        "JavaScript",
+        "TypeScript",
+        "Redux",
+        "Tailwind CSS"
+      ],
+      "backend": [
+        "Node.js",
+        "Express.js",
+        "MongoDB",
+        "PostgreSQL",
+        "REST APIs"
+      ],
+      "tools": [
+        "Git",
+        "Docker",
+        "CI/CD",
+        "Jest",
+        "Postman",
+        "Webpack"
+      ],
+      "cloud": [
+        "AWS (Lambda, S3, EC2)",
+        "Firebase",
+        "Supabase"
+      ]
+    },
+    "certifications": [
+      {
+        "name": "AWS Certified Developer",
+        "year": 2023
+      },
+      {
+        "name": "Full-Stack Web Development",
+        "year": 2022
+      }
+    ],
+    "projects": [
+      {
+        "name": "UniJobs \u2013 Job Portal for Students",
+        "technologies": "MERN Stack",
+        "description": [
+          "Developed a job listing platform for students using React.js, Node.js, and MongoDB",
+          "Implemented resume parsing with Supabase for ATS automation",
+          "Created a real-time chat system for clients and companies"
+        ]
+      },
+      {
+        "name": "Carbon Emission Calculator",
+        "technologies": "Next.js & Supabase",
+        "description": [
+          "Built an interactive carbon footprint tracker using Next.js and Tailwind CSS",
+          "Integrated Supabase authentication for user logins"
+        ]
+      }
+    ]
+  },
+  {
+    "personal_information": {
+      "name": "Vikram Singh",
+      "location": "Mumbai, India",
+      "email": "vikram.singh@example.com",
+      "phone": "+91 98765 43210",
+      "linkedin": "linkedin.com/in/vikramsingh"
+    },
+    "education": [
+      {
+        "degree": "Bachelor of Technology in Computer Science",
+        "institution": "Indian Institute of Technology (IIT) Bombay",
+        "graduation_year": 2020,
+        "cgpa": 9.21
+      }
+    ],
+    "work_experience": [
+      {
+        "company": "Soares Tech",
+        "location": "Mumbai, India",
+        "position": "Software Engineer",
+        "start_date": "January 2022",
+        "end_date": "Present",
+        "responsibilities": [
+          "Developed and optimized React.js applications, improving performance by 30%",
+          "Built REST APIs with Node.js and Express.js, enhancing data retrieval efficiency",
+          "Migrated codebase to TypeScript, reducing production errors by 25%",
+          "Collaborated with Agile teams to deliver scalable web applications"
+        ]
+      },
+      {
+        "company": "Thomas Corp",
+        "location": "Remote",
+        "position": "Web Developer",
+        "start_date": "June 2020",
+        "end_date": "December 2021",
+        "responsibilities": [
+          "Designed and developed responsive web applications using JavaScript, HTML, and CSS",
+          "Optimized website speed by 40% using lazy loading and image compression techniques",
+          "Integrated multiple third-party APIs for enhanced functionality"
+        ]
+      }
+    ],
+    "skills": {
+      "frontend": [
+        "React.js",
+        "Next.js",
+        "JavaScript",
+        "TypeScript",
+        "Redux",
+        "Tailwind CSS"
+      ],
+      "backend": [
+        "Node.js",
+        "Express.js",
+        "MongoDB",
+        "PostgreSQL",
+        "REST APIs"
+      ],
+      "tools": [
+        "Git",
+        "Docker",
+        "CI/CD",
+        "Jest",
+        "Postman",
+        "Webpack"
+      ],
+      "cloud": [
+        "AWS (Lambda, S3, EC2)",
+        "Firebase",
+        "Supabase"
+      ]
+    },
+    "certifications": [
+      {
+        "name": "AWS Certified Developer",
+        "year": 2023
+      },
+      {
+        "name": "Full-Stack Web Development",
+        "year": 2022
+      }
+    ],
+    "projects": [
+      {
+        "name": "UniJobs \u2013 Job Portal for Students",
+        "technologies": "MERN Stack",
+        "description": [
+          "Developed a job listing platform for students using React.js, Node.js, and MongoDB.",
+          "Implemented resume parsing with Supabase for ATS automation.",
+          "Created a real-time chat system for clients and companies."
+        ]
+      },
+      {
+        "name": "Carbon Emission Calculator",
+        "technologies": "Next.js & Supabase",
+        "description": [
+          "Built an interactive carbon footprint tracker using Next.js and Tailwind CSS.",
+          "Integrated Supabase authentication for user logins"
+        ]
+      }
+    ]
   }
 ]
