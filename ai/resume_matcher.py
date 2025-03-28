@@ -4,17 +4,27 @@ from typing import List, Dict, Optional, Set
 import uvicorn
 import numpy as np
 import pandas as pd
+import json
 import os
 import re
 import joblib
+from fastapi.middleware.cors import CORSMiddleware
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 
 app = FastAPI(title="Resume Matching API")
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # In production, specify actual origins
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 MODEL_DIR = "models"
-STANDARD_MODEL_PATH = os.path.join(MODEL_DIR, "hiring_prediction_model.joblib")
+STANDARD_MODEL_PATH = os.path.join(MODEL_DIR, "hiring_model.joblib")
 
 try:
     if os.path.exists(STANDARD_MODEL_PATH):
@@ -316,6 +326,75 @@ def match_candidates_to_job(job: JobDescription, candidates: List[Candidate]) ->
     
     return results
 
+def prepare_candidate_data(json_file_path):
+    """
+    Prepare candidate data from the JSON file for resume matching
+    """
+    with open(json_file_path, 'r') as file:
+        data = json.load(file)
+    
+    candidates = []
+    job_description = None
+
+    for item in data:
+        # Extract job description from the first job posting
+        if not job_description and 'job_description' in item:
+            job_description = JobDescription(
+                title=item['job_description'].get('applied_job_title', 'Not Specified'),
+                description=" ".join(item['job_description'].get('job_responsibilities', [])),
+                required_skills=(
+                    item['job_description']['required_skills'].get('core_technologies', []) + 
+                    item['job_description']['required_skills'].get('state_management', []) + 
+                    item['job_description']['required_skills'].get('styling', [])
+                ),
+                preferred_skills=(
+                    item['job_description']['required_skills'].get('soft_skills', [])
+                )
+            )
+        
+        # Extract candidate information
+        if 'personal_information' in item:
+            # Combine skills from different categories
+            all_skills = (
+                item.get('skills', {}).get('mobile_development', []) +
+                item.get('skills', {}).get('backend', []) +
+                item.get('skills', {}).get('tools', [])
+            )
+            
+            candidate = Candidate(
+                name=item['personal_information'].get('name', 'Unknown'),
+                resume_text=f"Mobile Application Developer with experience in {', '.join(all_skills)}. " + 
+                            f"Worked at {', '.join([exp['company'] for exp in item.get('work_experience', [])])}. " +
+                            f"Education: {item['education'][0]['degree'] if item.get('education') else 'Not Specified'}",
+                extracted_skills=all_skills
+            )
+            candidates.append(candidate)
+
+    return job_description, candidates
+
+@app.get("/process-and-match-resumes")
+async def process_and_match_resumes():
+    """
+    Process resumes from the resumes_data.json file and match them to a job description
+    """
+    try:
+        # Use fixed path to your JSON file
+        json_file_path = os.path.join(os.path.dirname(__file__), "resumes_data.json")
+        
+        # Prepare job description and candidates
+        job_description, candidates = prepare_candidate_data(json_file_path)
+        
+        if not job_description or not candidates:
+            raise HTTPException(status_code=400, detail="Could not extract job description or candidates")
+        
+        # Match candidates to job
+        ranked_candidates = match_candidates_to_job(job_description, candidates)
+        
+        print(f"Ranked candidates: {ranked_candidates}")
+        return {"candidates": ranked_candidates}
+    
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error processing resumes: {str(e)}")
 #
 # API Endpoints
 #
@@ -323,18 +402,18 @@ def match_candidates_to_job(job: JobDescription, candidates: List[Candidate]) ->
 async def root():
     return {"message": "Resume Matching API is running"}
 
-@app.post("/match-resumes", response_model=MatchResponse)
-async def match_resumes(job: JobDescription, candidates: List[Candidate]):
-    if not job.description or not job.required_skills:
-        raise HTTPException(status_code=400, detail="Job description and required skills are required")
+# @app.post("/match-resumes", response_model=MatchResponse)
+# async def match_resumes(job: JobDescription, candidates: List[Candidate]):
+#     if not job.description or not job.required_skills:
+#         raise HTTPException(status_code=400, detail="Job description and required skills are required")
     
-    if len(candidates) == 0:
-        raise HTTPException(status_code=400, detail="At least one candidate must be provided")
+#     if len(candidates) == 0:
+#         raise HTTPException(status_code=400, detail="At least one candidate must be provided")
         
-    # Match candidates to job
-    ranked_candidates = match_candidates_to_job(job, candidates)
+#     # Match candidates to job
+#     ranked_candidates = match_candidates_to_job(job, candidates)
     
-    return {"candidates": ranked_candidates}
+#     return {"candidates": ranked_candidates}
 
 # Run the application
 if __name__ == "__main__":

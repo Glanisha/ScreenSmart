@@ -1,5 +1,56 @@
 [
   {
+    "job_description": {
+      "company_name": "TechNova Solutions",
+      "industry": "Information Technology & Services",
+      "work_type": "Full-time",
+      "location": "San Francisco, CA (Hybrid)",
+      "applied_job_title": "Senior Frontend Developer (React.js)",
+      "offered_salary": {
+        "min": 120000,
+        "max": 150000,
+        "currency": "USD",
+        "period": "yearly",
+        "benefits": ["Health insurance", "Stock options", "401(k) matching"]
+      },
+      "required_skills": {
+        "core_technologies": ["React.js", "TypeScript", "Next.js"],
+        "state_management": ["Redux", "Context API"],
+        "styling": ["CSS-in-JS", "SASS", "Tailwind CSS"],
+        "testing": ["Jest", "React Testing Library"],
+        "tools": ["Git", "Webpack", "Figma"],
+        "soft_skills": [
+          "Problem-solving",
+          "Team collaboration",
+          "Agile methodologies"
+        ],
+        "experience_requirements": {
+          "minimum_years": 5,
+          "preferred_background": "SaaS product development"
+        }
+      },
+      "job_responsibilities": [
+        "Develop and maintain high-quality React applications",
+        "Optimize components for maximum performance",
+        "Collaborate with UX designers to implement pixel-perfect interfaces",
+        "Mentor junior developers and conduct code reviews",
+        "Participate in architectural decision-making"
+      ],
+      "education_requirements": {
+        "minimum_qualification": "Bachelor's degree in Computer Science",
+        "alternatives": [
+          "Equivalent practical experience",
+          "Relevant certifications"
+        ]
+      }
+    },
+    "metadata": {
+      "posting_date": "2023-11-15",
+      "application_deadline": "2023-12-15",
+      "hiring_contact": "careers@technovasolutions.com"
+    }
+  },
+  {
     "personal_information": {
       "name": "Amit Sharma",
       "location": "Hyderabad, India",
@@ -51,25 +102,9 @@
         "Swift",
         "React Native"
       ],
-      "backend": [
-        "Firebase",
-        "Node.js",
-        "FastAPI",
-        "PostgreSQL"
-      ],
-      "tools": [
-        "Git",
-        "Jenkins",
-        "Docker",
-        "Jira",
-        "Android Studio",
-        "Xcode"
-      ],
-      "cloud": [
-        "AWS (Lambda, DynamoDB, S3)",
-        "Google Cloud",
-        "Firebase"
-      ]
+      "backend": ["Firebase", "Node.js", "FastAPI", "PostgreSQL"],
+      "tools": ["Git", "Jenkins", "Docker", "Jira", "Android Studio", "Xcode"],
+      "cloud": ["AWS (Lambda, DynamoDB, S3)", "Google Cloud", "Firebase"]
     },
     "certifications": [
       {
@@ -85,10 +120,7 @@
       {
         "name": "HealthSync",
         "description": "AI-Powered Fitness App",
-        "technologies": [
-          "Flutter",
-          "Firebase"
-        ],
+        "technologies": ["Flutter", "Firebase"],
         "details": [
           "Built a fitness tracking app with AI-based workout recommendations.",
           "Integrated Google Fit and Apple Health for real-time health data synchronization.",
@@ -98,10 +130,7 @@
       {
         "name": "EduBridge",
         "description": "E-Learning Platform",
-        "technologies": [
-          "React Native",
-          "Node.js"
-        ],
+        "technologies": ["React Native", "Node.js"],
         "details": [
           "Developed a mobile-first e-learning platform with interactive video courses.",
           "Integrated live streaming capabilities using WebRTC and AWS Media Services.",
@@ -169,19 +198,8 @@
         "PostgreSQL",
         "REST APIs"
       ],
-      "tools": [
-        "Git",
-        "Docker",
-        "CI/CD",
-        "Jest",
-        "Postman",
-        "Webpack"
-      ],
-      "cloud": [
-        "AWS (Lambda, S3, EC2)",
-        "Firebase",
-        "Supabase"
-      ]
+      "tools": ["Git", "Docker", "CI/CD", "Jest", "Postman", "Webpack"],
+      "cloud": ["AWS (Lambda, S3, EC2)", "Firebase", "Supabase"]
     },
     "certifications": [
       {
@@ -258,25 +276,9 @@
         "Swift",
         "React Native"
       ],
-      "backend": [
-        "Firebase",
-        "Node.js",
-        "FastAPI",
-        "PostgreSQL"
-      ],
-      "tools": [
-        "Git",
-        "Jenkins",
-        "Docker",
-        "Jira",
-        "Android Studio",
-        "Xcode"
-      ],
-      "cloud": [
-        "AWS (Lambda, DynamoDB, S3)",
-        "Google Cloud",
-        "Firebase"
-      ]
+      "backend": ["Firebase", "Node.js", "FastAPI", "PostgreSQL"],
+      "tools": ["Git", "Jenkins", "Docker", "Jira", "Android Studio", "Xcode"],
+      "cloud": ["AWS (Lambda, DynamoDB, S3)", "Google Cloud", "Firebase"]
     },
     "certifications": [
       {
@@ -292,10 +294,7 @@
       {
         "name": "HealthSync",
         "description": "AI-Powered Fitness App",
-        "technologies": [
-          "Flutter",
-          "Firebase"
-        ],
+        "technologies": ["Flutter", "Firebase"],
         "details": [
           "Built a fitness tracking app with AI-based workout recommendations.",
           "Integrated Google Fit and Apple Health for real-time health data synchronization.",
@@ -305,10 +304,7 @@
       {
         "name": "EduBridge",
         "description": "E-Learning Platform",
-        "technologies": [
-          "React Native",
-          "Node.js"
-        ],
+        "technologies": ["React Native", "Node.js"],
         "details": [
           "Developed a mobile-first e-learning platform with interactive video courses.",
           "Integrated live streaming capabilities using WebRTC and AWS Media Services.",
@@ -376,19 +372,8 @@
         "PostgreSQL",
         "REST APIs"
       ],
-      "tools": [
-        "Git",
-        "Docker",
-        "CI/CD",
-        "Jest",
-        "Postman",
-        "Webpack"
-      ],
-      "cloud": [
-        "AWS (Lambda, S3, EC2)",
-        "Firebase",
-        "Supabase"
-      ]
+      "tools": ["Git", "Docker", "CI/CD", "Jest", "Postman", "Webpack"],
+      "cloud": ["AWS (Lambda, S3, EC2)", "Firebase", "Supabase"]
     },
     "certifications": [
       {
