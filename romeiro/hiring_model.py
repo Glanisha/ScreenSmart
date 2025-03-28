@@ -23,7 +23,6 @@ class EnhancedHiringPredictor:
         self.accuracy = 0
 
     def advanced_text_preprocessing(self, text: str) -> str:
-        """Advanced text cleaning and feature extraction"""
         if not isinstance(text, str):
             return ""
         text = re.sub(r'[^a-zA-Z\s]', '', text.lower())
@@ -31,7 +30,6 @@ class EnhancedHiringPredictor:
         return text
         
     def calculate_skill_match(self, candidate_skills, required_skills):
-        """Calculate the match between candidate skills and required skills"""
         if not isinstance(candidate_skills, str) or not isinstance(required_skills, str):
             return 0.0
             
@@ -46,7 +44,6 @@ class EnhancedHiringPredictor:
         return matches / len(required_skills_list) if len(required_skills_list) > 0 else 0.0
 
     def prepare_data(self, df: pd.DataFrame):
-        """Enhanced data preparation with more features and error checking"""
         required_columns = [
             'Resume_Text', 'Job_Description', 'Skills', 'Required_Skills', 
             'Experience (Years)', 'Offered_Salary', 'Salary_Expectation', 
@@ -143,7 +140,6 @@ class EnhancedHiringPredictor:
         ])
 
     def train(self, df: pd.DataFrame):
-        """Train the enhanced hiring prediction model"""
         try:
             X, y = self.prepare_data(df)
             
