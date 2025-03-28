@@ -16,11 +16,11 @@ const NavBar = () => {
             onClick={() => navigate("/resume-parser")}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="bg-gradient-to-r from-blue-800/70 to-indigo-700/70 text-white 
+            className="bg-gradient-to-r from-indigo-600/50 to-indigo-500/50 text-white 
                 px-6 py-3 rounded-full 
                 transition duration-300 font-inter
-                border border-blue-700/50 hover:border-indigo-500/80
-                hover:shadow-md hover:shadow-blue-900/30"
+                border border-indigo-700/50 hover:border-indigo-500/80
+                hover:shadow-md hover:shadow-indigo-600/30"
           >
             <span className="relative z-10">Resume Parser</span>
           </motion.button>

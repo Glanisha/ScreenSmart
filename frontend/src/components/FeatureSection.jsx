@@ -44,7 +44,7 @@ function FeatureSection() {
             >
               <div className="mb-4 flex justify-center">
                 <feature.icon
-                  className="w-12 h-12 text-blue-500"
+                  className="w-12 h-12 text-indigo-500"
                   strokeWidth={1.5}
                 />
               </div>

@@ -47,10 +47,10 @@ function Landing() {
           onClick={() => navigate("/resume-parser")}
           whileHover={{ scale: 1.05, y: -5 }}
           whileTap={{ scale: 0.95 }}
-          className="bg-blue-800/50 hover:bg-blue-800/70 text-white font-semibold 
+          className="bg-indigo-600/50 hover:bg-indigo-500/70 text-white font-semibold 
           py-4 px-10 rounded-full transition duration-300 
           relative z-10 font-inter
-          border border-blue-900/50 font-xl"
+          border border-indigo-700/50 font-xl"
         >
           Start Smarter Hiring
         </motion.button>
