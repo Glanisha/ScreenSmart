@@ -1,214 +1,400 @@
-import { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import { motion } from 'framer-motion';
-import { ChevronLeftIcon, MapPinIcon, ClockIcon, DollarSignIcon, BuildingIcon } from 'lucide-react';
-import { supabase } from '../lib/supabaseClient';
+import { createClient } from "@supabase/supabase-js";
+import { v4 as uuidv4 } from 'uuid';
+import axios from 'axios';
+import Background from '../components/Background';
+import Spotlight from '../components/Spotlight';
+import Navbar from './Navbar';
 
-// Hardcoded jobs data
-const MOCK_JOBS = [
-  {
-    id: 'job-1',
-    title: 'Senior Frontend Developer',
-    company: 'TechCorp Inc.',
-    location: 'San Francisco, CA',
-    salary: '$120,000 - $150,000',
-    created_at: '2023-06-15T10:00:00Z',
-    description: 'We are looking for an experienced frontend developer to join our team and help us build amazing user experiences.\n\nYou will be responsible for implementing visual elements and their behaviors with user interactions. You will work with both frontend and backend web developers to build all client-side logic.',
-    requirements: 'Bachelor\'s degree in Computer Science or related field\nAt least 5 years of experience with JavaScript\nStrong knowledge of React.js\nExperience with modern frontend build pipelines and tools\nFamiliarity with RESTful APIs',
-    benefits: 'Health, dental, and vision insurance\n401(k) matching\nFlexible work arrangements\nUnlimited PTO\nContinuing education stipend'
-  },
-  {
-    id: 'job-2',
-    title: 'Backend Developer',
-    company: 'DataSystems LLC',
-    location: 'Remote',
-    salary: '$110,000 - $140,000',
-    created_at: '2023-06-17T14:30:00Z',
-    description: 'DataSystems is hiring a backend developer to help us build scalable and efficient server-side applications.\n\nYou\'ll be working with our engineering team to develop and maintain our core services and APIs, ensuring they\'re performant and reliable.',
-    requirements: 'Strong experience with Node.js or Python\nExperience with SQL and NoSQL databases\nKnowledge of API design and development\nUnderstanding of cloud services (AWS/Azure/GCP)\nCI/CD experience a plus',
-    benefits: 'Competitive salary\nRemote-first culture\nHealthcare benefits\nEquity options\nPaid parental leave'
-  },
-  {
-    id: 'job-3',
-    title: 'Full Stack Engineer',
-    company: 'Growth Startup',
-    location: 'New York, NY',
-    salary: '$130,000 - $160,000',
-    created_at: '2023-06-20T09:15:00Z',
-    description: 'Join our fast-growing team as a Full Stack Engineer and help us build the next generation of our platform.\n\nYou\'ll be involved in all aspects of development, from database design to frontend implementation, working closely with our product and design teams.',
-    requirements: 'Experience with both frontend and backend technologies\nProficient with React.js and Node.js\nKnowledge of database design and optimization\nFamiliarity with cloud infrastructure\nExcellent problem-solving skills',
-    benefits: 'Competitive compensation package\nFlexible working hours\nHealth, dental, and vision coverage\nGenerous equity package\nRegular team events and retreats'
-  }
-];
+const supabase = createClient(
+  import.meta.env.VITE_SUPABASE_URL,
+  import.meta.env.VITE_SUPABASE_KEY
+);
+
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
 
 const JobDetails = () => {
   const { jobId } = useParams();
   const navigate = useNavigate();
   const [job, setJob] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  
+  // Candidate profile state
+  const [candidateProfile, setCandidateProfile] = useState({
+    phone_number: "",
+    location: "",
+    linkedin_url: "",
+    github_url: "",
+    portfolio_url: "",
+  });
 
+  // Additional application-specific states
+  const [resume, setResume] = useState(null);
+  const [coverLetter, setCoverLetter] = useState("");
+  const [uploading, setUploading] = useState(false);
+
+  // Fetch job details on component mount
   useEffect(() => {
-    // Simulate loading and fetching job details
-    const checkAuth = async () => {
+    const fetchJobDetails = async () => {
       try {
-        const { data: { user } } = await supabase.auth.getUser();
-        
-        if (!user) {
-          navigate('/signin');
-          return;
+        const { data, error } = await supabase
+          .from("job_postings")
+          .select("*")
+          .eq("id", jobId)
+          .single();
+
+        if (error) {
+          throw error;
         }
-        
-        // Find job by ID from mock data
-        const foundJob = MOCK_JOBS.find(j => j.id === jobId);
-        setJob(foundJob);
+        setJob(data);
+      } catch (err) {
+        setError("Failed to fetch job details.");
+        console.error("Error fetching job details:", err);
+      } finally {
         setLoading(false);
-      } catch (error) {
-        console.error('Authentication error:', error);
-        navigate('/signin');
       }
     };
-    
-    checkAuth();
-  }, [jobId, navigate]);
 
-  const handleApply = () => {
-    navigate(`/job/${jobId}/apply`);
+    fetchJobDetails();
+  }, [jobId]);
+
+  // File upload handler
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    if (file && file.type === "application/pdf") {
+      setResume(file);
+    } else {
+      alert("Please upload a PDF file.");
+    }
   };
 
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center h-screen bg-black">
-        <div className="text-blue-500 text-2xl">Loading job details...</div>
-      </div>
-    );
-  }
+  // Resume extraction method using FastAPI backend
+  const extractResumeData = async (file) => {
+    try {
+      console.log("Starting resume extraction...");
+      const formData = new FormData();
+      formData.append('file', file);
 
-  if (!job) {
-    return (
-      <div className="min-h-screen bg-black text-white flex flex-col items-center justify-center">
-        <div className="text-2xl mb-4">Job not found</div>
+      console.log("Sending request to FastAPI endpoint...");
+      const response = await axios.post(
+        `${API_BASE_URL}/parse-resume/`,
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        }
+      );
+
+      console.log("Received response from FastAPI:", response.data);
+      
+      return {
+        full_name: response.data.full_name || "Placeholder Name",
+        email: response.data.email || "placeholder@email.com",
+        phone: response.data.phone || candidateProfile.phone_number,
+        skills: response.data.skills || [],
+        education: response.data.education || [],
+        experience: response.data.experience || [],
+        certifications: response.data.certifications || [],
+        languages: response.data.languages || []
+      };
+    } catch (error) {
+      console.error("Resume parsing error:", error);
+      // Fallback to placeholder data if parsing fails
+      return {
+        full_name: "Placeholder Name",
+        email: "placeholder@email.com",
+        phone: candidateProfile.phone_number,
+        skills: [],
+        education: [],
+        experience: [],
+        certifications: [],
+        languages: []
+      };
+    }
+  };
+
+  // Main application submission handler
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setUploading(true);
+    console.log("Starting application submission process...");
+
+    try {
+      // Get current authenticated user
+      console.log("Getting authenticated user...");
+      const { data: authData, error: authError } = await supabase.auth.getUser();
+      if (authError || !authData?.user) {
+        throw new Error("User not authenticated");
+      }
+      const userId = authData.user.id;
+      console.log("User ID:", userId);
+
+      // 1. Update/Create Candidate Profile
+      console.log("Updating candidate profile...");
+      const { error: profileError } = await supabase
+        .from("candidate_profiles")
+        .upsert({
+          user_id: userId,
+          ...candidateProfile
+        }, { 
+          onConflict: 'user_id' 
+        });
+
+      if (profileError) throw profileError;
+
+      // 2. Upload Resume to Storage
+      if (!resume) throw new Error("No resume uploaded");
+      console.log("Uploading resume to storage...");
+      const fileName = `${userId}_${uuidv4()}_${resume.name}`;
+      const { data: uploadData, error: uploadError } = await supabase
+        .storage
+        .from("resumes")
+        .upload(fileName, resume, { 
+          contentType: resume.type 
+        });
+
+      if (uploadError) throw uploadError;
+      console.log("Resume uploaded successfully:", fileName);
+
+      // Generate public URL
+      const { data: { publicUrl } } = supabase
+        .storage
+        .from("resumes")
+        .getPublicUrl(fileName);
+
+      // 3. Save Resume Record
+      console.log("Creating resume record in database...");
+      const { data: resumeRecord, error: resumeError } = await supabase
+        .from("resumes")
+        .insert({
+          user_id: userId,
+          file_url: publicUrl,
+          file_name: resume.name,
+          file_size: resume.size,
+          file_type: resume.type,
+          extraction_status: 'processing'
+        })
+        .select()
+        .single();
+
+      if (resumeError) throw resumeError;
+      console.log("Resume record created:", resumeRecord.id);
+
+      // 4. Extract Resume Data
+      console.log("Starting resume data extraction...");
+      const extractedData = await extractResumeData(resume);
+      console.log("Extracted resume data:", extractedData);
+      
+      // 5. Save Extracted Resume Data
+      console.log("Saving extracted resume data...");
+      const { error: extractedDataError } = await supabase
+        .from("extracted_resume_data")
+        .insert({
+          resume_id: resumeRecord.id,
+          ...extractedData
+        });
+
+      if (extractedDataError) throw extractedDataError;
+
+      // 6. Update Resume with Extracted Data Status
+      console.log("Updating resume with extraction status...");
+      await supabase
+        .from("resumes")
+        .update({ 
+          extracted_data: extractedData,
+          extraction_status: 'completed' 
+        })
+        .eq('id', resumeRecord.id);
+
+      // 7. Create Job Application
+      console.log("Creating job application...");
+      const { error: applicationError } = await supabase
+        .from("applications")
+        .insert({
+          job_id: jobId,
+          candidate_id: userId,
+          resume_id: resumeRecord.id,
+          status: 'applied',
+          cover_letter: coverLetter
+        });
+
+      if (applicationError) throw applicationError;
+
+      console.log("Application submitted successfully!");
+      alert("Application submitted successfully!");
+      navigate('/applications');
+    } catch (err) {
+      console.error("Application submission error:", err);
+      alert(`Application submission failed: ${err.message || 'Unknown error'}`);
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  if (loading) return (
+    <Background className="min-h-screen" containerClassName="bg-black text-white relative overflow-hidden">
+      <Navbar />
+      <div className="container mx-auto px-4 pt-24 text-center">
+        <p className="text-neutral-300">Loading job details...</p>
+      </div>
+    </Background>
+  );
+
+  if (error) return (
+    <Background className="min-h-screen" containerClassName="bg-black text-white relative overflow-hidden">
+      <Navbar />
+      <div className="container mx-auto px-4 pt-24 text-center">
+        <p className="text-red-500">{error}</p>
         <button 
-          onClick={() => navigate('/dashboard')}
-          className="bg-blue-600 hover:bg-blue-700 py-2 px-4 rounded-md text-white"
+          onClick={() => navigate(-1)} 
+          className="mt-4 px-4 py-2 bg-blue-600 rounded-lg hover:bg-blue-700 transition"
         >
-          Return to Dashboard
+          Go Back
         </button>
       </div>
-    );
-  }
+    </Background>
+  );
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      className="min-h-screen bg-black text-white pt-8"
+    <Background 
+      className="min-h-screen" 
+      containerClassName="bg-black text-white relative overflow-hidden"
     >
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          onClick={() => navigate('/dashboard')}
-          className="flex items-center text-gray-400 hover:text-white mb-6"
+      <Spotlight 
+        className="-top-40 left-0 md:-top-20 md:left-60" 
+        fill="white" 
+      />
+      
+      <Navbar />
+      
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7 }}
+        className="relative container my-16 mx-auto py-3 px-4 pt-24 pb-16 text-center max-w-5xl"
+      >
+        <h1 
+          className="text-5xl md:text-6xl font-bold mb-6 relative z-10 
+          font-bricolage bg-gradient-to-b from-neutral-50 to-neutral-400 
+          bg-clip-text text-transparent px-4 md:px-8"
         >
-          <ChevronLeftIcon size={20} className="mr-1" />
-          <span>Back to Dashboard</span>
-        </motion.button>
+          {job.title}
+        </h1>
         
-        <motion.div
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.5 }}
-          className="bg-zinc-900 rounded-xl p-8 border border-zinc-800"
+        <p 
+          className="text-xl text-neutral-300 max-w-2xl mx-auto mb-10 
+          relative z-10 font-inter"
         >
-          <div className="flex flex-col md:flex-row justify-between items-start mb-6">
-            <div>
-              <h1 className="text-3xl font-bold">{job.title}</h1>
-              <div className="flex items-center mt-2">
-                <BuildingIcon size={16} className="text-blue-500 mr-1.5" />
-                <span className="text-blue-400 font-medium">{job.company}</span>
-              </div>
+          {job.company_name} | {job.location}
+        </p>
+      </motion.div>
+
+      <div className="container mx-auto px-4 max-w-5xl mb-16">
+        <div className="bg-zinc-900/50 backdrop-blur-sm p-8 rounded-xl border border-zinc-800">
+          <h2 className="text-2xl font-semibold mb-4 text-white font-inter">Job Description</h2>
+          <p className="text-neutral-400 mb-6">{job.description}</p>
+
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <input
+              type="text"
+              placeholder="Phone Number"
+              className="w-full p-3 bg-zinc-800/50 border border-zinc-700 rounded-lg text-white placeholder-neutral-400 focus:outline-none focus:border-blue-500"
+              value={candidateProfile.phone_number}
+              onChange={(e) => setCandidateProfile({ 
+                ...candidateProfile, 
+                phone_number: e.target.value 
+              })}
+              required
+            />
+            <input
+              type="text"
+              placeholder="Location"
+              className="w-full p-3 bg-zinc-800/50 border border-zinc-700 rounded-lg text-white placeholder-neutral-400 focus:outline-none focus:border-blue-500"
+              value={candidateProfile.location}
+              onChange={(e) => setCandidateProfile({ 
+                ...candidateProfile, 
+                location: e.target.value 
+              })}
+              required
+            />
+            <input
+              type="url"
+              placeholder="LinkedIn Profile"
+              className="w-full p-3 bg-zinc-800/50 border border-zinc-700 rounded-lg text-white placeholder-neutral-400 focus:outline-none focus:border-blue-500"
+              value={candidateProfile.linkedin_url}
+              onChange={(e) => setCandidateProfile({ 
+                ...candidateProfile, 
+                linkedin_url: e.target.value 
+              })}
+            />
+            <input
+              type="url"
+              placeholder="GitHub Profile"
+              className="w-full p-3 bg-zinc-800/50 border border-zinc-700 rounded-lg text-white placeholder-neutral-400 focus:outline-none focus:border-blue-500"
+              value={candidateProfile.github_url}
+              onChange={(e) => setCandidateProfile({ 
+                ...candidateProfile, 
+                github_url: e.target.value 
+              })}
+            />
+            <input
+              type="url"
+              placeholder="Portfolio URL"
+              className="w-full p-3 bg-zinc-800/50 border border-zinc-700 rounded-lg text-white placeholder-neutral-400 focus:outline-none focus:border-blue-500"
+              value={candidateProfile.portfolio_url}
+              onChange={(e) => setCandidateProfile({ 
+                ...candidateProfile, 
+                portfolio_url: e.target.value 
+              })}
+            />
+            <textarea
+              placeholder="Cover Letter (Optional)"
+              className="w-full p-3 bg-zinc-800/50 border border-zinc-700 rounded-lg text-white placeholder-neutral-400 focus:outline-none focus:border-blue-500"
+              value={coverLetter}
+              onChange={(e) => setCoverLetter(e.target.value)}
+              rows={4}
+            />
+
+            <div className="mb-4">
+              <label className="block text-white mb-2">Upload Resume (PDF):</label>
+              <input 
+                type="file" 
+                accept="application/pdf" 
+                onChange={handleFileChange} 
+                className="w-full p-3 bg-zinc-800/50 border border-zinc-700 rounded-lg text-neutral-400" 
+                required 
+              />
             </div>
+
             <motion.button
+              type="submit"
+              disabled={uploading}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              onClick={handleApply}
-              className="mt-4 md:mt-0 bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-md font-medium transition-colors"
+              className="w-full bg-blue-800/50 hover:bg-blue-800/70 text-white font-bold 
+              py-4 px-10 rounded-full transition duration-300 
+              relative z-10 font-inter
+              shadow-xl hover:shadow-blue-500/40
+              transform hover:-translate-y-1
+              group overflow-hidden
+              border border-blue-900/50"
             >
-              Add Resume
+              <span className="relative z-10">
+                {uploading ? "Submitting..." : "Apply Now"}
+              </span>
+              <span 
+                className="absolute inset-0 bg-blue-500 opacity-0 
+                group-hover:opacity-20 transition-opacity duration-300 z-0"
+              />
             </motion.button>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 bg-zinc-800 p-4 rounded-md">
-            <div className="flex items-center">
-              <MapPinIcon size={18} className="text-gray-400 mr-3" />
-              <div>
-                <p className="text-gray-400 text-sm">Location</p>
-                <p className="text-white">{job.location}</p>
-              </div>
-            </div>
-            <div className="flex items-center">
-              <DollarSignIcon size={18} className="text-gray-400 mr-3" />
-              <div>
-                <p className="text-gray-400 text-sm">Salary</p>
-                <p className="text-white">{job.salary || 'Not specified'}</p>
-              </div>
-            </div>
-            <div className="flex items-center">
-              <ClockIcon size={18} className="text-gray-400 mr-3" />
-              <div>
-                <p className="text-gray-400 text-sm">Posted On</p>
-                <p className="text-white">{new Date(job.created_at).toLocaleDateString()}</p>
-              </div>
-            </div>
-          </div>
-          
-          <div className="mb-8">
-            <h2 className="text-xl font-semibold mb-4">Job Description</h2>
-            <div className="text-gray-300 space-y-4">
-              {job.description.split('\n\n').map((paragraph, idx) => (
-                <p key={idx}>{paragraph}</p>
-              ))}
-            </div>
-          </div>
-          
-          {job.requirements && (
-            <div className="mb-8">
-              <h2 className="text-xl font-semibold mb-4">Requirements</h2>
-              <ul className="list-disc list-inside text-gray-300 space-y-2">
-                {job.requirements.split('\n').map((req, idx) => (
-                  <li key={idx}>{req}</li>
-                ))}
-              </ul>
-            </div>
-          )}
-          
-          {job.benefits && (
-            <div className="mb-8">
-              <h2 className="text-xl font-semibold mb-4">Benefits</h2>
-              <ul className="list-disc list-inside text-gray-300 space-y-2">
-                {job.benefits.split('\n').map((benefit, idx) => (
-                  <li key={idx}>{benefit}</li>
-                ))}
-              </ul>
-            </div>
-          )}
-          
-          <motion.div
-            whileHover={{ scale: 1.01 }}
-            className="flex justify-center mt-10"
-          >
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={handleApply}
-              className="bg-blue-600 hover:bg-blue-700 px-8 py-3 rounded-md font-medium transition-colors"
-            >
-              Apply Now
-            </motion.button>
-          </motion.div>
-        </motion.div>
+          </form>
+        </div>
       </div>
-    </motion.div>
+    </Background>
   );
 };
 
