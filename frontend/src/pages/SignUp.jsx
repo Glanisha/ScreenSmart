@@ -6,13 +6,14 @@ import { useNavigate } from "react-router-dom";
 function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [userType, setUserType] = useState("candidate");
+  const [companyId, setCompanyId] = useState(""); // Only for HR users
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [successMessage, setSuccessMessage] = useState(null);
   const navigate = useNavigate();
-
-  // In the handleSignUp function
 
   const handleSignUp = async (e) => {
     e.preventDefault();
@@ -26,9 +27,11 @@ function SignUp() {
         password,
         options: {
           data: {
-            user_type: userType,
-          },
-        },
+            first_name: firstName,
+            last_name: lastName,
+            role: userType // Now using 'role' instead of 'user_type'
+          }
+        }
       });
 
       if (authError) throw authError;
@@ -43,43 +46,42 @@ function SignUp() {
       // 2. IMPORTANT: Add a small delay to ensure user creation has propagated
       await new Promise((resolve) => setTimeout(resolve, 1000));
 
-      // 3. Try to insert the role, with retry logic
-      let roleError = null;
-      let retries = 3;
-
-      while (retries > 0) {
-        const { error } = await supabase
-          .from("user_roles")
-          .insert([{ user_id: authData.user.id, role: userType }]);
-
-        if (!error) {
-          // Success! No error
-          roleError = null;
-          break;
+      // 3. For HR users, add to hr_users table
+      if (userType === "hr_user") {
+        if (!companyId) {
+          throw new Error("Company ID is required for HR users");
         }
 
-        roleError = error;
-        console.log(
-          `Role insertion attempt failed, retrying... (${retries} left)`
-        );
-        retries--;
+        const { error: hrError } = await supabase
+          .from("hr_users")
+          .insert([{ 
+            user_id: authData.user.id, 
+            company_id: companyId 
+          }]);
 
-        // Wait a bit longer before retrying
-        await new Promise((resolve) => setTimeout(resolve, 1000));
+        if (hrError) throw hrError;
       }
 
-      if (roleError) {
-        console.error(
-          "Could not assign role after multiple attempts:",
-          roleError
-        );
-        // Continue anyway, but note the issue
+      // 4. For candidates, add to candidate_profiles table
+      if (userType === "candidate") {
+        const { error: profileError } = await supabase
+          .from("candidate_profiles")
+          .insert([{ 
+            user_id: authData.user.id 
+          }]);
+
+        if (profileError) throw profileError;
       }
 
       // Handle successful signup
       setSuccessMessage(
         "Account created successfully! Please check your email for verification."
       );
+      
+      // Redirect after a delay
+      setTimeout(() => {
+        navigate(userType === "hr_user" ? "/hr-dashboard" : "/candidate-dashboard");
+      }, 3000);
     } catch (error) {
       console.error("Signup error:", error);
       setError(error.message);
@@ -115,9 +117,9 @@ function SignUp() {
             </button>
             <button
               type="button"
-              onClick={() => setUserType("hr")}
+              onClick={() => setUserType("hr_user")}
               className={`px-4 py-2 rounded-full transition-colors ${
-                userType === "hr"
+                userType === "hr_user"
                   ? "bg-blue-600 text-white"
                   : "text-gray-300 hover:bg-gray-600"
               }`}
@@ -143,6 +145,28 @@ function SignUp() {
 
         <form onSubmit={handleSignUp} className="space-y-4">
           <div>
+            <label className="block text-gray-300 mb-2">First Name</label>
+            <input
+              type="text"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+              required
+              className="w-full px-3 py-2 bg-gray-700 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+
+          <div>
+            <label className="block text-gray-300 mb-2">Last Name</label>
+            <input
+              type="text"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+              required
+              className="w-full px-3 py-2 bg-gray-700 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+
+          <div>
             <label className="block text-gray-300 mb-2">Email</label>
             <input
               type="email"
@@ -164,6 +188,20 @@ function SignUp() {
               minLength="6"
             />
           </div>
+
+          {userType === "hr_user" && (
+            <div>
+              <label className="block text-gray-300 mb-2">Company ID</label>
+              <input
+                type="text"
+                value={companyId}
+                onChange={(e) => setCompanyId(e.target.value)}
+                required={userType === "hr_user"}
+                className="w-full px-3 py-2 bg-gray-700 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="Your company's unique ID"
+              />
+            </div>
+          )}
 
           <motion.button
             whileHover={{ scale: 1.05 }}
