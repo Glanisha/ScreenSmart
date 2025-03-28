@@ -3,14 +3,17 @@ import { useParams, useNavigate } from "react-router-dom";
 import { motion } from 'framer-motion';
 import { createClient } from "@supabase/supabase-js";
 import { v4 as uuidv4 } from 'uuid';
+import axios from 'axios';
 import Background from '../components/Background';
 import Spotlight from '../components/Spotlight';
-import Navbar from './Navbar'; // Assuming you want to reuse the Navbar from Landing
+import Navbar from './Navbar';
 
 const supabase = createClient(
   import.meta.env.VITE_SUPABASE_URL,
   import.meta.env.VITE_SUPABASE_KEY
 );
+
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
 
 const JobDetails = () => {
   const { jobId } = useParams();
@@ -36,18 +39,23 @@ const JobDetails = () => {
   // Fetch job details on component mount
   useEffect(() => {
     const fetchJobDetails = async () => {
-      const { data, error } = await supabase
-        .from("job_postings")
-        .select("*")
-        .eq("id", jobId)
-        .single();
+      try {
+        const { data, error } = await supabase
+          .from("job_postings")
+          .select("*")
+          .eq("id", jobId)
+          .single();
 
-      if (error) {
-        setError("Failed to fetch job details.");
-      } else {
+        if (error) {
+          throw error;
+        }
         setJob(data);
+      } catch (err) {
+        setError("Failed to fetch job details.");
+        console.error("Error fetching job details:", err);
+      } finally {
+        setLoading(false);
       }
-      setLoading(false);
     };
 
     fetchJobDetails();
@@ -63,35 +71,70 @@ const JobDetails = () => {
     }
   };
 
-  // Extract resume data (simplified mock implementation)
+  // Resume extraction method using FastAPI backend
   const extractResumeData = async (file) => {
-    // In a real-world scenario, you'd use a backend service or AI to extract data
-    return {
-      full_name: "Placeholder Name",
-      email: "placeholder@email.com",
-      phone: candidateProfile.phone_number,
-      skills: ["Placeholder Skill 1", "Placeholder Skill 2"],
-      education: [],
-      experience: [],
-      certifications: [],
-      languages: []
-    };
+    try {
+      console.log("Starting resume extraction...");
+      const formData = new FormData();
+      formData.append('file', file);
+
+      console.log("Sending request to FastAPI endpoint...");
+      const response = await axios.post(
+        `${API_BASE_URL}/parse-resume/`,
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        }
+      );
+
+      console.log("Received response from FastAPI:", response.data);
+      
+      return {
+        full_name: response.data.full_name || "Placeholder Name",
+        email: response.data.email || "placeholder@email.com",
+        phone: response.data.phone || candidateProfile.phone_number,
+        skills: response.data.skills || [],
+        education: response.data.education || [],
+        experience: response.data.experience || [],
+        certifications: response.data.certifications || [],
+        languages: response.data.languages || []
+      };
+    } catch (error) {
+      console.error("Resume parsing error:", error);
+      // Fallback to placeholder data if parsing fails
+      return {
+        full_name: "Placeholder Name",
+        email: "placeholder@email.com",
+        phone: candidateProfile.phone_number,
+        skills: [],
+        education: [],
+        experience: [],
+        certifications: [],
+        languages: []
+      };
+    }
   };
 
   // Main application submission handler
   const handleSubmit = async (event) => {
     event.preventDefault();
     setUploading(true);
+    console.log("Starting application submission process...");
 
     try {
       // Get current authenticated user
+      console.log("Getting authenticated user...");
       const { data: authData, error: authError } = await supabase.auth.getUser();
       if (authError || !authData?.user) {
         throw new Error("User not authenticated");
       }
       const userId = authData.user.id;
+      console.log("User ID:", userId);
 
       // 1. Update/Create Candidate Profile
+      console.log("Updating candidate profile...");
       const { error: profileError } = await supabase
         .from("candidate_profiles")
         .upsert({
@@ -105,6 +148,7 @@ const JobDetails = () => {
 
       // 2. Upload Resume to Storage
       if (!resume) throw new Error("No resume uploaded");
+      console.log("Uploading resume to storage...");
       const fileName = `${userId}_${uuidv4()}_${resume.name}`;
       const { data: uploadData, error: uploadError } = await supabase
         .storage
@@ -114,6 +158,7 @@ const JobDetails = () => {
         });
 
       if (uploadError) throw uploadError;
+      console.log("Resume uploaded successfully:", fileName);
 
       // Generate public URL
       const { data: { publicUrl } } = supabase
@@ -122,6 +167,7 @@ const JobDetails = () => {
         .getPublicUrl(fileName);
 
       // 3. Save Resume Record
+      console.log("Creating resume record in database...");
       const { data: resumeRecord, error: resumeError } = await supabase
         .from("resumes")
         .insert({
@@ -136,11 +182,15 @@ const JobDetails = () => {
         .single();
 
       if (resumeError) throw resumeError;
+      console.log("Resume record created:", resumeRecord.id);
 
       // 4. Extract Resume Data
+      console.log("Starting resume data extraction...");
       const extractedData = await extractResumeData(resume);
+      console.log("Extracted resume data:", extractedData);
       
       // 5. Save Extracted Resume Data
+      console.log("Saving extracted resume data...");
       const { error: extractedDataError } = await supabase
         .from("extracted_resume_data")
         .insert({
@@ -151,6 +201,7 @@ const JobDetails = () => {
       if (extractedDataError) throw extractedDataError;
 
       // 6. Update Resume with Extracted Data Status
+      console.log("Updating resume with extraction status...");
       await supabase
         .from("resumes")
         .update({ 
@@ -160,6 +211,7 @@ const JobDetails = () => {
         .eq('id', resumeRecord.id);
 
       // 7. Create Job Application
+      console.log("Creating job application...");
       const { error: applicationError } = await supabase
         .from("applications")
         .insert({
@@ -172,11 +224,13 @@ const JobDetails = () => {
 
       if (applicationError) throw applicationError;
 
+      console.log("Application submitted successfully!");
       alert("Application submitted successfully!");
-      setUploading(false);
+      navigate('/applications');
     } catch (err) {
       console.error("Application submission error:", err);
       alert(`Application submission failed: ${err.message || 'Unknown error'}`);
+    } finally {
       setUploading(false);
     }
   };
@@ -195,6 +249,12 @@ const JobDetails = () => {
       <Navbar />
       <div className="container mx-auto px-4 pt-24 text-center">
         <p className="text-red-500">{error}</p>
+        <button 
+          onClick={() => navigate(-1)} 
+          className="mt-4 px-4 py-2 bg-blue-600 rounded-lg hover:bg-blue-700 transition"
+        >
+          Go Back
+        </button>
       </div>
     </Background>
   );
