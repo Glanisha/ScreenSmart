@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { supabase, authHelpers } from "../lib/supabaseClient";
+import { supabase } from "../lib/supabaseClient";
 import { useNavigate } from "react-router-dom";
 
 function SignIn() {
@@ -25,32 +25,22 @@ function SignIn() {
 
       console.log("User signed in:", data.user);
 
-      try {
-        // Get the user's role from the user_roles table directly
-        const { data: roleData, error: roleError } = await supabase
-          .from("user_roles")
-          .select("role")
-          .eq("user_id", data.user.id)
-          .single();
+      // Get the user's profile with role
+      const { data: profileData, error: profileError } = await supabase
+        .from("profiles")
+        .select("role")
+        .eq("id", data.user.id)
+        .single();
 
-        if (roleError) {
-          console.warn("Could not retrieve user role:", roleError);
-          navigate("/dashboard"); // Default dashboard
-          return;
-        }
+      if (profileError) throw profileError;
 
-        // Redirect based on role
-        if (roleData.role === "candidate") {
-          navigate("/candidate-dashboard");
-        } else if (roleData.role === "hr") {
-          navigate("/hr-dashboard");
-        } else {
-          // Default dashboard if role is missing or unknown
-          navigate("/dashboard");
-        }
-      } catch (roleError) {
-        console.error("Error getting user role:", roleError);
-        navigate("/dashboard"); // Default dashboard as fallback
+      // Redirect based on role
+      if (profileData.role === "candidate") {
+        navigate("/dashboard");
+      } else if (profileData.role === "hr_user") {
+        navigate("/hr/dashboard");
+      } else {
+        navigate("/dashboard"); // Default dashboard if role is missing
       }
     } catch (error) {
       console.error("Sign in error:", error);
