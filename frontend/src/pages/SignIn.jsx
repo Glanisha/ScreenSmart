@@ -36,9 +36,9 @@ function SignIn() {
 
       // Redirect based on role
       if (profileData.role === "candidate") {
-        navigate("/candidate-dashboard");
+        navigate("/dashboard");
       } else if (profileData.role === "hr_user") {
-        navigate("/hr-dashboard");
+        navigate("/hr/dashboard");
       } else {
         navigate("/dashboard"); // Default dashboard if role is missing
       }
