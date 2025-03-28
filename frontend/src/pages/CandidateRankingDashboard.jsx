@@ -10,7 +10,6 @@ const CandidateRankingDashboard = () => {
     const fetchCandidates = async () => {
       try {
         setIsLoading(true);
-        // Simple GET request with no parameters
         const response = await fetch("http://localhost:8000/process-and-match-resumes", {
           method: "GET",
           headers: {
@@ -33,8 +32,6 @@ const CandidateRankingDashboard = () => {
 
     fetchCandidates();
   }, []);
-
-  // Rest of your component remains the same
 
   const getMatchColorClass = (matchPercentage) => {
     if (matchPercentage >= 90) return "bg-green-100 border-green-500";
