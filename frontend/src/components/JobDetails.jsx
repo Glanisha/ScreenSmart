@@ -226,7 +226,7 @@ const JobDetails = () => {
 
       console.log("Application submitted successfully!");
       alert("Application submitted successfully!");
-      navigate('/applications');
+   
     } catch (err) {
       console.error("Application submission error:", err);
       alert(`Application submission failed: ${err.message || 'Unknown error'}`);
