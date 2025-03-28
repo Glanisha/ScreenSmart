@@ -8,11 +8,16 @@ import Dashboard from './components/Dashboard'
 import Profile from './components/Profile'
 import JobDetails from './components/JobDetails'
 import JobApplication from './components/JobApplication'
-
+import HRDashboard from './pages/hr/HRDashboard';
+import HRProfile from './pages/hr/HRProfile';
+import AddJobListing from './pages/hr/AddJobListing';
+import EditJobListing from './pages/hr/EditJobListing';
+import NavBar from './components/Navbar'
 function App() {
   return (
     <>
     <BrowserRouter>
+    <NavBar />
       <Routes>
       <Route path="/" element={<Landing />} />
       <Route path="/resume-parser" element={<ResumeParserTest />} />
@@ -23,7 +28,14 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/job/:jobId" element={<JobDetails />} />
         <Route path="/job/:jobId/apply" element={<JobApplication />} />
+
+        <Route path="/hr/dashboard" element={<HRDashboard />} />
+        <Route path="/hr/profile" element={<HRProfile />} />
+        <Route path="/hr/jobs/new" element={<AddJobListing />} />
+        <Route path="/hr/jobs/:jobId/edit" element={<EditJobListing />} />
       </Routes>
+
+      
     </BrowserRouter>  
     </>
   )

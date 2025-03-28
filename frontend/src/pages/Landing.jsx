@@ -5,61 +5,9 @@ import { UserIcon, BriefcaseIcon, CheckCircleIcon } from 'lucide-react';
 import Spotlight from '../components/Spotlight'; 
 import Footer from '../components/Footer';
 import Background  from '../components/Background';
+import NavBar from '../components/Navbar';
 
-// Navbar Component
-function Navbar() {
-  const navigate = useNavigate();
 
-  return (
-    <nav className="absolute top-0 left-0 right-0 z-20 py-4">
-      <div className="container mx-auto px-4 flex justify-between items-center max-w-5xl">
-        <div className="text-2xl font-bold text-white font-bricolage">
-          CareerCraft
-        </div>
-        
-        <div className="flex items-center space-x-4">
-          <motion.button 
-            onClick={() => navigate('/login')}
-            whileHover={{ 
-              scale: 1.05,
-              boxShadow: "0 0 15px rgba(59, 130, 246, 0.3)"
-            }}
-            whileTap={{ scale: 0.95 }}
-            className="text-neutral-300 hover:text-white transition duration-300 font-inter 
-            px-4 py-2 rounded-full 
-            border border-neutral-800 hover:border-blue-500/50
-            bg-zinc-900/50 hover:bg-zinc-800/50
-            shadow-sm hover:shadow-blue-500/30 
-            transform transition-all duration-300 ease-in-out"
-          >
-            Login
-          </motion.button>
-          
-          <motion.button 
-            onClick={() => navigate('/signup')}
-            whileHover={{ 
-              scale: 1.05,
-              boxShadow: "0 0 20px rgba(59, 130, 246, 0.4)"
-            }}
-            whileTap={{ scale: 0.95 }}
-            className="bg-blue-800/50 hover:bg-blue-800/70 text-white 
-            px-6 py-3 rounded-full 
-            transition duration-300 font-inter
-            transform hover:-translate-y-1
-            shadow-xl hover:shadow-blue-500/40
-            relative overflow-hidden group
-            border border-blue-900/50"
-          >
-            <span className="relative z-10">Sign Up</span>
-            <span 
-              className="absolute inset-0 bg-blue-500 opacity-0 group-hover:opacity-20 transition-opacity duration-300 z-0"
-            />
-          </motion.button>
-        </div>
-      </div>
-    </nav>
-  );
-}
 
 // Features Component (Unchanged)
 function FeatureSection() {
@@ -135,7 +83,6 @@ function Landing() {
         fill="white" 
       />
       
-      <Navbar />
       
       {/* Hero Section */}
       <motion.div 

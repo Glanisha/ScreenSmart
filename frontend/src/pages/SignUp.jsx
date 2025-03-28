@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { useNavigate, Link } from "react-router-dom";
 import { supabase } from "../lib/supabaseClient";
-import { useNavigate } from "react-router-dom";
+import Background from '../components/Background';
 
 function SignUp() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -12,8 +13,6 @@ function SignUp() {
   const [companyId, setCompanyId] = useState(""); // Only for HR users
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [successMessage, setSuccessMessage] = useState(null);
-  const navigate = useNavigate();
 
   const handleSignUp = async (e) => {
     e.preventDefault();
@@ -29,7 +28,7 @@ function SignUp() {
           data: {
             first_name: firstName,
             last_name: lastName,
-            role: userType // Now using 'role' instead of 'user_type'
+            role: userType
           }
         }
       });
@@ -43,11 +42,11 @@ function SignUp() {
 
       console.log("User created with ID:", authData.user.id);
 
-      // 2. IMPORTANT: Add a small delay to ensure user creation has propagated
+      // 2. Add a small delay to ensure user creation has propagated
       await new Promise((resolve) => setTimeout(resolve, 1000));
 
       // 3. For HR users, add to hr_users table
-      if (userType === "hr_user") {
+      if (userType === "hr") {
         if (!companyId) {
           throw new Error("Company ID is required for HR users");
         }
@@ -74,16 +73,8 @@ function SignUp() {
       }
 
       // Handle successful signup
-      setSuccessMessage(
-        "Account created successfully! Please check your email for verification."
-      );
-      
-      // Redirect after a delay
-      setTimeout(() => {
-        navigate(userType === "hr_user" ? "/hr-dashboard" : "/candidate-dashboard");
-      }, 3000);
+      navigate(userType === "hr" ? "/hr/dashboard" : "/dashboard");
     } catch (error) {
-      console.error("Signup error:", error);
       setError(error.message);
     } finally {
       setLoading(false);
@@ -91,143 +82,281 @@ function SignUp() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-900 flex items-center justify-center px-4">
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="w-full max-w-md bg-gray-800 rounded-xl shadow-lg p-8"
-      >
-        <h2 className="text-3xl font-bold text-white mb-6 text-center">
-          Sign Up for CareerCraft
-        </h2>
+    <Background 
+      className="min-h-screen flex items-center justify-center pt-24" 
+      containerClassName="bg-black text-white relative overflow-hidden"
+    >
+      <div className="w-full max-w-md relative z-10 px-4">
+        <div className="
+          backdrop-blur-xl 
+          bg-white/15 
+          border 
+          border-white/20 
+          rounded-2xl 
+          shadow-2xl 
+          p-8 
+          space-y-6 
+          transition-all 
+          duration-300 
+          hover:bg-white/20 
+          hover:border-white/30
+        ">
+          <h2 className="
+            text-4xl 
+            font-bold 
+            mb-6 
+            text-center 
+            font-bricolage 
+            bg-gradient-to-b 
+            from-neutral-50 
+            to-neutral-800 
+            bg-clip-text 
+            text-transparent
+          ">
+            Sign Up
+          </h2>
 
-        {/* User Type Selection */}
-        <div className="flex justify-center mb-6">
-          <div className="bg-gray-700 rounded-full p-1 flex items-center">
-            <button
-              type="button"
-              onClick={() => setUserType("candidate")}
-              className={`px-4 py-2 rounded-full transition-colors ${
-                userType === "candidate"
-                  ? "bg-blue-600 text-white"
-                  : "text-gray-300 hover:bg-gray-600"
-              }`}
-            >
-              Candidate
-            </button>
-            <button
-              type="button"
-              onClick={() => setUserType("hr_user")}
-              className={`px-4 py-2 rounded-full transition-colors ${
-                userType === "hr_user"
-                  ? "bg-blue-600 text-white"
-                  : "text-gray-300 hover:bg-gray-600"
-              }`}
-            >
-              HR Professional
-            </button>
-          </div>
-        </div>
-
-        {/* Success Message */}
-        {successMessage && (
-          <div className="bg-green-600/20 border border-green-600 text-green-400 p-3 rounded-md mb-4">
-            {successMessage}
-          </div>
-        )}
-
-        {/* Error Message */}
-        {error && (
-          <div className="bg-red-600/20 border border-red-600 text-red-400 p-3 rounded-md mb-4">
-            {error}
-          </div>
-        )}
-
-        <form onSubmit={handleSignUp} className="space-y-4">
-          <div>
-            <label className="block text-gray-300 mb-2">First Name</label>
-            <input
-              type="text"
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
-              required
-              className="w-full px-3 py-2 bg-gray-700 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
-
-          <div>
-            <label className="block text-gray-300 mb-2">Last Name</label>
-            <input
-              type="text"
-              value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
-              required
-              className="w-full px-3 py-2 bg-gray-700 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
+          {/* User Type Selection */}
+          <div className="flex justify-center mb-6">
+            <div className="
+              bg-white/10 
+              rounded-full 
+              p-1 
+              flex 
+              items-center 
+              border 
+              border-white/20
+            ">
+              <button
+                type="button"
+                onClick={() => setUserType('candidate')}
+                className={`px-4 py-2 rounded-full transition-colors ${
+                  userType === 'candidate' 
+                    ? 'bg-blue-800/70 text-white' 
+                    : 'text-neutral-400 hover:bg-white/10'
+                }`}
+              >
+                Candidate
+              </button>
+              <button
+                type="button"
+                onClick={() => setUserType('hr')}
+                className={`px-4 py-2 rounded-full transition-colors ${
+                  userType === 'hr' 
+                    ? 'bg-blue-800/70 text-white' 
+                    : 'text-neutral-400 hover:bg-white/10'
+                }`}
+              >
+                HR Professional
+              </button>
+            </div>
           </div>
 
-          <div>
-            <label className="block text-gray-300 mb-2">Email</label>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              className="w-full px-3 py-2 bg-gray-700 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
-
-          <div>
-            <label className="block text-gray-300 mb-2">Password</label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              className="w-full px-3 py-2 bg-gray-700 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              minLength="6"
-            />
-          </div>
-
-          {userType === "hr_user" && (
-            <div>
-              <label className="block text-gray-300 mb-2">Company ID</label>
-              <input
-                type="text"
-                value={companyId}
-                onChange={(e) => setCompanyId(e.target.value)}
-                required={userType === "hr_user"}
-                className="w-full px-3 py-2 bg-gray-700 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Your company's unique ID"
-              />
+          {/* Error Message */}
+          {error && (
+            <div className="
+              bg-red-600/20 
+              border 
+              border-red-600 
+              text-red-400 
+              p-3 
+              rounded-md 
+              mb-4 
+              text-center
+            ">
+              {error}
             </div>
           )}
 
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            type="submit"
-            className={`w-full text-white py-3 rounded-md transition-colors ${
-              loading
-                ? "bg-blue-800 cursor-not-allowed"
-                : "bg-blue-600 hover:bg-blue-700"
-            }`}
-            disabled={loading}
-          >
-            {loading ? "Creating Account..." : "Create Account"}
-          </motion.button>
-        </form>
+          <form onSubmit={handleSignUp} className="space-y-6">
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="block text-neutral-300 mb-2 font-inter">First Name</label>
+                <input
+                  type="text"
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                  required
+                  className="
+                    w-full 
+                    px-3 
+                    py-3 
+                    bg-white/10 
+                    text-white 
+                    rounded-md 
+                    focus:outline-none 
+                    focus:ring-2 
+                    focus:ring-blue-500 
+                    border 
+                    border-white/20 
+                    transition 
+                    duration-300
+                  "
+                />
+              </div>
 
-        <div className="text-center mt-6">
-          <p className="text-gray-400">
-            Already have an account?{" "}
-            <a href="/signin" className="text-blue-400 hover:underline">
-              Sign In
-            </a>
-          </p>
+              <div>
+                <label className="block text-neutral-300 mb-2 font-inter">Last Name</label>
+                <input
+                  type="text"
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
+                  required
+                  className="
+                    w-full 
+                    px-3 
+                    py-3 
+                    bg-white/10 
+                    text-white 
+                    rounded-md 
+                    focus:outline-none 
+                    focus:ring-2 
+                    focus:ring-blue-500 
+                    border 
+                    border-white/20 
+                    transition 
+                    duration-300
+                  "
+                />
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-neutral-300 mb-2 font-inter">Email</label>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                className="
+                  w-full 
+                  px-3 
+                  py-3 
+                  bg-white/10 
+                  text-white 
+                  rounded-md 
+                  focus:outline-none 
+                  focus:ring-2 
+                  focus:ring-blue-500 
+                  border 
+                  border-white/20 
+                  transition 
+                  duration-300
+                "
+              />
+            </div>
+
+            <div>
+              <label className="block text-neutral-300 mb-2 font-inter">Password</label>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                minLength="6"
+                className="
+                  w-full 
+                  px-3 
+                  py-3 
+                  bg-white/10 
+                  text-white 
+                  rounded-md 
+                  focus:outline-none 
+                  focus:ring-2 
+                  focus:ring-blue-500 
+                  border 
+                  border-white/20 
+                  transition 
+                  duration-300
+                "
+              />
+            </div>
+
+            {userType === "hr" && (
+              <div>
+                <label className="block text-neutral-300 mb-2 font-inter">Company ID</label>
+                <input
+                  type="text"
+                  value={companyId}
+                  onChange={(e) => setCompanyId(e.target.value)}
+                  required={userType === "hr"}
+                  className="
+                    w-full 
+                    px-3 
+                    py-3 
+                    bg-white/10 
+                    text-white 
+                    rounded-md 
+                    focus:outline-none 
+                    focus:ring-2 
+                    focus:ring-blue-500 
+                    border 
+                    border-white/20 
+                    transition 
+                    duration-300
+                  "
+                  placeholder="Your company's unique ID"
+                />
+              </div>
+            )}
+
+            <button
+              type="submit"
+              disabled={loading}
+              className="
+                w-full 
+                bg-blue-800/50 
+                hover:bg-blue-800/70 
+                text-white 
+                py-4 
+                rounded-full 
+                transition 
+                duration-300 
+                font-inter 
+                font-bold 
+                shadow-xl 
+                hover:shadow-blue-500/40 
+                transform 
+                hover:-translate-y-1 
+                group 
+                overflow-hidden 
+                border 
+                border-blue-900/50
+              "
+            >
+              <span className="relative z-10">
+                {loading ? "Creating Account..." : "Create Account"}
+              </span>
+              <span 
+                className="
+                  absolute 
+                  inset-0 
+                  bg-blue-500 
+                  opacity-0 
+                  group-hover:opacity-20 
+                  transition-opacity 
+                  duration-300 
+                  z-0
+                "
+              />
+            </button>
+          </form>
+
+          <div className="text-center mt-6 space-y-4 font-inter">
+            <p className="text-neutral-400">
+              Already have an account? {' '}
+              <Link 
+                to="/signin" 
+                className="text-blue-400 hover:underline"
+              >
+                Sign In
+              </Link>
+            </p>
+          </div>
         </div>
-      </motion.div>
-    </div>
+      </div>
+    </Background>
+    
   );
 }
 
