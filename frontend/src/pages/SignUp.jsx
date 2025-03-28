@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { supabase } from "../lib/supabaseClient";
 import { useNavigate } from "react-router-dom";
@@ -9,7 +9,7 @@ function SignUp() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [userType, setUserType] = useState("candidate");
-  const [companyId, setCompanyId] = useState(""); // Only for HR users
+  const [companyId, setCompanyId] = useState(""); 
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [successMessage, setSuccessMessage] = useState(null);
@@ -19,9 +19,13 @@ function SignUp() {
     e.preventDefault();
     setError(null);
     setLoading(true);
-
+  
     try {
-      // 1. Create user authentication record
+      if (!userType) {
+        throw new Error("Please select a user type.");
+      }
+  
+      // Step 1: Sign Up User
       const { data: authData, error: authError } = await supabase.auth.signUp({
         email,
         password,
@@ -29,59 +33,75 @@ function SignUp() {
           data: {
             first_name: firstName,
             last_name: lastName,
-            role: userType // Now using 'role' instead of 'user_type'
           }
         }
       });
-
+  
       if (authError) throw authError;
-
-      // Make sure user exists before continuing
-      if (!authData.user?.id) {
-        throw new Error("User ID not available after signup");
-      }
-
+      if (!authData.user?.id) throw new Error("User ID not available after signup");
+  
       console.log("User created with ID:", authData.user.id);
+  
+      // 🚀 **Step 2: Insert Data into Profiles Table**
+      const { error: profileUpsertError } = await supabase
+        .from("profiles")
+        .upsert([
+          {
+            id: authData.user.id, 
+            email: email, 
+            first_name: firstName, 
+            last_name: lastName, 
+            role: userType 
+          }
+        ], { onConflict: ['id'] });
 
-      // 2. IMPORTANT: Add a small delay to ensure user creation has propagated
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+if (profileUpsertError) throw profileUpsertError;
 
-      // 3. For HR users, add to hr_users table
+  
+      // Step 3: Handle HR User Specific Logic
       if (userType === "hr_user") {
-        if (!companyId) {
-          throw new Error("Company ID is required for HR users");
-        }
-
-        const { error: hrError } = await supabase
+        if (!companyId) throw new Error("Company ID is required for HR users");
+  
+        const { data: existingHR, error: hrCheckError } = await supabase
           .from("hr_users")
-          .insert([{ 
-            user_id: authData.user.id, 
-            company_id: companyId 
-          }]);
-
-        if (hrError) throw hrError;
+          .select("user_id")
+          .eq("user_id", authData.user.id)
+          .single();
+  
+        if (hrCheckError && hrCheckError.code !== "PGRST116") {
+          throw hrCheckError;
+        }
+  
+        if (!existingHR) {
+          const { error: hrInsertError } = await supabase
+            .from("hr_users")
+            .insert([
+              {
+                user_id: authData.user.id,
+                company_id: companyId,
+                position: "HR Manager", 
+                department: "Recruitment",
+              },
+            ]);
+  
+          if (hrInsertError) throw hrInsertError;
+        }
       }
-
-      // 4. For candidates, add to candidate_profiles table
+  
+      // Step 4: Insert into candidate_profiles if user is a candidate
       if (userType === "candidate") {
-        const { error: profileError } = await supabase
+        const { error: candidateInsertError } = await supabase
           .from("candidate_profiles")
-          .insert([{ 
-            user_id: authData.user.id 
-          }]);
-
-        if (profileError) throw profileError;
+          .insert([{ user_id: authData.user.id }]);
+  
+        if (candidateInsertError) throw candidateInsertError;
       }
-
-      // Handle successful signup
+  
       setSuccessMessage(
         "Account created successfully! Please check your email for verification."
       );
-      
-      // Redirect after a delay
-      setTimeout(() => {
-        navigate(userType === "hr_user" ? "/hr-dashboard" : "/candidate-dashboard");
-      }, 3000);
+  
+      navigate(userType === "hr_user" ? "/hr/dashboard" : "/dashboard");
     } catch (error) {
       console.error("Signup error:", error);
       setError(error.message);
@@ -89,7 +109,8 @@ function SignUp() {
       setLoading(false);
     }
   };
-
+  
+    
   return (
     <div className="min-h-screen bg-gray-900 flex items-center justify-center px-4">
       <motion.div
@@ -117,7 +138,9 @@ function SignUp() {
             </button>
             <button
               type="button"
-              onClick={() => setUserType("hr_user")}
+              onClick={() => {
+                setUserType("hr_user")
+              }}
               className={`px-4 py-2 rounded-full transition-colors ${
                 userType === "hr_user"
                   ? "bg-blue-600 text-white"

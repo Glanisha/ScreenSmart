@@ -5,6 +5,8 @@ import { UserIcon, BriefcaseIcon, CheckCircleIcon } from 'lucide-react';
 import Spotlight from '../components/Spotlight'; 
 import Footer from '../components/Footer';
 import Background  from '../components/Background';
+import FileUpload from '../components/FileUpload';
+
 
 // Navbar Component
 function Navbar() {
@@ -187,6 +189,25 @@ function Landing() {
       
       {/* Features Section */}
       <FeatureSection />
+      
+      {/* File Upload Section */}
+      <section className="py-16 relative bg-black">
+        <div className="container mx-auto px-4 max-w-5xl">
+          <h2 className="text-4xl font-bold text-center mb-12 text-white font-bricolage">
+            Upload Your Resume
+          </h2>
+          
+          <div className="max-w-xl mx-auto">
+            <FileUpload 
+              onChange={(files) => {
+                // Optional: Handle file upload logic here
+                console.log('Uploaded files:', files);
+              }}
+              maxFiles={3}
+            />
+          </div>
+        </div>
+      </section>
       
       <Footer />
     </Background>

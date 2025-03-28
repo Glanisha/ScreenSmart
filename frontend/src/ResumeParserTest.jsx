@@ -25,7 +25,9 @@ const ResumePraser = () => {
 
     try {
       const formData = new FormData();
-      formData.append('file', file);
+      files.forEach(file => {
+        formData.append('file', file);
+      });
 
       const response = await axios.post('http://localhost:8000/send-data', formData, {
         headers: {
@@ -48,29 +50,16 @@ const ResumePraser = () => {
       
       <form onSubmit={handleSubmit} className="mb-8">
         <div className="flex flex-col space-y-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Upload Resume PDF
-            </label>
-            <input
-              type="file"
-              accept=".pdf"
-              onChange={handleFileChange}
-              className="block w-full text-sm text-gray-500
-                file:mr-4 file:py-2 file:px-4
-                file:rounded-md file:border-0
-                file:text-sm file:font-semibold
-                file:bg-blue-50 file:text-blue-700
-                hover:file:bg-blue-100"
-              disabled={isLoading}
-            />
-          </div>
+          <FileUpload 
+            onChange={handleFileChange} 
+            maxFiles={5}
+          />
           
           <button
             type="submit"
-            disabled={!file || isLoading}
+            disabled={files.length === 0 || isLoading}
             className={`px-4 py-2 rounded-md text-white font-medium ${
-              !file || isLoading
+              files.length === 0 || isLoading
                 ? 'bg-gray-400 cursor-not-allowed'
                 : 'bg-blue-600 hover:bg-blue-700'
             }`}

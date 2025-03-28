@@ -39,9 +39,7 @@ function SignIn() {
         navigate("/dashboard");
       } else if (profileData.role === "hr_user") {
         navigate("/hr/dashboard");
-      } else {
-        navigate("/dashboard"); // Default dashboard if role is missing
-      }
+      } 
     } catch (error) {
       console.error("Sign in error:", error);
       setError(error.message);
