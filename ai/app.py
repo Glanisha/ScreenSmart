@@ -16,6 +16,8 @@ from supabase import create_client, Client
 from datetime import datetime
 import google.generativeai as genai
 from functools import lru_cache
+from pathlib import Path
+
 
 # Load environment variables
 load_dotenv()
@@ -110,6 +112,34 @@ async def process_with_gemini(raw_text: str) -> Dict[str, Any]:
             detail=f"Gemini processing failed: {str(e)}"
         )
 
+RESUMES_JSON_FILE = "resumes_data.json"
+
+def initialize_resumes_file():
+    """Create the JSON file if it doesn't exist with an empty list"""
+    if not Path(RESUMES_JSON_FILE).exists():
+        with open(RESUMES_JSON_FILE, 'w') as f:
+            json.dump([], f)
+def append_resume_to_file(new_resume: Dict[str, Any]):
+    """Append a new resume to the JSON file"""
+    try:
+        # Read existing data
+        with open(RESUMES_JSON_FILE, 'r') as f:
+            existing_data: List[Dict[str, Any]] = json.load(f)
+        
+        # Append new resume
+        existing_data.append(new_resume)
+        
+        # Write back to file
+        with open(RESUMES_JSON_FILE, 'w') as f:
+            json.dump(existing_data, f, indent=2)
+            
+    except Exception as e:
+        raise Exception(f"Failed to update resumes file: {str(e)}")
+
+# Initialize the file when module loads
+initialize_resumes_file()
+
+# Then modify your existing send_data endpoint like this:
 @app.post("/send-data", response_model=RawResumeData)
 async def send_data(file: UploadFile = File(...)):
     """Endpoint that sends raw resume data to Gemini for processing"""
@@ -120,8 +150,11 @@ async def send_data(file: UploadFile = File(...)):
         # 2. Send directly to Gemini for processing
         processed_data = await process_with_gemini(raw_text)
         
+        # 3. Append to JSON file
+        append_resume_to_file(processed_data)
+        
         return RawResumeData(
-            raw_text=raw_text[:1000] + "... [truncated]",  # Return sample of raw text
+            raw_text=raw_text[:1000] + "... [truncated]",
             processed_data=processed_data
         )
         
@@ -132,8 +165,6 @@ async def send_data(file: UploadFile = File(...)):
             status_code=500,
             detail=f"Resume processing failed: {str(e)}"
         )
-
-
 # Load spaCy model
 try:
     nlp = spacy.load("en_core_web_lg")
