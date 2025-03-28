@@ -22,6 +22,7 @@ function App() {
       <Route path="/dashboard" element={<Dashboard/>} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/job/:jobId" element={<JobDetails />} />
+        
         <Route path="/job/:jobId/apply" element={<JobApplication />} />
       </Routes>
     </BrowserRouter>  
