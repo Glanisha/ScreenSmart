@@ -1,0 +1,45 @@
+# Ignore Python cache and compiled files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore virtual environment
+venv/
+.env/
+
+# Ignore environment variables and secrets
+.env
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore logs and temporary files
+*.log
+*.tmp
+
+# Ignore VS Code settings (if using VS Code)
+.vscode/
+
+# Ignore Jupyter Notebook checkpoints (if using Jupyter)
+.ipynb_checkpoints/
+
+# Ignore AI model checkpoints and datasets (if applicable)
+*.h5
+*.ckpt
+*.pth
+*.pt
+*.onnx
+*.tflite
+*.pb
+
+# Ignore dependency-related files
+Pipfile
+Pipfile.lock
+poetry.lock
+
+# Ignore build artifacts
+build/
+dist/
+*.egg-info/
