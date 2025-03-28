@@ -34,8 +34,6 @@ const CandidateRankingDashboard = () => {
     fetchCandidates();
   }, []);
 
-  // Rest of your component remains the same
-
   const getMatchColorClass = (matchPercentage) => {
     if (matchPercentage >= 90) return "bg-green-100 border-green-500";
     if (matchPercentage >= 75) return "bg-lime-100 border-lime-500";

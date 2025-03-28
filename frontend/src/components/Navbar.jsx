@@ -1,41 +1,29 @@
-import { Link, useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { UserIcon, LogOutIcon } from 'lucide-react';
-import { supabase } from '../lib/supabaseClient';
+import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const NavBar = () => {
   const navigate = useNavigate();
-  
-  const handleSignOut = async () => {
-    try {
-      await supabase.auth.signOut();
-      navigate('/signin');
-    } catch (error) {
-      console.error('Error signing out:', error);
-    }
-  };
 
   return (
-    <nav className="bg-zinc-900 border-b border-zinc-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16 items-center">
-          <div>
-            <Link to="/dashboard" className="text-xl font-bold text-blue-500 hover:text-blue-400 transition-colors">
-              CareerCraft
-            </Link>
-          </div>
-          
-          <div className="flex items-center space-x-4">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={handleSignOut}
-              className="flex items-center text-gray-400 hover:text-white transition-colors"
-            >
-              <LogOutIcon size={20} className="mr-2" />
-              Sign Out
-            </motion.button>
-          </div>
+    <nav className="absolute top-0 left-0 right-0 z-20 py-4">
+      <div className="container mx-auto px-4 flex justify-between items-center max-w-4xl">
+        <div className="text-2xl font-bold text-white font-bricolage">
+          ScreenSmart
+        </div>
+
+        <div className="flex items-center">
+          <motion.button
+            onClick={() => navigate("/resume-parser")}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="bg-gradient-to-r from-blue-800/70 to-indigo-700/70 text-white 
+                px-6 py-3 rounded-full 
+                transition duration-300 font-inter
+                border border-blue-700/50 hover:border-indigo-500/80
+                hover:shadow-md hover:shadow-blue-900/30"
+          >
+            <span className="relative z-10">Resume Parser</span>
+          </motion.button>
         </div>
       </div>
     </nav>
