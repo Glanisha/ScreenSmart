@@ -27,7 +27,7 @@ function Navbar() {
               boxShadow: "0 0 15px rgba(59, 130, 246, 0.3)"
             }}
             whileTap={{ scale: 0.95 }}
-            className="text-neutral-300 hover:text-white transition duration-300 font-inter 
+            className="text-neutral-300 hover:text-white font-inter 
             px-4 py-2 rounded-full 
             border border-neutral-800 hover:border-blue-500/50
             bg-zinc-900/50 hover:bg-zinc-800/50
