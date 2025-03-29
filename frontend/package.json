@@ -16,6 +16,7 @@
     "@tabler/icons-react": "^3.31.0",
     "@tailwindcss/vite": "^4.0.17",
     "axios": "^1.8.4",
+    "chart.js": "^4.4.8",
     "face-api.js": "^0.22.2",
     "framer-motion": "^12.6.2",
     "lucide-react": "^0.484.0",

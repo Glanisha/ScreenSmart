@@ -74,280 +74,114 @@
   },
   {
     "personal_information": {
-      "name": "Liza Glanisha Castelino",
-      "email": "lizacastelino@gmail.com",
-      "phone": "+91-9004898113",
-      "linkedin": "https://linkedin.com/in/slayde-sequeira-062660221",
-      "github": "https://github.com/Glanisha",
-      "location": "Mumbai, India"
+      "name": "David Thompson",
+      "email": "david.thompson@example.com",
+      "phone": "+1 (312) 987-6543",
+      "linkedin": "linkedin.com/in/davidthompson",
+      "location": "Chicago, USA"
     },
     "education": [
       {
-        "degree": "Bachelor in Computer Engineering",
-        "institution": "Fr. Conceicao Rodrigues College of Engineering",
-        "years": "2023-2027",
-        "cgpa": "9.5",
-        "additional_info": "Second Year"
+        "degree": "Bachelor of Science in Computer Science",
+        "institution": "University of Illinois at Urbana-Champaign",
+        "graduation_year": 2018,
+        "gpa": 3.9
       }
     ],
     "work_experience": [
       {
-        "company": "Innovation Hub",
-        "position": "Frontend Developer Intern",
-        "years": "Dec 2024 - Present",
-        "responsibilities": "Developed responsive web applications using React and Next.js, focusing on user experience and performance optimization.",
-        "tech_stack": [
-          "React",
-          "Next.js",
-          "Tailwind CSS",
-          "JavaScript",
-          "CSS"
-        ]
-      }
-    ],
-    "hackathon_experience": [
-      {
-        "name": "TYNET 2.0: International Women Hackathon (Round 1)",
-        "project": "FinHer",
-        "description": "Developed a financial assistance platform for women, integrating personalized financial tools, Monte Carlo simulations, and a community chatroom for engagement.",
-        "achievement": "Cleared round one and reached the top 20 teams",
-        "tech_stack": [
-          "React",
-          "Django"
+        "company": "BrightCode Solutions",
+        "location": "Chicago, USA",
+        "position": "Full-Stack Developer",
+        "start_date": "April 2021",
+        "end_date": "Present",
+        "responsibilities": [
+          "Designed and built scalable web applications using React.js, TypeScript, and Node.js.",
+          "Developed GraphQL APIs, reducing backend response time by 40%.",
+          "Led a migration from a monolithic architecture to microservices using Docker and Kubernetes.",
+          "Implemented authentication and authorization systems using Firebase and OAuth."
         ]
       },
       {
-        "name": "TYNET 2.0: International Women Hackathon (Round 2)",
-        "project": "WasteWise",
-        "description": "Created a waste management solution with route optimization for garbage trucks, gamification, and a community-driven events section.",
-        "tech_stack": [
-          "React",
-          "Django",
-          "GPS",
-          "Route Optimization Algorithms"
+        "company": "PixelSoft",
+        "location": "Remote",
+        "position": "Software Engineer",
+        "start_date": "August 2018",
+        "end_date": "March 2021",
+        "responsibilities": [
+          "Developed e-commerce websites using Next.js, Tailwind CSS, and Firebase.",
+          "Optimized database queries in PostgreSQL, improving page load speeds by 30%.",
+          "Integrated payment gateways (Stripe, PayPal) for seamless checkout experiences.",
+          "Worked closely with UI/UX designers to enhance user experience."
         ]
-      },
-      {
-        "name": "Bit and Build Hackathon",
-        "organizer": "GDSC FRCRCE",
-        "role": "Organizer/Graphic Designer",
-        "description": "Assisted in organizing and coordinating logistics for the hackathon, ensuring smooth event execution and team collaboration. Contributed as a graphic designer, creating visual assets for the event and promoting the hackathon's branding."
       }
     ],
     "skills": {
-      "web_development": [
-        "MongoDB",
-        "Express",
-        "React",
-        "Node.js",
-        "Django",
+      "frontend": [
+        "React.js",
         "Next.js",
+        "TypeScript",
         "Tailwind CSS",
-        "JavaScript",
-        "CSS"
+        "Redux"
       ],
-      "graphic_design": [
-        "Adobe Photoshop"
+      "backend": [
+        "Node.js",
+        "Express.js",
+        "GraphQL",
+        "Firebase",
+        "PostgreSQL"
+      ],
+      "devops_cloud": [
+        "AWS (EC2, S3, Lambda)",
+        "Docker",
+        "Kubernetes",
+        "CI/CD (GitHub Actions)"
+      ],
+      "other": [
+        "REST APIs",
+        "WebSockets",
+        "Stripe API",
+        "Jest"
       ]
     },
-    "summary": "Computer Engineering student with a passion for web application development and graphic design. Creates intuitive, user-centered digital experiences and brings designs to life through both coding and visuals. Eager to apply skills and creativity to dynamic web development projects and contribute to innovative solutions."
-  },
-  {
-    "personal_information": {
-      "name": "Slayde Sequeira",
-      "email": "slaydes13@gmail.com",
-      "phone": "+91-8097276899",
-      "location": "Mumbai, India",
-      "linkedin": "https://linkedin.com/in/slayde-sequeira-062660221",
-      "github": "https://github.com/SlaydeSequeira"
-    },
-    "education": [
+    "certifications": [
       {
-        "degree": "Bachelor of Computer Engineering with honors in Data Science",
-        "institution": "Fr. Conceicao Rodrigues College of Engineering",
-        "years": "May 2021 - May 2025",
-        "cgpa": "8.99 (6 Semesters)"
-      }
-    ],
-    "work_experience": [
-      {
-        "company": "Hyperverge",
-        "position": "Jr. Solution Architect Intern",
-        "duration": "January 13, 2024 - Present",
-        "description": "Developed a native Android application for seamless video conferencing. Integrated the app with existing website functionalities. Developed a web application using Spring Boot for the backend and React for the frontend. The application scraped bond data from various websites and displayed it on the company's website.",
-        "tech_stack": [
-          "React Flow",
-          "APIs",
-          "Cloud Services"
-        ]
+        "name": "AWS Certified Solutions Architect",
+        "year": 2023
       },
       {
-        "company": "Svirtz Technologies Pvt Ltd",
-        "position": "Web and App Developer Intern",
-        "duration": "October 1, 2023 - June 30, 2024",
-        "description": "At HyperVerge (Note: This seems to be a typo and should likely be Svirtz Technologies), designed and optimized client onboarding workflows, ensuring seamless integration and scalability for enterprise solutions. Developed AI-driven system architectures that streamlined document verification while adhering to banking compliance norms and regulatory requirements. By automating key processes, enhanced operational efficiency, reduced friction in onboarding, and improved overall user experience.",
-        "tech_stack": [
-          "React",
-          "Spring Boot",
-          "Native Java",
-          "XML",
-          "Node.js",
-          "MySQL"
-        ]
-      },
-      {
-        "company": "DigiHelic Solutions Pvt Ltd",
-        "position": "Web Developer Intern",
-        "duration": "December 10, 2023 - March 31, 2024",
-        "description": "Built a user-centric immigration website with task management, document storage, and real-time updates to streamline processes.",
-        "tech_stack": [
-          "Next.js",
-          "Node.js",
-          "Express",
-          "MongoDB",
-          "Firebase"
-        ]
+        "name": "Full-Stack Web Development",
+        "year": 2022
       }
     ],
     "projects": [
       {
-        "name": "Dimensionality Reduction using Metaheuristic Algorithms",
-        "description": "Developed a dimensionality reduction approach using metaheuristic algorithms to optimize feature selection in high-dimensional datasets. By leveraging techniques like Genetic Algorithms and Particle Swarm Optimization, improved computational efficiency while retaining essential data patterns for better machine learning performance.",
-        "duration": "May 2024 - Present",
-        "tech_stack": [
-          "Python",
-          "LIME",
-          "SHAP",
-          "ACO",
-          "PSO"
+        "name": "ShopEase",
+        "description": "E-commerce Platform (MERN Stack)",
+        "details": [
+          "Developed a modern e-commerce platform with React.js and Node.js.",
+          "Integrated GraphQL API for efficient data fetching.",
+          "Implemented a real-time chat support feature using WebSockets."
         ]
       },
       {
-        "name": "Smart Bin+",
-        "description": "Developed a smart waste management system integrating IoT and machine learning for responsible disposal with mobile app and cloud features.",
-        "duration": "May 2023 - April 2024",
-        "tech_stack": [
-          "Native Java",
-          "XML",
-          "Firebase",
-          "Node.js",
-          "IoT",
-          "Machine Learning"
+        "name": "TaskFlow",
+        "description": "Productivity App (Next.js & Firebase)",
+        "details": [
+          "Built a task management system with drag-and-drop functionality.",
+          "Used Firebase Authentication for secure user logins.",
+          "Optimized database reads and writes for better performance."
         ]
-      },
-      {
-        "name": "College Management System",
-        "description": "A responsive web platform for automating exam schedules, grading, and attendance tracking in universities.",
-        "duration": "January 2023 - March 2023",
-        "tech_stack": [
-          "React.js",
-          "Firebase",
-          "Node.js"
-        ]
-      }
-    ],
-    "co_curricular_activities": [
-      {
-        "role": "Technical Head",
-        "organization": "CSI CRCE",
-        "duration": "2023-2024",
-        "description": "Managed multiple tech events and hackathons."
-      },
-      {
-        "role": "Social Media Head",
-        "organization": "Computer Department at CRCE",
-        "duration": "2023-2024",
-        "description": "Managed social media handles of the Computer Department."
-      }
-    ],
-    "achievements": [
-      "First Place - Sun Hacks 2024 International Hackathon",
-      "First Place - S.P.I.T Hacks 2025 Hackathon",
-      "First Place - Ingenium 2.0 Hackathon",
-      "2nd Place - Techvista Coding Contest",
-      "3rd Place - Algoholics 2.0 Coding Contest",
-      "Finalist - Bit n Build 2024"
-    ],
-    "skills": {
-      "android_development": [
-        "Java",
-        "Kotlin",
-        "XML",
-        "Flutter (basic)"
-      ],
-      "web_development": [
-        "Next.js",
-        "React",
-        "HTML",
-        "CSS",
-        "JavaScript"
-      ],
-      "database": [
-        "MongoDB",
-        "SQL",
-        "Firebase"
-      ],
-      "backend": [
-        "Node.js",
-        "Express",
-        "Django",
-        "Flask"
-      ],
-      "cloud_services": [
-        "GCP",
-        "AWS"
-      ]
-    },
-    "courses": [
-      {
-        "name": "AWS Developing Course",
-        "institution": "AWS Academy",
-        "duration": "February 2024 - April 2024"
-      },
-      {
-        "name": "Complete Android Development Course",
-        "institution": "Udemy",
-        "duration": "January 2023 - March 2023"
-      },
-      {
-        "name": "Geodata Processing in Python",
-        "institution": "ISRO",
-        "duration": "February 20-24, 2024"
-      },
-      {
-        "name": "J.P. Morgan Chase and Co Virtual Internship",
-        "institution": "Forage",
-        "duration": "February 15-18, 2023"
-      },
-      {
-        "name": "Oasis Infobyte Virtual Internship in Android Dev",
-        "institution": "Oasis Infobyte",
-        "duration": "May 2023 - June 2023"
-      }
-    ],
-    "research_work": [
-      {
-        "title": "SmartBin+: Elevating Responsible Waste Disposal with Rewards",
-        "description": "Lead author of a research paper selected for the 4th International Conference on Sustainable Expert Systems, affiliated with IEEE. The research focuses on developing an intelligent waste management system utilizing IoT and machine learning to incentivize proper waste disposal.",
-        "tech_stack": [
-          "IoT",
-          "Machine Learning",
-          "App Development",
-          "Firebase",
-          "Node.js"
-        ],
-        "publication_status": "Presented at ICSES 4th Conference, published in IEEE Xplore",
-        "duration": "September 2023 - October 2024"
       }
     ]
   },
   {
     "personal_information": {
       "name": "Vikram Singh",
-      "location": "Mumbai, India",
       "email": "vikram.singh@example.com",
       "phone": "+91 98765 43210",
-      "linkedin": "linkedin.com/in/vikramsingh"
+      "linkedin": "linkedin.com/in/vikramsingh",
+      "location": "Mumbai, India"
     },
     "education": [
       {
@@ -440,6 +274,212 @@
         "description": [
           "Built an interactive carbon footprint tracker using Next.js and Tailwind CSS.",
           "Integrated Supabase authentication for user logins."
+        ]
+      }
+    ]
+  },
+  {
+    "personal_information": {
+      "name": "David Thompson",
+      "email": "david.thompson@example.com",
+      "phone": "+1 (312) 987-6543",
+      "linkedin": "linkedin.com/in/davidthompson",
+      "location": "Chicago, USA"
+    },
+    "education": [
+      {
+        "degree": "Bachelor of Science in Computer Science",
+        "institution": "University of Illinois at Urbana-Champaign",
+        "graduation_year": 2018,
+        "gpa": 3.9
+      }
+    ],
+    "work_experience": [
+      {
+        "company": "BrightCode Solutions",
+        "location": "Chicago, USA",
+        "position": "Full-Stack Developer",
+        "start_date": "April 2021",
+        "end_date": "Present",
+        "responsibilities": [
+          "Designed and built scalable web applications using React.js, TypeScript, and Node.js.",
+          "Developed GraphQL APIs, reducing backend response time by 40%.",
+          "Led a migration from a monolithic architecture to microservices using Docker and Kubernetes.",
+          "Implemented authentication and authorization systems using Firebase and OAuth."
+        ]
+      },
+      {
+        "company": "PixelSoft",
+        "location": "Remote",
+        "position": "Software Engineer",
+        "start_date": "August 2018",
+        "end_date": "March 2021",
+        "responsibilities": [
+          "Developed e-commerce websites using Next.js, Tailwind CSS, and Firebase.",
+          "Optimized database queries in PostgreSQL, improving page load speeds by 30%.",
+          "Integrated payment gateways (Stripe, PayPal) for seamless checkout experiences.",
+          "Worked closely with UI/UX designers to enhance user experience."
+        ]
+      }
+    ],
+    "skills": {
+      "frontend": [
+        "React.js",
+        "Next.js",
+        "TypeScript",
+        "Tailwind CSS",
+        "Redux"
+      ],
+      "backend": [
+        "Node.js",
+        "Express.js",
+        "GraphQL",
+        "Firebase",
+        "PostgreSQL"
+      ],
+      "devops_cloud": [
+        "AWS (EC2, S3, Lambda)",
+        "Docker",
+        "Kubernetes",
+        "CI/CD (GitHub Actions)"
+      ],
+      "other": [
+        "REST APIs",
+        "WebSockets",
+        "Stripe API",
+        "Jest"
+      ]
+    },
+    "certifications": [
+      {
+        "name": "AWS Certified Solutions Architect",
+        "year": 2023
+      },
+      {
+        "name": "Full-Stack Web Development",
+        "year": 2022
+      }
+    ],
+    "projects": [
+      {
+        "name": "ShopEase",
+        "description": "E-commerce Platform (MERN Stack)",
+        "details": [
+          "Developed a modern e-commerce platform with React.js and Node.js.",
+          "Integrated GraphQL API for efficient data fetching.",
+          "Implemented a real-time chat support feature using WebSockets."
+        ]
+      },
+      {
+        "name": "TaskFlow",
+        "description": "Productivity App (Next.js & Firebase)",
+        "details": [
+          "Built a task management system with drag-and-drop functionality.",
+          "Used Firebase Authentication for secure user logins.",
+          "Optimized database reads and writes for better performance."
+        ]
+      }
+    ]
+  },
+  {
+    "personal_information": {
+      "name": "Vikram Singh",
+      "location": "Mumbai, India",
+      "email": "vikram.singh@example.com",
+      "phone": "+91 98765 43210",
+      "linkedin": "linkedin.com/in/vikramsingh"
+    },
+    "education": [
+      {
+        "degree": "Bachelor of Technology in Computer Science",
+        "institution": "Indian Institute of Technology (IIT) Bombay",
+        "graduation_year": 2020,
+        "cgpa": 9.21
+      }
+    ],
+    "work_experience": [
+      {
+        "company": "Soares Tech",
+        "location": "Mumbai, India",
+        "position": "Software Engineer",
+        "start_date": "January 2022",
+        "end_date": "Present",
+        "responsibilities": [
+          "Developed and optimized React.js applications, improving performance by 30%",
+          "Built REST APIs with Node.js and Express.js, enhancing data retrieval efficiency",
+          "Migrated codebase to TypeScript, reducing production errors by 25%",
+          "Collaborated with Agile teams to deliver scalable web applications"
+        ]
+      },
+      {
+        "company": "Thomas Corp",
+        "location": "Remote",
+        "position": "Web Developer",
+        "start_date": "June 2020",
+        "end_date": "December 2021",
+        "responsibilities": [
+          "Designed and developed responsive web applications using JavaScript, HTML, and CSS",
+          "Optimized website speed by 40% using lazy loading and image compression techniques",
+          "Integrated multiple third-party APIs for enhanced functionality"
+        ]
+      }
+    ],
+    "skills": {
+      "frontend": [
+        "React.js",
+        "Next.js",
+        "JavaScript",
+        "TypeScript",
+        "Redux",
+        "Tailwind CSS"
+      ],
+      "backend": [
+        "Node.js",
+        "Express.js",
+        "MongoDB",
+        "PostgreSQL",
+        "REST APIs"
+      ],
+      "tools": [
+        "Git",
+        "Docker",
+        "CI/CD",
+        "Jest",
+        "Postman",
+        "Webpack"
+      ],
+      "cloud": [
+        "AWS (Lambda, S3, EC2)",
+        "Firebase",
+        "Supabase"
+      ]
+    },
+    "certifications": [
+      {
+        "name": "AWS Certified Developer",
+        "year": 2023
+      },
+      {
+        "name": "Full-Stack Web Development",
+        "year": 2022
+      }
+    ],
+    "projects": [
+      {
+        "name": "UniJobs \u2013 Job Portal for Students",
+        "technologies": "MERN Stack",
+        "description": [
+          "Developed a job listing platform for students using React.js, Node.js, and MongoDB",
+          "Implemented resume parsing with Supabase for ATS automation",
+          "Created a real-time chat system for clients and companies"
+        ]
+      },
+      {
+        "name": "Carbon Emission Calculator",
+        "technologies": "Next.js & Supabase",
+        "description": [
+          "Built an interactive carbon footprint tracker using Next.js and Tailwind CSS",
+          "Integrated Supabase authentication for user logins"
         ]
       }
     ]
