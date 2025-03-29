@@ -19,57 +19,74 @@ import Footer from "./components/Footer";
 import ComparisonView from "./ComparisonView";
 
 const ResumeParser = () => {
+  // Normalization function to inflate scores
+  const normalizeAndInflateScore = (score, minScore = 15, maxScore = 25) => {
+    // Edge cases
+    if (score >= 100) return 100;
+    if (score <= 0) return 5;
+    
+    // Normalize to 0-1 range based on observed min/max
+    const normalized = (score - minScore) / (maxScore - minScore);
+    
+    // Scale to 50-95 range (adjust these values as needed)
+    const inflated = 50 + (normalized * 45);
+    
+    // Round to nearest integer and ensure within bounds
+    return Math.min(100, Math.max(5, Math.round(inflated)));
+  };
+
   const [aiAnalysis, setAiAnalysis] = useState(null);
   const [isAnalysisLoading, setIsAnalysisLoading] = useState(false);
   const [analysisError, setAnalysisError] = useState(null);
-
-
   const [isSendingEmail, setIsSendingEmail] = useState(false);
-const [emailStatus, setEmailStatus] = useState(null);
+  const [emailStatus, setEmailStatus] = useState(null);
 
-const sendConfirmationEmail = async () => {
-  if (!selectedCandidate || !selectedCandidate.fullDetails) {
-    setEmailStatus({ type: 'error', message: 'No candidate selected' });
-    return;
-  }
-
-  setIsSendingEmail(true);
-  setEmailStatus(null);
-
-  try {
-    const candidateData = selectedCandidate.fullDetails.processed_data;
-    const email = selectedCandidate.fullDetails.processed_data.personal_information.email;
-    console.log(selectedCandidate.fullDetails.processed_data.personal_information.email)
-    if (!email) {
-      setEmailStatus({ type: 'error', message: 'Candidate has no email address' });
+  const sendConfirmationEmail = async () => {
+    if (!selectedCandidate || !selectedCandidate.fullDetails) {
+      setEmailStatus({ type: 'error', message: 'No candidate selected' });
       return;
     }
 
-    const response = await axios.post(
-      "http://localhost:8000/send-confirmation-email",
-      {
-        candidate_data: candidateData,
-        email: email
-      }
-    );
+    setIsSendingEmail(true);
+    setEmailStatus(null);
 
-    if (response.data.message) {
-      setEmailStatus({ type: 'success', message: response.data.message });
-    } else {
-      setEmailStatus({ type: 'error', message: response.data.error || 'Email sent but no confirmation received' });
+    try {
+      const candidateData = selectedCandidate.fullDetails.processed_data;
+      const email = selectedCandidate.fullDetails.processed_data.personal_information.email;
+      console.log(selectedCandidate.fullDetails.processed_data.personal_information.email)
+      if (!email) {
+        setEmailStatus({ type: 'error', message: 'Candidate has no email address' });
+        return;
+      }
+
+      const response = await axios.post(
+        "http://localhost:8000/send-confirmation-email",
+        {
+          candidate_data: candidateData,
+          email: email
+        }
+      );
+
+      if (response.data.message) {
+        setEmailStatus({ type: 'success', message: response.data.message });
+      } else {
+        setEmailStatus({ type: 'error', message: response.data.error || 'Email sent but no confirmation received' });
+      }
+    } catch (err) {
+      const errorDetails = err.response?.data || err.message;
+      console.error("Full error details:", errorDetails);
+      
+      setEmailStatus({ 
+        type: 'error', 
+        message: err.response?.data?.detail || 
+                err.response?.data?.message || 
+                'Failed to send confirmation email' 
+      });
+    } finally {
+      setIsSendingEmail(false);
     }
-  } catch (err) {
-    const errorDetails = err.response?.data || err.message;
-    console.error("Full error details:", errorDetails);
-    
-    setEmailStatus({ 
-      type: 'error', 
-      message: err.response?.data?.detail || 
-              err.response?.data?.message || 
-              'Failed to send confirmation email' 
-    });
-  }
-};
+  };
+
   const fetchCandidateAnalysis = async (candidate) => {
     if (!candidate || !candidate.fullDetails) return;
 
@@ -948,10 +965,17 @@ const sendConfirmationEmail = async () => {
                                 : ''
                             }`}
                           >
-                            <>
+                            {isSendingEmail ? (
+                              <>
+                                <LoaderIcon className="w-4 h-4 animate-spin" />
+                                Sending...
+                              </>
+                            ) : (
+                              <>
                                 <MailIcon className="w-4 h-4" />
                                 Send Confirmation Email
                               </>
+                            )}
                           </motion.button>
                           
                           {emailStatus && (
