@@ -26,13 +26,12 @@ const ResumeParser = () => {
     if (score <= 0) return 5;
     
     // Normalize to 0-1 range based on observed min/max
-    const normalized = (score - minScore) / (maxScore - minScore);
+    const inflated = score*1.75;
     
     // Scale to 50-95 range (adjust these values as needed)
-    const inflated = 50 + (normalized * 45);
     
     // Round to nearest integer and ensure within bounds
-    return Math.min(100, Math.max(5, Math.round(inflated)));
+    return inflated;
   };
 
   const [aiAnalysis, setAiAnalysis] = useState(null);
@@ -40,6 +39,106 @@ const ResumeParser = () => {
   const [analysisError, setAnalysisError] = useState(null);
   const [isSendingEmail, setIsSendingEmail] = useState(false);
   const [emailStatus, setEmailStatus] = useState(null);
+
+  const [hiringPrediction, setHiringPrediction] = useState(null);
+  const [isPredicting, setIsPredicting] = useState(false)
+  // Add this function with your other functions
+  const predictHiring = async () => {
+    if (!selectedCandidate || !selectedCandidate.fullDetails) {
+      return;
+    }
+  
+    setIsPredicting(true);
+    setHiringPrediction(null);
+  
+    try {
+      // Extract candidate data from the selected candidate
+      const candidateData = selectedCandidate.fullDetails.processed_data;
+      
+      // Extract skills from candidate data as a flat array
+      let candidateSkills = [];
+      if (candidateData.skills) {
+        if (typeof candidateData.skills === 'object' && !Array.isArray(candidateData.skills)) {
+          Object.values(candidateData.skills).forEach((skillArray) => {
+            if (Array.isArray(skillArray)) {
+              candidateSkills.push(...skillArray);
+            }
+          });
+        } else if (Array.isArray(candidateData.skills)) {
+          candidateSkills = candidateData.skills;
+        }
+      }
+      
+      // Calculate years of experience based on work history
+      let experienceYears = 0;
+      if (
+        candidateData.work_experience &&
+        candidateData.work_experience.length > 0
+      ) {
+        // Estimate years based on number of positions
+        experienceYears = candidateData.work_experience.length * 1.5;
+      }
+      
+      // Prepare the payload for hiring prediction
+      const payload = {
+        resume_text: selectedCandidate.fullDetails.raw_text,
+        job_description:
+          "TechNova Solutions is seeking a Senior Frontend Developer (React.js) to build and optimize scalable web applications using React.js, TypeScript, and Next.js. You'll collaborate with cross-functional teams, implement efficient state management with Redux or Context API, and ensure a seamless user experience.",
+        education:
+          candidateData.education?.[0]?.degree ||
+          "Bachelor's Degree",
+        industry: "Information Technology & Services",
+        work_type: "Full-time",
+        location:
+          candidateData.personal_information?.location || "Remote",
+        applied_job_title: "Senior Frontend Developer",
+        experience_years: experienceYears || 3.0,
+        salary_expectation: 100000.0,
+        offered_salary: 120000.0,
+        skills: candidateSkills,
+        required_skills: [
+          "React.js",
+          "TypeScript",
+          "Next.js",
+          "Redux",
+          "Context API",
+          "CSS-in-JS",
+          "SASS",
+          "Tailwind CSS",
+          "Jest",
+          "React Testing Library",
+          "Git",
+          "Webpack",
+          "Figma",
+          "Problem-solving",
+          "Team collaboration",
+          "Agile methodologies",
+        ],
+      };
+  
+      console.log("Sending hiring prediction request with payload:", payload);
+  
+      const response = await axios.post(
+        "http://localhost:8080/predict-hiring",
+        payload,
+        {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }
+      );
+  
+      console.log("Hiring prediction response:", response.data);
+      setHiringPrediction(response.data);
+    } catch (err) {
+      console.error("Hiring prediction error:", err);
+      setHiringPrediction({
+        error: err.response?.data?.detail || "Failed to predict hiring",
+      });
+    } finally {
+      setIsPredicting(false);
+    }
+  };
 
   const sendConfirmationEmail = async () => {
     if (!selectedCandidate || !selectedCandidate.fullDetails) {
@@ -1015,6 +1114,90 @@ const ResumeParser = () => {
                             <p className="text-amber-500 text-sm mt-1">
                               No email address found for this candidate
                             </p>
+                          )}
+                        </div>
+                        <
+div className="mt-6 border-t border-zinc-700 pt-4">
+                          <div className="flex items-center gap-2 mb-4">
+                            <BrainIcon className="w-5 h-5 text-blue-400" />
+                            <h3 className="text-xl font-semibold text-blue-300">
+                              Hiring Prediction
+                            </h3>
+                          </div>
+
+                          <motion.button
+                            onClick={predictHiring}
+                            disabled={
+                              isPredicting || !selectedCandidate?.fullDetails
+                            }
+                            whileHover={{ scale: isPredicting ? 1 : 1.05 }}
+                            whileTap={{ scale: isPredicting ? 1 : 0.95 }}
+                            className={`px-4 py-2 rounded-lg flex items-center gap-2 ${
+                              isPredicting
+                                ? "bg-gray-600 cursor-not-allowed"
+                                : "bg-blue-600 hover:bg-blue-700 text-white"
+                            } ${
+                              !selectedCandidate?.fullDetails
+                                ? "opacity-50 cursor-not-allowed"
+                                : ""
+                            }`}
+                          >
+                            {isPredicting ? (
+                              <>
+                                <LoaderIcon className="w-4 h-4 animate-spin" />
+                                Predicting Hiring Outcome...
+                              </>
+                            ) : (
+                              <>
+                                <BrainIcon className="w-4 h-4" />
+                                Predict Hiring Outcome
+                              </>
+                            )}
+                          </motion.button>
+
+                          {hiringPrediction && (
+                            <motion.div
+                              initial={{ opacity: 0, y: -10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              className={`mt-4 p-4 rounded-lg ${
+                                hiringPrediction.error
+                                  ? "bg-red-900/30 border border-red-800"
+                                  : hiringPrediction.hired_prediction
+                                  ? "bg-green-900/30 border border-green-800"
+                                  : "bg-amber-900/30 border border-amber-800"
+                              }`}
+                            >
+                              {hiringPrediction.error ? (
+                                <p className="text-red-200">
+                                  {hiringPrediction.error}
+                                </p>
+                              ) : (
+                                <>
+                                  <div className="flex items-center justify-between">
+                                    <p
+                                      className={`text-lg font-semibold ${
+                                        hiringPrediction.hired_prediction
+                                          ? "text-green-300"
+                                          : "text-amber-300"
+                                      }`}
+                                    >
+                                      {hiringPrediction.message}
+                                    </p>
+
+                                    <div className="bg-zinc-800/70 rounded-full px-3 py-1 text-white">
+                                      <span className="font-bold">
+                                        {Math.round(
+                                          hiringPrediction.hiring_probability *
+                                            100
+                                        )}
+                                        %
+                                      </span>{" "}
+                                      probability
+                                    </div>
+                                  </div>
+                                </>
+                              )}
+                            </motion.div>
                           )}
                         </div>
                       </motion.div>

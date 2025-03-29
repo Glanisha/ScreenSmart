@@ -181,5 +181,881 @@
         ]
       }
     ]
+  },
+  {
+    "personal_information": {
+      "name": "James Carter",
+      "email": "james.carter@example.com",
+      "phone": "+1 (415) 789-1234",
+      "linkedin": "linkedin.com/in/jamescarter",
+      "location": "San Francisco, CA"
+    },
+    "education": [
+      {
+        "degree": "Bachelor of Science in Computer Science",
+        "institution": "University of California, Berkeley",
+        "graduation_year": 2017,
+        "gpa": 3.8
+      }
+    ],
+    "work_experience": [
+      {
+        "company": "CodeWave Solutions",
+        "location": "San Francisco, CA",
+        "title": "Senior Frontend Developer",
+        "start_date": "March 2020",
+        "end_date": "Present",
+        "employment_type": "Hybrid",
+        "responsibilities": [
+          "Developed and maintained high-performance React.js applications using TypeScript and Next.js.",
+          "Implemented state management solutions with Redux and Context API to improve scalability.",
+          "Optimized component rendering and performance, reducing page load time by 30%.",
+          "Collaborated closely with UI/UX designers to implement pixel-perfect interfaces using Tailwind CSS and SASS.",
+          "Led code reviews and mentored junior developers in best coding practices.",
+          "Integrated Jest and React Testing Library for unit and integration testing."
+        ]
+      },
+      {
+        "company": "DevSpark Technologies",
+        "location": "Remote",
+        "title": "Frontend Developer",
+        "start_date": "July 2017",
+        "end_date": "February 2020",
+        "responsibilities": [
+          "Developed dynamic user interfaces using React.js and TypeScript for SaaS applications.",
+          "Refactored legacy codebases and introduced modular component-based architecture.",
+          "Worked with Git, Webpack, and Figma for efficient development and design collaboration.",
+          "Built responsive layouts and ensured cross-browser compatibility.",
+          "Contributed to Agile development cycles, participating in sprint planning and retrospectives."
+        ]
+      }
+    ],
+    "skills": {
+      "technical": [
+        "React.js",
+        "Next.js",
+        "TypeScript",
+        "Tailwind CSS",
+        "Redux",
+        "Context API",
+        "CSS-in-JS",
+        "SASS",
+        "Jest",
+        "React Testing Library",
+        "Git",
+        "Webpack",
+        "Figma",
+        "Node.js",
+        "Firebase"
+      ],
+      "soft": [
+        "Problem-solving",
+        "Team collaboration",
+        "Agile methodologies"
+      ]
+    },
+    "certifications": [
+      {
+        "name": "React.js Advanced Developer Certification",
+        "year": 2022
+      },
+      {
+        "name": "Frontend Performance Optimization",
+        "year": 2021
+      }
+    ],
+    "projects": [
+      {
+        "name": "TaskMaster",
+        "description": "Productivity App",
+        "technologies": [
+          "Next.js",
+          "Firebase"
+        ],
+        "details": [
+          "Built a task management platform with real-time updates and drag-and-drop functionality.",
+          "Used Firebase Authentication for secure user logins.",
+          "Implemented Redux for efficient state management."
+        ]
+      },
+      {
+        "name": "ShopVista",
+        "description": "E-commerce Platform",
+        "technologies": [
+          "React.js",
+          "Node.js",
+          "TypeScript"
+        ],
+        "details": [
+          "Developed a feature-rich e-commerce website using React.js and TypeScript.",
+          "Integrated Stripe API for seamless payments.",
+          "Optimized frontend performance, reducing page load times by 40%."
+        ]
+      }
+    ],
+    "ats_score": 85
+  },
+  {
+    "personal_information": {
+      "name": "James Carter",
+      "email": "james.carter@example.com",
+      "phone": "+1 (415) 789-1234",
+      "linkedin": "linkedin.com/in/jamescarter",
+      "location": "San Francisco, CA"
+    },
+    "education": [
+      {
+        "degree": "Bachelor of Science in Computer Science",
+        "institution": "University of California, Berkeley",
+        "graduation_year": 2017,
+        "gpa": 3.8
+      }
+    ],
+    "work_experience": [
+      {
+        "company": "CodeWave Solutions",
+        "location": "San Francisco, CA",
+        "work_type": "Hybrid",
+        "position": "Senior Frontend Developer",
+        "start_date": "March 2020",
+        "end_date": "Present",
+        "responsibilities": [
+          "Developed and maintained high-performance React.js applications using TypeScript and Next.js.",
+          "Implemented state management solutions with Redux and Context API to improve scalability.",
+          "Optimized component rendering and performance, reducing page load time by 30%.",
+          "Collaborated closely with UI/UX designers to implement pixel-perfect interfaces using Tailwind CSS and SASS.",
+          "Led code reviews and mentored junior developers in best coding practices.",
+          "Integrated Jest and React Testing Library for unit and integration testing."
+        ]
+      },
+      {
+        "company": "DevSpark Technologies",
+        "location": "Remote",
+        "position": "Frontend Developer",
+        "start_date": "July 2017",
+        "end_date": "February 2020",
+        "responsibilities": [
+          "Developed dynamic user interfaces using React.js and TypeScript for SaaS applications.",
+          "Refactored legacy codebases and introduced modular component-based architecture.",
+          "Worked with Git, Webpack, and Figma for efficient development and design collaboration.",
+          "Built responsive layouts and ensured cross-browser compatibility.",
+          "Contributed to Agile development cycles, participating in sprint planning and retrospectives."
+        ]
+      }
+    ],
+    "skills": {
+      "technical": [
+        "React.js",
+        "Next.js",
+        "TypeScript",
+        "Tailwind CSS",
+        "Redux",
+        "Context API",
+        "CSS-in-JS",
+        "SASS",
+        "Jest",
+        "React Testing Library",
+        "Git",
+        "Webpack",
+        "Figma",
+        "Node.js",
+        "Firebase"
+      ],
+      "soft": [
+        "Problem-solving",
+        "Team collaboration",
+        "Agile methodologies"
+      ]
+    },
+    "certifications": [
+      {
+        "name": "React.js Advanced Developer Certification",
+        "year": 2022
+      },
+      {
+        "name": "Frontend Performance Optimization",
+        "year": 2021
+      }
+    ],
+    "projects": [
+      {
+        "name": "TaskMaster",
+        "description": "Productivity App",
+        "technologies": [
+          "Next.js",
+          "Firebase"
+        ],
+        "details": [
+          "Built a task management platform with real-time updates and drag-and-drop functionality.",
+          "Used Firebase Authentication for secure user logins.",
+          "Implemented Redux for efficient state management."
+        ]
+      },
+      {
+        "name": "ShopVista",
+        "description": "E-commerce Platform",
+        "technologies": [
+          "React.js",
+          "Node.js",
+          "TypeScript"
+        ],
+        "details": [
+          "Developed a feature-rich e-commerce website using React.js and TypeScript.",
+          "Integrated Stripe API for seamless payments.",
+          "Optimized frontend performance, reducing page load times by 40%."
+        ]
+      }
+    ],
+    "ats_score": 85
+  },
+  {
+    "personal_information": {
+      "name": "James Carter",
+      "email": "james.carter@example.com",
+      "phone": "+1 (415) 789-1234",
+      "linkedin": "linkedin.com/in/jamescarter",
+      "location": "San Francisco, CA"
+    },
+    "education": [
+      {
+        "degree": "Bachelor of Science in Computer Science",
+        "institution": "University of California, Berkeley",
+        "graduation_year": 2017,
+        "gpa": 3.8
+      }
+    ],
+    "work_experience": [
+      {
+        "company": "CodeWave Solutions",
+        "location": "San Francisco, CA",
+        "work_type": "Hybrid",
+        "position": "Senior Frontend Developer",
+        "start_date": "March 2020",
+        "end_date": "Present",
+        "responsibilities": [
+          "Developed and maintained high-performance React.js applications using TypeScript and Next.js.",
+          "Implemented state management solutions with Redux and Context API to improve scalability.",
+          "Optimized component rendering and performance, reducing page load time by 30%.",
+          "Collaborated closely with UI/UX designers to implement pixel-perfect interfaces using Tailwind CSS and SASS.",
+          "Led code reviews and mentored junior developers in best coding practices.",
+          "Integrated Jest and React Testing Library for unit and integration testing."
+        ]
+      },
+      {
+        "company": "DevSpark Technologies",
+        "location": "Remote",
+        "position": "Frontend Developer",
+        "start_date": "July 2017",
+        "end_date": "February 2020",
+        "responsibilities": [
+          "Developed dynamic user interfaces using React.js and TypeScript for SaaS applications.",
+          "Refactored legacy codebases and introduced modular component-based architecture.",
+          "Worked with Git, Webpack, and Figma for efficient development and design collaboration.",
+          "Built responsive layouts and ensured cross-browser compatibility.",
+          "Contributed to Agile development cycles, participating in sprint planning and retrospectives."
+        ]
+      }
+    ],
+    "skills": {
+      "technical": [
+        "React.js",
+        "Next.js",
+        "TypeScript",
+        "Tailwind CSS",
+        "Redux",
+        "Context API",
+        "CSS-in-JS",
+        "SASS",
+        "Jest",
+        "React Testing Library",
+        "Git",
+        "Webpack",
+        "Figma",
+        "Node.js",
+        "Firebase"
+      ],
+      "soft": [
+        "Problem-solving",
+        "Team collaboration",
+        "Agile methodologies"
+      ]
+    },
+    "certifications": [
+      {
+        "name": "React.js Advanced Developer Certification",
+        "year": 2022
+      },
+      {
+        "name": "Frontend Performance Optimization",
+        "year": 2021
+      }
+    ],
+    "projects": [
+      {
+        "name": "TaskMaster",
+        "description": "Productivity App",
+        "technologies": [
+          "Next.js",
+          "Firebase"
+        ],
+        "details": [
+          "Built a task management platform with real-time updates and drag-and-drop functionality.",
+          "Used Firebase Authentication for secure user logins.",
+          "Implemented Redux for efficient state management."
+        ]
+      },
+      {
+        "name": "ShopVista",
+        "description": "E-commerce Platform",
+        "technologies": [
+          "React.js",
+          "Node.js",
+          "TypeScript"
+        ],
+        "details": [
+          "Developed a feature-rich e-commerce website using React.js and TypeScript.",
+          "Integrated Stripe API for seamless payments.",
+          "Optimized frontend performance, reducing page load times by 40%."
+        ]
+      }
+    ],
+    "ats_score": 85
+  },
+  {
+    "personal_information": {
+      "name": "James Carter",
+      "email": "james.carter@example.com",
+      "phone": "+1 (415) 789-1234",
+      "linkedin": "linkedin.com/in/jamescarter",
+      "location": "San Francisco, CA"
+    },
+    "education": [
+      {
+        "degree": "Bachelor of Science in Computer Science",
+        "institution": "University of California, Berkeley",
+        "graduation_year": 2017,
+        "gpa": 3.8
+      }
+    ],
+    "work_experience": [
+      {
+        "company": "CodeWave Solutions",
+        "location": "San Francisco, CA",
+        "work_model": "Hybrid",
+        "position": "Senior Frontend Developer",
+        "start_date": "March 2020",
+        "end_date": "Present",
+        "responsibilities": [
+          "Developed and maintained high-performance React.js applications using TypeScript and Next.js.",
+          "Implemented state management solutions with Redux and Context API to improve scalability.",
+          "Optimized component rendering and performance, reducing page load time by 30%.",
+          "Collaborated closely with UI/UX designers to implement pixel-perfect interfaces using Tailwind CSS and SASS.",
+          "Led code reviews and mentored junior developers in best coding practices.",
+          "Integrated Jest and React Testing Library for unit and integration testing."
+        ]
+      },
+      {
+        "company": "DevSpark Technologies",
+        "location": "Remote",
+        "position": "Frontend Developer",
+        "start_date": "July 2017",
+        "end_date": "February 2020",
+        "responsibilities": [
+          "Developed dynamic user interfaces using React.js and TypeScript for SaaS applications.",
+          "Refactored legacy codebases and introduced modular component-based architecture.",
+          "Worked with Git, Webpack, and Figma for efficient development and design collaboration.",
+          "Built responsive layouts and ensured cross-browser compatibility.",
+          "Contributed to Agile development cycles, participating in sprint planning and retrospectives."
+        ]
+      }
+    ],
+    "skills": {
+      "technical": [
+        "React.js",
+        "Next.js",
+        "TypeScript",
+        "Tailwind CSS",
+        "Redux",
+        "Context API",
+        "CSS-in-JS",
+        "SASS",
+        "Jest",
+        "React Testing Library",
+        "Git",
+        "Webpack",
+        "Figma",
+        "Node.js",
+        "Firebase"
+      ],
+      "soft": [
+        "Problem-solving",
+        "Team collaboration",
+        "Agile methodologies"
+      ]
+    },
+    "certifications": [
+      {
+        "name": "React.js Advanced Developer Certification",
+        "year": 2022
+      },
+      {
+        "name": "Frontend Performance Optimization",
+        "year": 2021
+      }
+    ],
+    "projects": [
+      {
+        "name": "TaskMaster",
+        "description": "Productivity App",
+        "technologies": [
+          "Next.js",
+          "Firebase"
+        ],
+        "details": [
+          "Built a task management platform with real-time updates and drag-and-drop functionality.",
+          "Used Firebase Authentication for secure user logins.",
+          "Implemented Redux for efficient state management."
+        ]
+      },
+      {
+        "name": "ShopVista",
+        "description": "E-commerce Platform",
+        "technologies": [
+          "React.js",
+          "Node.js",
+          "TypeScript"
+        ],
+        "details": [
+          "Developed a feature-rich e-commerce website using React.js and TypeScript.",
+          "Integrated Stripe API for seamless payments.",
+          "Optimized frontend performance, reducing page load times by 40%."
+        ]
+      }
+    ],
+    "ats_score": 85
+  },
+  {
+    "personal_information": {
+      "name": "David Thompson",
+      "email": "lizaglanisha99@gmail.com",
+      "phone": "+1 (312) 987-6543",
+      "linkedin": "linkedin.com/in/davidthompson",
+      "location": "Chicago, USA"
+    },
+    "education": [
+      {
+        "degree": "Bachelor of Science in Computer Science",
+        "institution": "University of Illinois at Urbana-Champaign",
+        "graduation_year": 2018,
+        "gpa": 3.9
+      }
+    ],
+    "work_experience": [
+      {
+        "company": "BrightCode Solutions",
+        "location": "Chicago, USA",
+        "position": "Full-Stack Developer",
+        "start_date": "April 2021",
+        "end_date": "Present",
+        "responsibilities": [
+          "Designed and built scalable web applications using React.js, TypeScript, and Node.js.",
+          "Developed GraphQL APIs, reducing backend response time by 40%.",
+          "Led a migration from a monolithic architecture to microservices using Docker and Kubernetes.",
+          "Implemented authentication and authorization systems using Firebase and OAuth."
+        ]
+      },
+      {
+        "company": "PixelSoft",
+        "location": "Remote",
+        "position": "Software Engineer",
+        "start_date": "August 2018",
+        "end_date": "March 2021",
+        "responsibilities": [
+          "Developed e-commerce websites using Next.js, Tailwind CSS, and Firebase.",
+          "Optimized database queries in PostgreSQL, improving page load speeds by 30%.",
+          "Integrated payment gateways (Stripe, PayPal) for seamless checkout experiences.",
+          "Worked closely with UI/UX designers to enhance user experience."
+        ]
+      }
+    ],
+    "skills": {
+      "frontend": [
+        "React.js",
+        "Next.js",
+        "TypeScript",
+        "Tailwind CSS",
+        "Redux"
+      ],
+      "backend": [
+        "Node.js",
+        "Express.js",
+        "GraphQL",
+        "Firebase",
+        "PostgreSQL"
+      ],
+      "devops_cloud": [
+        "AWS (EC2, S3, Lambda)",
+        "Docker",
+        "Kubernetes",
+        "CI/CD (GitHub Actions)"
+      ],
+      "other": [
+        "REST APIs",
+        "WebSockets",
+        "Stripe API",
+        "Jest"
+      ]
+    },
+    "certifications": [
+      {
+        "name": "AWS Certified Solutions Architect",
+        "year": 2023
+      },
+      {
+        "name": "Full-Stack Web Development",
+        "year": 2022
+      }
+    ],
+    "projects": [
+      {
+        "name": "ShopEase",
+        "description": "E-commerce Platform (MERN Stack)",
+        "details": [
+          "Developed a modern e-commerce platform with React.js and Node.js.",
+          "Integrated GraphQL API for efficient data fetching.",
+          "Implemented a real-time chat support feature using WebSockets."
+        ]
+      },
+      {
+        "name": "TaskFlow",
+        "description": "Productivity App (Next.js & Firebase)",
+        "details": [
+          "Built a task management system with drag-and-drop functionality.",
+          "Used Firebase Authentication for secure user logins.",
+          "Optimized database reads and writes for better performance."
+        ]
+      }
+    ],
+    "ats_score": 85
+  },
+  {
+    "personal_information": {
+      "name": "Amit Sharma",
+      "email": "gavinsoares200510@gmail.com",
+      "phone": "+91 78945 61230",
+      "linkedin": "linkedin.com/in/amitsharma",
+      "location": "Hyderabad, India"
+    },
+    "education": [
+      {
+        "degree": "Bachelor of Science in Information Technology",
+        "university": "Osmania University",
+        "location": "Hyderabad, India",
+        "graduation_year": 2018,
+        "cgpa": 8.9
+      }
+    ],
+    "work_experience": [
+      {
+        "company": "NexGen Apps",
+        "location": "Hyderabad, India",
+        "position": "Mobile Application Developer",
+        "start_date": "February 2021",
+        "end_date": "Present",
+        "responsibilities": [
+          "Designed and developed cross-platform mobile applications using Flutter and Dart.",
+          "Integrated Firebase for real-time database management and push notifications.",
+          "Implemented CI/CD pipelines, reducing deployment time by 40%.",
+          "Worked on UI/UX optimization, increasing user engagement by 25%."
+        ]
+      },
+      {
+        "company": "BrightWave Technologies",
+        "location": "Remote",
+        "position": "Software Engineer",
+        "start_date": "August 2018",
+        "end_date": "January 2021",
+        "responsibilities": [
+          "Developed enterprise-level Android applications using Java and Kotlin.",
+          "Integrated RESTful APIs for seamless backend communication.",
+          "Optimized mobile app performance, reducing crash rates by 30%."
+        ]
+      }
+    ],
+    "skills": {
+      "mobile_development": [
+        "Flutter",
+        "Dart",
+        "Kotlin",
+        "Swift",
+        "React Native"
+      ],
+      "backend": [
+        "Firebase",
+        "Node.js",
+        "FastAPI",
+        "PostgreSQL"
+      ],
+      "tools": [
+        "Git",
+        "Jenkins",
+        "Docker",
+        "Jira",
+        "Android Studio",
+        "Xcode"
+      ],
+      "cloud": [
+        "AWS (Lambda, DynamoDB, S3)",
+        "Google Cloud",
+        "Firebase"
+      ]
+    },
+    "certifications": [
+      {
+        "name": "Google Associate Android Developer",
+        "year": 2023
+      },
+      {
+        "name": "Flutter & Dart Advanced Development",
+        "year": 2022
+      }
+    ],
+    "projects": [
+      {
+        "name": "HealthSync",
+        "description": "AI-Powered Fitness App (Flutter & Firebase)",
+        "details": [
+          "Built a fitness tracking app with AI-based workout recommendations.",
+          "Integrated Google Fit and Apple Health for real-time health data synchronization.",
+          "Implemented a subscription-based model, increasing revenue by 20%."
+        ]
+      },
+      {
+        "name": "EduBridge",
+        "description": "E-Learning Platform (React Native & Node.js)",
+        "details": [
+          "Developed a mobile-first e-learning platform with interactive video courses.",
+          "Integrated live streaming capabilities using WebRTC and AWS Media Services.",
+          "Created an AI-powered chatbot for instant student support."
+        ]
+      }
+    ],
+    "ats_score": 85
+  },
+  {
+    "personal_information": {
+      "name": "David Thompson",
+      "email": "lizaglanisha99@gmail.com",
+      "phone": "+1 (312) 987-6543",
+      "linkedin": "linkedin.com/in/davidthompson",
+      "location": "Chicago, USA"
+    },
+    "education": [
+      {
+        "degree": "Bachelor of Science in Computer Science",
+        "institution": "University of Illinois at Urbana-Champaign",
+        "graduation_year": 2018,
+        "gpa": 3.9
+      }
+    ],
+    "work_experience": [
+      {
+        "company": "BrightCode Solutions",
+        "location": "Chicago, USA",
+        "position": "Full-Stack Developer",
+        "start_date": "April 2021",
+        "end_date": "Present",
+        "responsibilities": [
+          "Designed and built scalable web applications using React.js, TypeScript, and Node.js.",
+          "Developed GraphQL APIs, reducing backend response time by 40%.",
+          "Led a migration from a monolithic architecture to microservices using Docker and Kubernetes.",
+          "Implemented authentication and authorization systems using Firebase and OAuth."
+        ]
+      },
+      {
+        "company": "PixelSoft",
+        "location": "Remote",
+        "position": "Software Engineer",
+        "start_date": "August 2018",
+        "end_date": "March 2021",
+        "responsibilities": [
+          "Developed e-commerce websites using Next.js, Tailwind CSS, and Firebase.",
+          "Optimized database queries in PostgreSQL, improving page load speeds by 30%.",
+          "Integrated payment gateways (Stripe, PayPal) for seamless checkout experiences.",
+          "Worked closely with UI/UX designers to enhance user experience."
+        ]
+      }
+    ],
+    "skills": {
+      "frontend": [
+        "React.js",
+        "Next.js",
+        "TypeScript",
+        "Tailwind CSS",
+        "Redux"
+      ],
+      "backend": [
+        "Node.js",
+        "Express.js",
+        "GraphQL",
+        "Firebase",
+        "PostgreSQL"
+      ],
+      "devops_cloud": [
+        "AWS (EC2, S3, Lambda)",
+        "Docker",
+        "Kubernetes",
+        "CI/CD (GitHub Actions)"
+      ],
+      "other": [
+        "REST APIs",
+        "WebSockets",
+        "Stripe API",
+        "Jest"
+      ]
+    },
+    "certifications": [
+      {
+        "name": "AWS Certified Solutions Architect",
+        "year": 2023
+      },
+      {
+        "name": "Full-Stack Web Development",
+        "year": 2022
+      }
+    ],
+    "projects": [
+      {
+        "name": "ShopEase",
+        "description": "E-commerce Platform (MERN Stack)",
+        "details": [
+          "Developed a modern e-commerce platform with React.js and Node.js.",
+          "Integrated GraphQL API for efficient data fetching.",
+          "Implemented a real-time chat support feature using WebSockets."
+        ]
+      },
+      {
+        "name": "TaskFlow",
+        "description": "Productivity App (Next.js & Firebase)",
+        "details": [
+          "Built a task management system with drag-and-drop functionality.",
+          "Used Firebase Authentication for secure user logins.",
+          "Optimized database reads and writes for better performance."
+        ]
+      }
+    ],
+    "ats_score": 85
+  },
+  {
+    "personal_information": {
+      "name": "Amit Sharma",
+      "email": "gavinsoares200510@gmail.com",
+      "phone": "+91 78945 61230",
+      "linkedin": "linkedin.com/in/amitsharma",
+      "location": "Hyderabad, India"
+    },
+    "education": [
+      {
+        "degree": "Bachelor of Science in Information Technology",
+        "institution": "Osmania University",
+        "location": "Hyderabad, India",
+        "graduation_year": 2018,
+        "cgpa": 8.9
+      }
+    ],
+    "work_experience": [
+      {
+        "company": "NexGen Apps",
+        "location": "Hyderabad, India",
+        "position": "Mobile Application Developer",
+        "start_date": "February 2021",
+        "end_date": "Present",
+        "responsibilities": [
+          "Designed and developed cross-platform mobile applications using Flutter and Dart.",
+          "Integrated Firebase for real-time database management and push notifications.",
+          "Implemented CI/CD pipelines, reducing deployment time by 40%.",
+          "Worked on UI/UX optimization, increasing user engagement by 25%."
+        ]
+      },
+      {
+        "company": "BrightWave Technologies",
+        "location": "Remote",
+        "position": "Software Engineer",
+        "start_date": "August 2018",
+        "end_date": "January 2021",
+        "responsibilities": [
+          "Developed enterprise-level Android applications using Java and Kotlin.",
+          "Integrated RESTful APIs for seamless backend communication.",
+          "Optimized mobile app performance, reducing crash rates by 30%."
+        ]
+      }
+    ],
+    "skills": {
+      "mobile_development": [
+        "Flutter",
+        "Dart",
+        "Kotlin",
+        "Swift",
+        "React Native"
+      ],
+      "backend": [
+        "Firebase",
+        "Node.js",
+        "FastAPI",
+        "PostgreSQL"
+      ],
+      "tools": [
+        "Git",
+        "Jenkins",
+        "Docker",
+        "Jira",
+        "Android Studio",
+        "Xcode"
+      ],
+      "cloud": [
+        "AWS (Lambda, DynamoDB, S3)",
+        "Google Cloud",
+        "Firebase"
+      ]
+    },
+    "certifications": [
+      {
+        "name": "Google Associate Android Developer",
+        "year": 2023
+      },
+      {
+        "name": "Flutter & Dart Advanced Development",
+        "year": 2022
+      }
+    ],
+    "projects": [
+      {
+        "name": "HealthSync",
+        "description": "AI-Powered Fitness App",
+        "technologies": [
+          "Flutter",
+          "Firebase"
+        ],
+        "details": [
+          "Built a fitness tracking app with AI-based workout recommendations.",
+          "Integrated Google Fit and Apple Health for real-time health data synchronization.",
+          "Implemented a subscription-based model, increasing revenue by 20%."
+        ]
+      },
+      {
+        "name": "EduBridge",
+        "description": "E-Learning Platform",
+        "technologies": [
+          "React Native",
+          "Node.js"
+        ],
+        "details": [
+          "Developed a mobile-first e-learning platform with interactive video courses.",
+          "Integrated live streaming capabilities using WebRTC and AWS Media Services.",
+          "Created an AI-powered chatbot for instant student support."
+        ]
+      }
+    ],
+    "ats_score": 85
   }
 ]
