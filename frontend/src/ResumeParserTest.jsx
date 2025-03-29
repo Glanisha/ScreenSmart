@@ -40,7 +40,6 @@ const ResumeParser = () => {
   const [analysisError, setAnalysisError] = useState(null);
   const [isSendingEmail, setIsSendingEmail] = useState(false);
   const [emailStatus, setEmailStatus] = useState(null);
-  const [emailStatus, setEmailStatus] = useState(null);
 
   const sendConfirmationEmail = async () => {
     if (!selectedCandidate || !selectedCandidate.fullDetails) {
