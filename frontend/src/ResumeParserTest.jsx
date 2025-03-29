@@ -12,6 +12,7 @@ import {
   ChevronUpIcon,
   BrainIcon,
   LoaderIcon,
+  MailIcon 
 } from "lucide-react";
 import Background from "./components/Background";
 import Footer from "./components/Footer";
@@ -22,21 +23,53 @@ const ResumeParser = () => {
   const [isAnalysisLoading, setIsAnalysisLoading] = useState(false);
   const [analysisError, setAnalysisError] = useState(null);
 
-  const normalizeAndInflateScore = (score, minScore = 15, maxScore = 25) => {
-    // Edge cases
-    if (score >= 100) return 100;
-    if (score <= 0) return 5;
-    
-    // Normalize to 0-1 range based on observed min/max
-    const normalized = (score - minScore) / (maxScore - minScore);
-    
-    // Scale to 50-95 range (adjust these values as needed)
-    const inflated = 50 + (normalized * 45);
-    
-    // Round to nearest integer and ensure within bounds
-    return Math.min(100, Math.max(5, Math.round(inflated)));
-  };
 
+  const [isSendingEmail, setIsSendingEmail] = useState(false);
+const [emailStatus, setEmailStatus] = useState(null);
+
+const sendConfirmationEmail = async () => {
+  if (!selectedCandidate || !selectedCandidate.fullDetails) {
+    setEmailStatus({ type: 'error', message: 'No candidate selected' });
+    return;
+  }
+
+  setIsSendingEmail(true);
+  setEmailStatus(null);
+
+  try {
+    const candidateData = selectedCandidate.fullDetails.processed_data;
+    const email = selectedCandidate.fullDetails.processed_data.personal_information.email;
+    console.log(selectedCandidate.fullDetails.processed_data.personal_information.email)
+    if (!email) {
+      setEmailStatus({ type: 'error', message: 'Candidate has no email address' });
+      return;
+    }
+
+    const response = await axios.post(
+      "http://localhost:8000/send-confirmation-email",
+      {
+        candidate_data: candidateData,
+        email: email
+      }
+    );
+
+    if (response.data.message) {
+      setEmailStatus({ type: 'success', message: response.data.message });
+    } else {
+      setEmailStatus({ type: 'error', message: response.data.error || 'Email sent but no confirmation received' });
+    }
+  } catch (err) {
+    const errorDetails = err.response?.data || err.message;
+    console.error("Full error details:", errorDetails);
+    
+    setEmailStatus({ 
+      type: 'error', 
+      message: err.response?.data?.detail || 
+              err.response?.data?.message || 
+              'Failed to send confirmation email' 
+    });
+  }
+};
   const fetchCandidateAnalysis = async (candidate) => {
     if (!candidate || !candidate.fullDetails) return;
 
@@ -890,6 +923,61 @@ const ResumeParser = () => {
                             )}
                           </div>
                         )}
+
+                        <div>
+                          <h3 className="text-neutral-400 mb-2 text-lg font-semibold border-t border-zinc-700 pt-4">
+                            Raw Resume Text
+                          </h3>
+                          <pre className="bg-zinc-900 p-4 rounded-lg text-neutral-300 text-sm overflow-x-auto max-h-40 overflow-y-auto">
+                            {selectedCandidate.fullDetails.raw_text}
+                          </pre>
+                        </div>
+                        <div className="mt-6 space-y-2">
+                          <motion.button
+                            onClick={sendConfirmationEmail}
+                            disabled={isSendingEmail || !selectedCandidate?.fullDetails?.processed_data?.personal_information?.email}
+                            whileHover={{ scale: isSendingEmail ? 1 : 1.05 }}
+                            whileTap={{ scale: isSendingEmail ? 1 : 0.95 }}
+                            className={`px-4 py-2 rounded-lg flex items-center gap-2 ${
+                              isSendingEmail 
+                                ? 'bg-gray-600 cursor-not-allowed' 
+                                : 'bg-green-600 hover:bg-green-700 text-white'
+                            } ${
+                              !selectedCandidate?.fullDetails?.processed_data?.personal_information?.email
+                                ? 'opacity-50 cursor-not-allowed'
+                                : ''
+                            }`}
+                          >
+                            <>
+                                <MailIcon className="w-4 h-4" />
+                                Send Confirmation Email
+                              </>
+                          </motion.button>
+                          
+                          {emailStatus && (
+                            <motion.div
+                              initial={{ opacity: 0, y: -10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              className={`p-3 rounded-lg text-sm ${
+                                emailStatus.type === 'success'
+                                  ? 'bg-green-900/30 border border-green-800 text-green-200'
+                                  : 'bg-red-900/30 border border-red-800 text-red-200'
+                              }`}
+                            >
+                              {emailStatus.message}
+                            </motion.div>
+                          )}
+
+                          {selectedCandidate?.fullDetails?.processed_data?.personal_information?.email ? (
+                            <p className="text-neutral-400 text-sm mt-1">
+                              Will be sent to: {selectedCandidate.fullDetails.processed_data.personal_information.email}
+                            </p>
+                          ) : (
+                            <p className="text-amber-500 text-sm mt-1">
+                              No email address found for this candidate
+                            </p>
+                          )}
+                        </div>
                       </motion.div>
                     )}
                   </div>
