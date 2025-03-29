@@ -22,6 +22,21 @@ const ResumeParser = () => {
   const [isAnalysisLoading, setIsAnalysisLoading] = useState(false);
   const [analysisError, setAnalysisError] = useState(null);
 
+  const normalizeAndInflateScore = (score, minScore = 15, maxScore = 25) => {
+    // Edge cases
+    if (score >= 100) return 100;
+    if (score <= 0) return 5;
+    
+    // Normalize to 0-1 range based on observed min/max
+    const normalized = (score - minScore) / (maxScore - minScore);
+    
+    // Scale to 50-95 range (adjust these values as needed)
+    const inflated = 50 + (normalized * 45);
+    
+    // Round to nearest integer and ensure within bounds
+    return Math.min(100, Math.max(5, Math.round(inflated)));
+  };
+
   const fetchCandidateAnalysis = async (candidate) => {
     if (!candidate || !candidate.fullDetails) return;
 
@@ -86,9 +101,11 @@ const ResumeParser = () => {
   };
 
   const getMatchColorClass = (matchPercentage) => {
-    if (matchPercentage >= 90) return "border-green-800 bg-green-900/20";
-    if (matchPercentage >= 75) return "border-lime-800 bg-lime-900/20";
-    if (matchPercentage >= 60) return "border-yellow-800 bg-yellow-900/20";
+    const normalized = normalizeAndInflateScore(matchPercentage);
+    
+    if (normalized >= 85) return "border-green-800 bg-green-900/20";
+    if (normalized >= 70) return "border-lime-800 bg-lime-900/20";
+    if (normalized >= 55) return "border-yellow-800 bg-yellow-900/20";
     return "border-red-800 bg-red-900/20";
   };
 
@@ -548,19 +565,18 @@ const ResumeParser = () => {
                                   className={`
                                   text-2xl font-bold 
                                   ${
-                                    candidate.match >= 90
+                                    normalizeAndInflateScore(candidate.match) >= 85
                                       ? "text-green-400"
-                                      : candidate.match >= 75
+                                      : normalizeAndInflateScore(candidate.match) >= 70
                                       ? "text-lime-400"
-                                      : candidate.match >= 60
+                                      : normalizeAndInflateScore(candidate.match) >= 55
                                       ? "text-yellow-400"
                                       : "text-red-400"
                                   }
                                 `}
                                 >
-                                  {candidate.match}%
+                                  {normalizeAndInflateScore(candidate.match)}%
                                 </span>
-                                <FileTextIcon className="w-6 h-6 text-neutral-500" />
                               </div>
                             </div>
                           </motion.div>
@@ -598,17 +614,17 @@ const ResumeParser = () => {
                             className={`
                             text-2xl font-bold 
                             ${
-                              selectedCandidate.match >= 90
+                              normalizeAndInflateScore(selectedCandidate.match) >= 85
                                 ? "text-green-400"
-                                : selectedCandidate.match >= 75
+                                : normalizeAndInflateScore(selectedCandidate.match) >= 70
                                 ? "text-lime-400"
-                                : selectedCandidate.match >= 60
+                                : normalizeAndInflateScore(selectedCandidate.match) >= 55
                                 ? "text-yellow-400"
                                 : "text-red-400"
                             }
                           `}
                           >
-                            {selectedCandidate.match}% Match
+                            {normalizeAndInflateScore(selectedCandidate.match)}% Match
                           </span>
                         </div>
 
@@ -703,6 +719,10 @@ const ResumeParser = () => {
                               </p>
                             )}
                           </div>
+                            <div>
+                              <h3 className="text-neutral-400 mb-2 text-lg font-semibold">ATS Score</h3>
+                              <h6>{selectedCandidate.fullDetails.processed_data.ats_score}/100</h6>
+                            </div>
 
                           <div>
                             <h3 className="text-neutral-400 mb-2 text-lg font-semibold">
@@ -870,15 +890,6 @@ const ResumeParser = () => {
                             )}
                           </div>
                         )}
-
-                        <div>
-                          <h3 className="text-neutral-400 mb-2 text-lg font-semibold border-t border-zinc-700 pt-4">
-                            Raw Resume Text
-                          </h3>
-                          <pre className="bg-zinc-900 p-4 rounded-lg text-neutral-300 text-sm overflow-x-auto max-h-40 overflow-y-auto">
-                            {selectedCandidate.fullDetails.raw_text}
-                          </pre>
-                        </div>
                       </motion.div>
                     )}
                   </div>

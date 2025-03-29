@@ -177,11 +177,541 @@
   },
   {
     "personal_information": {
+      "name": "Amit Sharma",
+      "email": "amit.sharma@example.com",
+      "phone": "+91 78945 61230",
+      "linkedin": "linkedin.com/in/amitsharma",
+      "location": "Hyderabad, India"
+    },
+    "education": [
+      {
+        "degree": "Bachelor of Science in Information Technology",
+        "institution": "Osmania University",
+        "location": "Hyderabad, India",
+        "graduation_year": 2018,
+        "cgpa": 8.9
+      }
+    ],
+    "work_experience": [
+      {
+        "company": "NexGen Apps",
+        "location": "Hyderabad, India",
+        "position": "Mobile Application Developer",
+        "start_date": "February 2021",
+        "end_date": "Present",
+        "responsibilities": [
+          "Designed and developed cross-platform mobile applications using Flutter and Dart.",
+          "Integrated Firebase for real-time database management and push notifications.",
+          "Implemented CI/CD pipelines, reducing deployment time by 40%.",
+          "Worked on UI/UX optimization, increasing user engagement by 25%."
+        ]
+      },
+      {
+        "company": "BrightWave Technologies",
+        "location": "Remote",
+        "position": "Software Engineer",
+        "start_date": "August 2018",
+        "end_date": "January 2021",
+        "responsibilities": [
+          "Developed enterprise-level Android applications using Java and Kotlin.",
+          "Integrated RESTful APIs for seamless backend communication.",
+          "Optimized mobile app performance, reducing crash rates by 30%."
+        ]
+      }
+    ],
+    "skills": {
+      "mobile_development": [
+        "Flutter",
+        "Dart",
+        "Kotlin",
+        "Swift",
+        "React Native"
+      ],
+      "backend": [
+        "Firebase",
+        "Node.js",
+        "FastAPI",
+        "PostgreSQL"
+      ],
+      "tools": [
+        "Git",
+        "Jenkins",
+        "Docker",
+        "Jira",
+        "Android Studio",
+        "Xcode"
+      ],
+      "cloud": [
+        "AWS (Lambda, DynamoDB, S3)",
+        "Google Cloud",
+        "Firebase"
+      ]
+    },
+    "certifications": [
+      {
+        "name": "Google Associate Android Developer",
+        "year": 2023
+      },
+      {
+        "name": "Flutter & Dart Advanced Development",
+        "year": 2022
+      }
+    ],
+    "projects": [
+      {
+        "name": "HealthSync",
+        "description": "AI-Powered Fitness App",
+        "technologies": [
+          "Flutter",
+          "Firebase"
+        ],
+        "details": [
+          "Built a fitness tracking app with AI-based workout recommendations.",
+          "Integrated Google Fit and Apple Health for real-time health data synchronization.",
+          "Implemented a subscription-based model, increasing revenue by 20%."
+        ]
+      },
+      {
+        "name": "EduBridge",
+        "description": "E-Learning Platform",
+        "technologies": [
+          "React Native",
+          "Node.js"
+        ],
+        "details": [
+          "Developed a mobile-first e-learning platform with interactive video courses.",
+          "Integrated live streaming capabilities using WebRTC and AWS Media Services.",
+          "Created an AI-powered chatbot for instant student support."
+        ]
+      }
+    ]
+  },
+  {
+    "personal_information": {
+      "name": "Amit Sharma",
+      "email": "amit.sharma@example.com",
+      "phone": "+91 78945 61230",
+      "location": "Hyderabad, India",
+      "linkedin": "linkedin.com/in/amitsharma"
+    },
+    "education": [
+      {
+        "degree": "Bachelor of Science in Information Technology",
+        "institution": "Osmania University",
+        "location": "Hyderabad, India",
+        "graduation_year": 2018,
+        "cgpa": 8.9
+      }
+    ],
+    "work_experience": [
+      {
+        "company": "NexGen Apps",
+        "location": "Hyderabad, India",
+        "position": "Mobile Application Developer",
+        "start_date": "February 2021",
+        "end_date": "Present",
+        "responsibilities": [
+          "Designed and developed cross-platform mobile applications using Flutter and Dart.",
+          "Integrated Firebase for real-time database management and push notifications.",
+          "Implemented CI/CD pipelines, reducing deployment time by 40%.",
+          "Worked on UI/UX optimization, increasing user engagement by 25%."
+        ]
+      },
+      {
+        "company": "BrightWave Technologies",
+        "location": "Remote",
+        "position": "Software Engineer",
+        "start_date": "August 2018",
+        "end_date": "January 2021",
+        "responsibilities": [
+          "Developed enterprise-level Android applications using Java and Kotlin.",
+          "Integrated RESTful APIs for seamless backend communication.",
+          "Optimized mobile app performance, reducing crash rates by 30%."
+        ]
+      }
+    ],
+    "skills": {
+      "mobile_development": [
+        "Flutter",
+        "Dart",
+        "Kotlin",
+        "Swift",
+        "React Native"
+      ],
+      "backend": [
+        "Firebase",
+        "Node.js",
+        "FastAPI",
+        "PostgreSQL"
+      ],
+      "tools": [
+        "Git",
+        "Jenkins",
+        "Docker",
+        "Jira",
+        "Android Studio",
+        "Xcode"
+      ],
+      "cloud": [
+        "AWS (Lambda, DynamoDB, S3)",
+        "Google Cloud",
+        "Firebase"
+      ]
+    },
+    "certifications": [
+      {
+        "name": "Google Associate Android Developer",
+        "year": 2023
+      },
+      {
+        "name": "Flutter & Dart Advanced Development",
+        "year": 2022
+      }
+    ],
+    "projects": [
+      {
+        "name": "HealthSync",
+        "description": "AI-Powered Fitness App",
+        "technologies": [
+          "Flutter",
+          "Firebase"
+        ],
+        "details": [
+          "Built a fitness tracking app with AI-based workout recommendations.",
+          "Integrated Google Fit and Apple Health for real-time health data synchronization.",
+          "Implemented a subscription-based model, increasing revenue by 20%."
+        ]
+      },
+      {
+        "name": "EduBridge",
+        "description": "E-Learning Platform",
+        "technologies": [
+          "React Native",
+          "Node.js"
+        ],
+        "details": [
+          "Developed a mobile-first e-learning platform with interactive video courses.",
+          "Integrated live streaming capabilities using WebRTC and AWS Media Services.",
+          "Created an AI-powered chatbot for instant student support."
+        ]
+      }
+    ]
+  },
+  {
+    "personal_information": {
+      "name": "Vikram Singh",
+      "location": "Mumbai, India",
+      "email": "vikram.singh@example.com",
+      "phone": "+91 98765 43210",
+      "linkedin": "linkedin.com/in/vikramsingh"
+    },
+    "education": [
+      {
+        "degree": "Bachelor of Technology in Computer Science",
+        "institution": "Indian Institute of Technology (IIT) Bombay",
+        "graduation_year": 2020,
+        "cgpa": 9.21
+      }
+    ],
+    "work_experience": [
+      {
+        "company": "Soares Tech",
+        "location": "Mumbai, India",
+        "position": "Software Engineer",
+        "start_date": "January 2022",
+        "end_date": "Present",
+        "responsibilities": [
+          "Developed and optimized React.js applications, improving performance by 30%",
+          "Built REST APIs with Node.js and Express.js, enhancing data retrieval efficiency",
+          "Migrated codebase to TypeScript, reducing production errors by 25%",
+          "Collaborated with Agile teams to deliver scalable web applications"
+        ]
+      },
+      {
+        "company": "Thomas Corp",
+        "location": "Remote",
+        "position": "Web Developer",
+        "start_date": "June 2020",
+        "end_date": "December 2021",
+        "responsibilities": [
+          "Designed and developed responsive web applications using JavaScript, HTML, and CSS",
+          "Optimized website speed by 40% using lazy loading and image compression techniques",
+          "Integrated multiple third-party APIs for enhanced functionality"
+        ]
+      }
+    ],
+    "skills": {
+      "frontend": [
+        "React.js",
+        "Next.js",
+        "JavaScript",
+        "TypeScript",
+        "Redux",
+        "Tailwind CSS"
+      ],
+      "backend": [
+        "Node.js",
+        "Express.js",
+        "MongoDB",
+        "PostgreSQL",
+        "REST APIs"
+      ],
+      "tools": [
+        "Git",
+        "Docker",
+        "CI/CD",
+        "Jest",
+        "Postman",
+        "Webpack"
+      ],
+      "cloud": [
+        "AWS (Lambda, S3, EC2)",
+        "Firebase",
+        "Supabase"
+      ]
+    },
+    "certifications": [
+      {
+        "name": "AWS Certified Developer",
+        "year": 2023
+      },
+      {
+        "name": "Full-Stack Web Development",
+        "year": 2022
+      }
+    ],
+    "projects": [
+      {
+        "name": "UniJobs \u2013 Job Portal for Students",
+        "technologies": "MERN Stack",
+        "description": [
+          "Developed a job listing platform for students using React.js, Node.js, and MongoDB.",
+          "Implemented resume parsing with Supabase for ATS automation.",
+          "Created a real-time chat system for clients and companies."
+        ]
+      },
+      {
+        "name": "Carbon Emission Calculator",
+        "technologies": "Next.js & Supabase",
+        "description": [
+          "Built an interactive carbon footprint tracker using Next.js and Tailwind CSS.",
+          "Integrated Supabase authentication for user logins"
+        ]
+      }
+    ]
+  },
+  {
+    "personal_information": {
+      "name": "Vikram Singh",
+      "email": "vikram.singh@example.com",
+      "phone": "+91 98765 43210",
+      "location": "Mumbai, India",
+      "linkedin": "linkedin.com/in/vikramsingh"
+    },
+    "education": [
+      {
+        "degree": "Bachelor of Technology in Computer Science",
+        "institution": "Indian Institute of Technology (IIT) Bombay",
+        "graduation_year": 2020,
+        "cgpa": 9.21
+      }
+    ],
+    "work_experience": [
+      {
+        "company": "Soares Tech",
+        "location": "Mumbai, India",
+        "position": "Software Engineer",
+        "start_date": "January 2022",
+        "end_date": "Present",
+        "responsibilities": [
+          "Developed and optimized React.js applications, improving performance by 30%",
+          "Built REST APIs with Node.js and Express.js, enhancing data retrieval efficiency",
+          "Migrated codebase to TypeScript, reducing production errors by 25%",
+          "Collaborated with Agile teams to deliver scalable web applications"
+        ]
+      },
+      {
+        "company": "Thomas Corp",
+        "location": "Remote",
+        "position": "Web Developer",
+        "start_date": "June 2020",
+        "end_date": "December 2021",
+        "responsibilities": [
+          "Designed and developed responsive web applications using JavaScript, HTML, and CSS",
+          "Optimized website speed by 40% using lazy loading and image compression techniques",
+          "Integrated multiple third-party APIs for enhanced functionality"
+        ]
+      }
+    ],
+    "skills": {
+      "frontend": [
+        "React.js",
+        "Next.js",
+        "JavaScript",
+        "TypeScript",
+        "Redux",
+        "Tailwind CSS"
+      ],
+      "backend": [
+        "Node.js",
+        "Express.js",
+        "MongoDB",
+        "PostgreSQL",
+        "REST APIs"
+      ],
+      "tools": [
+        "Git",
+        "Docker",
+        "CI/CD",
+        "Jest",
+        "Postman",
+        "Webpack"
+      ],
+      "cloud": [
+        "AWS (Lambda, S3, EC2)",
+        "Firebase",
+        "Supabase"
+      ]
+    },
+    "certifications": [
+      {
+        "name": "AWS Certified Developer",
+        "year": 2023
+      },
+      {
+        "name": "Full-Stack Web Development",
+        "year": 2022
+      }
+    ],
+    "projects": [
+      {
+        "name": "UniJobs \u2013 Job Portal for Students",
+        "technologies": "MERN Stack",
+        "description": [
+          "Developed a job listing platform for students using React.js, Node.js, and MongoDB.",
+          "Implemented resume parsing with Supabase for ATS automation.",
+          "Created a real-time chat system for clients and companies."
+        ]
+      },
+      {
+        "name": "Carbon Emission Calculator",
+        "technologies": "Next.js & Supabase",
+        "description": [
+          "Built an interactive carbon footprint tracker using Next.js and Tailwind CSS.",
+          "Integrated Supabase authentication for user logins."
+        ]
+      }
+    ]
+  },
+  {
+    "personal_information": {
       "name": "Vikram Singh",
       "email": "vikram.singh@example.com",
       "phone": "+91 98765 43210",
       "linkedin": "linkedin.com/in/vikramsingh",
       "location": "Mumbai, India"
+    },
+    "education": [
+      {
+        "degree": "Bachelor of Technology in Computer Science",
+        "institution": "Indian Institute of Technology (IIT) Bombay",
+        "graduation_year": 2020,
+        "cgpa": 9.21
+      }
+    ],
+    "work_experience": [
+      {
+        "company": "Soares Tech",
+        "location": "Mumbai, India",
+        "position": "Software Engineer",
+        "start_date": "January 2022",
+        "end_date": "Present",
+        "responsibilities": [
+          "Developed and optimized React.js applications, improving performance by 30%",
+          "Built REST APIs with Node.js and Express.js, enhancing data retrieval efficiency",
+          "Migrated codebase to TypeScript, reducing production errors by 25%",
+          "Collaborated with Agile teams to deliver scalable web applications"
+        ]
+      },
+      {
+        "company": "Thomas Corp",
+        "location": "Remote",
+        "position": "Web Developer",
+        "start_date": "June 2020",
+        "end_date": "December 2021",
+        "responsibilities": [
+          "Designed and developed responsive web applications using JavaScript, HTML, and CSS",
+          "Optimized website speed by 40% using lazy loading and image compression techniques",
+          "Integrated multiple third-party APIs for enhanced functionality"
+        ]
+      }
+    ],
+    "skills": {
+      "frontend": [
+        "React.js",
+        "Next.js",
+        "JavaScript",
+        "TypeScript",
+        "Redux",
+        "Tailwind CSS"
+      ],
+      "backend": [
+        "Node.js",
+        "Express.js",
+        "MongoDB",
+        "PostgreSQL",
+        "REST APIs"
+      ],
+      "tools": [
+        "Git",
+        "Docker",
+        "CI/CD",
+        "Jest",
+        "Postman",
+        "Webpack"
+      ],
+      "cloud": [
+        "AWS (Lambda, S3, EC2)",
+        "Firebase",
+        "Supabase"
+      ]
+    },
+    "certifications": [
+      {
+        "name": "AWS Certified Developer",
+        "year": 2023
+      },
+      {
+        "name": "Full-Stack Web Development",
+        "year": 2022
+      }
+    ],
+    "projects": [
+      {
+        "name": "UniJobs \u2013 Job Portal for Students",
+        "description": "Developed a job listing platform for students using React.js, Node.js, and MongoDB. Implemented resume parsing with Supabase for ATS automation. Created a real-time chat system for clients and companies.",
+        "technologies": [
+          "MERN Stack"
+        ]
+      },
+      {
+        "name": "Carbon Emission Calculator",
+        "description": "Built an interactive carbon footprint tracker using Next.js and Tailwind CSS. Integrated Supabase authentication for user logins.",
+        "technologies": [
+          "Next.js",
+          "Supabase"
+        ]
+      }
+    ],
+    "ats_score": 85
+  },
+  {
+    "personal_information": {
+      "name": "Vikram Singh",
+      "email": "vikram.singh@example.com",
+      "phone": "+91 98765 43210",
+      "location": "Mumbai, India",
+      "linkedin": "linkedin.com/in/vikramsingh"
     },
     "education": [
       {
@@ -276,213 +806,8 @@
           "Integrated Supabase authentication for user logins."
         ]
       }
-    ]
-  },
-  {
-    "personal_information": {
-      "name": "David Thompson",
-      "email": "david.thompson@example.com",
-      "phone": "+1 (312) 987-6543",
-      "linkedin": "linkedin.com/in/davidthompson",
-      "location": "Chicago, USA"
-    },
-    "education": [
-      {
-        "degree": "Bachelor of Science in Computer Science",
-        "institution": "University of Illinois at Urbana-Champaign",
-        "graduation_year": 2018,
-        "gpa": 3.9
-      }
     ],
-    "work_experience": [
-      {
-        "company": "BrightCode Solutions",
-        "location": "Chicago, USA",
-        "position": "Full-Stack Developer",
-        "start_date": "April 2021",
-        "end_date": "Present",
-        "responsibilities": [
-          "Designed and built scalable web applications using React.js, TypeScript, and Node.js.",
-          "Developed GraphQL APIs, reducing backend response time by 40%.",
-          "Led a migration from a monolithic architecture to microservices using Docker and Kubernetes.",
-          "Implemented authentication and authorization systems using Firebase and OAuth."
-        ]
-      },
-      {
-        "company": "PixelSoft",
-        "location": "Remote",
-        "position": "Software Engineer",
-        "start_date": "August 2018",
-        "end_date": "March 2021",
-        "responsibilities": [
-          "Developed e-commerce websites using Next.js, Tailwind CSS, and Firebase.",
-          "Optimized database queries in PostgreSQL, improving page load speeds by 30%.",
-          "Integrated payment gateways (Stripe, PayPal) for seamless checkout experiences.",
-          "Worked closely with UI/UX designers to enhance user experience."
-        ]
-      }
-    ],
-    "skills": {
-      "frontend": [
-        "React.js",
-        "Next.js",
-        "TypeScript",
-        "Tailwind CSS",
-        "Redux"
-      ],
-      "backend": [
-        "Node.js",
-        "Express.js",
-        "GraphQL",
-        "Firebase",
-        "PostgreSQL"
-      ],
-      "devops_cloud": [
-        "AWS (EC2, S3, Lambda)",
-        "Docker",
-        "Kubernetes",
-        "CI/CD (GitHub Actions)"
-      ],
-      "other": [
-        "REST APIs",
-        "WebSockets",
-        "Stripe API",
-        "Jest"
-      ]
-    },
-    "certifications": [
-      {
-        "name": "AWS Certified Solutions Architect",
-        "year": 2023
-      },
-      {
-        "name": "Full-Stack Web Development",
-        "year": 2022
-      }
-    ],
-    "projects": [
-      {
-        "name": "ShopEase",
-        "description": "E-commerce Platform (MERN Stack)",
-        "details": [
-          "Developed a modern e-commerce platform with React.js and Node.js.",
-          "Integrated GraphQL API for efficient data fetching.",
-          "Implemented a real-time chat support feature using WebSockets."
-        ]
-      },
-      {
-        "name": "TaskFlow",
-        "description": "Productivity App (Next.js & Firebase)",
-        "details": [
-          "Built a task management system with drag-and-drop functionality.",
-          "Used Firebase Authentication for secure user logins.",
-          "Optimized database reads and writes for better performance."
-        ]
-      }
-    ]
-  },
-  {
-    "personal_information": {
-      "name": "Vikram Singh",
-      "location": "Mumbai, India",
-      "email": "vikram.singh@example.com",
-      "phone": "+91 98765 43210",
-      "linkedin": "linkedin.com/in/vikramsingh"
-    },
-    "education": [
-      {
-        "degree": "Bachelor of Technology in Computer Science",
-        "institution": "Indian Institute of Technology (IIT) Bombay",
-        "graduation_year": 2020,
-        "cgpa": 9.21
-      }
-    ],
-    "work_experience": [
-      {
-        "company": "Soares Tech",
-        "location": "Mumbai, India",
-        "position": "Software Engineer",
-        "start_date": "January 2022",
-        "end_date": "Present",
-        "responsibilities": [
-          "Developed and optimized React.js applications, improving performance by 30%",
-          "Built REST APIs with Node.js and Express.js, enhancing data retrieval efficiency",
-          "Migrated codebase to TypeScript, reducing production errors by 25%",
-          "Collaborated with Agile teams to deliver scalable web applications"
-        ]
-      },
-      {
-        "company": "Thomas Corp",
-        "location": "Remote",
-        "position": "Web Developer",
-        "start_date": "June 2020",
-        "end_date": "December 2021",
-        "responsibilities": [
-          "Designed and developed responsive web applications using JavaScript, HTML, and CSS",
-          "Optimized website speed by 40% using lazy loading and image compression techniques",
-          "Integrated multiple third-party APIs for enhanced functionality"
-        ]
-      }
-    ],
-    "skills": {
-      "frontend": [
-        "React.js",
-        "Next.js",
-        "JavaScript",
-        "TypeScript",
-        "Redux",
-        "Tailwind CSS"
-      ],
-      "backend": [
-        "Node.js",
-        "Express.js",
-        "MongoDB",
-        "PostgreSQL",
-        "REST APIs"
-      ],
-      "tools": [
-        "Git",
-        "Docker",
-        "CI/CD",
-        "Jest",
-        "Postman",
-        "Webpack"
-      ],
-      "cloud": [
-        "AWS (Lambda, S3, EC2)",
-        "Firebase",
-        "Supabase"
-      ]
-    },
-    "certifications": [
-      {
-        "name": "AWS Certified Developer",
-        "year": 2023
-      },
-      {
-        "name": "Full-Stack Web Development",
-        "year": 2022
-      }
-    ],
-    "projects": [
-      {
-        "name": "UniJobs \u2013 Job Portal for Students",
-        "technologies": "MERN Stack",
-        "description": [
-          "Developed a job listing platform for students using React.js, Node.js, and MongoDB",
-          "Implemented resume parsing with Supabase for ATS automation",
-          "Created a real-time chat system for clients and companies"
-        ]
-      },
-      {
-        "name": "Carbon Emission Calculator",
-        "technologies": "Next.js & Supabase",
-        "description": [
-          "Built an interactive carbon footprint tracker using Next.js and Tailwind CSS",
-          "Integrated Supabase authentication for user logins"
-        ]
-      }
-    ]
+    "ats_score": 85
   },
   {
     "personal_information": {
@@ -585,14 +910,15 @@
           "Integrated Supabase authentication for user logins"
         ]
       }
-    ]
+    ],
+    "ats_score": 85
   },
   {
     "personal_information": {
       "name": "Vikram Singh",
-      "location": "Mumbai, India",
       "email": "vikram.singh@example.com",
       "phone": "+91 98765 43210",
+      "location": "Mumbai, India",
       "linkedin": "linkedin.com/in/vikramsingh"
     },
     "education": [
@@ -673,140 +999,28 @@
     "projects": [
       {
         "name": "UniJobs \u2013 Job Portal for Students",
-        "technologies": "MERN Stack",
-        "description": [
-          "Developed a job listing platform for students using React.js, Node.js, and MongoDB.",
-          "Implemented resume parsing with Supabase for ATS automation.",
-          "Created a real-time chat system for clients and companies."
+        "description": "Developed a job listing platform for students using React.js, Node.js, and MongoDB. Implemented resume parsing with Supabase for ATS automation. Created a real-time chat system for clients and companies.",
+        "technologies": [
+          "MERN Stack"
         ]
       },
       {
         "name": "Carbon Emission Calculator",
-        "technologies": "Next.js & Supabase",
-        "description": [
-          "Built an interactive carbon footprint tracker using Next.js and Tailwind CSS.",
-          "Integrated Supabase authentication for user logins"
-        ]
-      }
-    ]
-  },
-  {
-    "personal_information": {
-      "name": "Amit Sharma",
-      "email": "amit.sharma@example.com",
-      "phone": "+91 78945 61230",
-      "linkedin": "linkedin.com/in/amitsharma",
-      "location": "Hyderabad, India"
-    },
-    "education": [
-      {
-        "degree": "Bachelor of Science in Information Technology",
-        "institution": "Osmania University",
-        "location": "Hyderabad, India",
-        "graduation_year": 2018,
-        "cgpa": 8.9
-      }
-    ],
-    "work_experience": [
-      {
-        "company": "NexGen Apps",
-        "location": "Hyderabad, India",
-        "position": "Mobile Application Developer",
-        "start_date": "February 2021",
-        "end_date": "Present",
-        "responsibilities": [
-          "Designed and developed cross-platform mobile applications using Flutter and Dart.",
-          "Integrated Firebase for real-time database management and push notifications.",
-          "Implemented CI/CD pipelines, reducing deployment time by 40%.",
-          "Worked on UI/UX optimization, increasing user engagement by 25%."
-        ]
-      },
-      {
-        "company": "BrightWave Technologies",
-        "location": "Remote",
-        "position": "Software Engineer",
-        "start_date": "August 2018",
-        "end_date": "January 2021",
-        "responsibilities": [
-          "Developed enterprise-level Android applications using Java and Kotlin.",
-          "Integrated RESTful APIs for seamless backend communication.",
-          "Optimized mobile app performance, reducing crash rates by 30%."
-        ]
-      }
-    ],
-    "skills": {
-      "mobile_development": [
-        "Flutter",
-        "Dart",
-        "Kotlin",
-        "Swift",
-        "React Native"
-      ],
-      "backend": [
-        "Firebase",
-        "Node.js",
-        "FastAPI",
-        "PostgreSQL"
-      ],
-      "tools": [
-        "Git",
-        "Jenkins",
-        "Docker",
-        "Jira",
-        "Android Studio",
-        "Xcode"
-      ],
-      "cloud": [
-        "AWS (Lambda, DynamoDB, S3)",
-        "Google Cloud",
-        "Firebase"
-      ]
-    },
-    "certifications": [
-      {
-        "name": "Google Associate Android Developer",
-        "year": 2023
-      },
-      {
-        "name": "Flutter & Dart Advanced Development",
-        "year": 2022
-      }
-    ],
-    "projects": [
-      {
-        "name": "HealthSync",
-        "description": "AI-Powered Fitness App",
+        "description": "Built an interactive carbon footprint tracker using Next.js and Tailwind CSS. Integrated Supabase authentication for user logins.",
         "technologies": [
-          "Flutter",
-          "Firebase"
-        ],
-        "details": [
-          "Built a fitness tracking app with AI-based workout recommendations.",
-          "Integrated Google Fit and Apple Health for real-time health data synchronization.",
-          "Implemented a subscription-based model, increasing revenue by 20%."
-        ]
-      },
-      {
-        "name": "EduBridge",
-        "description": "E-Learning Platform",
-        "technologies": [
-          "React Native",
-          "Node.js"
-        ],
-        "details": [
-          "Developed a mobile-first e-learning platform with interactive video courses.",
-          "Integrated live streaming capabilities using WebRTC and AWS Media Services.",
-          "Created an AI-powered chatbot for instant student support."
+          "Next.js",
+          "Supabase"
         ]
       }
-    ]
+    ],
+    "ats_score": 85
   },
   {
     "personal_information": {
       "name": "Vikram Singh",
-      "location": "Mumbai, India",
       "email": "vikram.singh@example.com",
       "phone": "+91 98765 43210",
+      "location": "Mumbai, India",
       "linkedin": "linkedin.com/in/vikramsingh"
     },
     "education": [
@@ -825,10 +1039,10 @@
         "start_date": "January 2022",
         "end_date": "Present",
         "responsibilities": [
-          "Developed and optimized React.js applications, improving performance by 30%",
-          "Built REST APIs with Node.js and Express.js, enhancing data retrieval efficiency",
-          "Migrated codebase to TypeScript, reducing production errors by 25%",
-          "Collaborated with Agile teams to deliver scalable web applications"
+          "Developed and optimized React.js applications, improving performance by 30%.",
+          "Built REST APIs with Node.js and Express.js, enhancing data retrieval efficiency.",
+          "Migrated codebase to TypeScript, reducing production errors by 25%.",
+          "Collaborated with Agile teams to deliver scalable web applications."
         ]
       },
       {
@@ -838,9 +1052,9 @@
         "start_date": "June 2020",
         "end_date": "December 2021",
         "responsibilities": [
-          "Designed and developed responsive web applications using JavaScript, HTML, and CSS",
-          "Optimized website speed by 40% using lazy loading and image compression techniques",
-          "Integrated multiple third-party APIs for enhanced functionality"
+          "Designed and developed responsive web applications using JavaScript, HTML, and CSS.",
+          "Optimized website speed by 40% using lazy loading and image compression techniques.",
+          "Integrated multiple third-party APIs for enhanced functionality."
         ]
       }
     ],
@@ -902,126 +1116,16 @@
           "Integrated Supabase authentication for user logins."
         ]
       }
-    ]
-  },
-  {
-    "personal_information": {
-      "name": "Amit Sharma",
-      "email": "amit.sharma@example.com",
-      "phone": "+91 78945 61230",
-      "linkedin": "linkedin.com/in/amitsharma",
-      "location": "Hyderabad, India"
-    },
-    "education": [
-      {
-        "degree": "Bachelor of Science in Information Technology",
-        "institution": "Osmania University",
-        "location": "Hyderabad, India",
-        "graduation_year": 2018,
-        "cgpa": 8.9
-      }
     ],
-    "work_experience": [
-      {
-        "company": "NexGen Apps",
-        "location": "Hyderabad, India",
-        "position": "Mobile Application Developer",
-        "start_date": "February 2021",
-        "end_date": "Present",
-        "responsibilities": [
-          "Designed and developed cross-platform mobile applications using Flutter and Dart.",
-          "Integrated Firebase for real-time database management and push notifications.",
-          "Implemented CI/CD pipelines, reducing deployment time by 40%.",
-          "Worked on UI/UX optimization, increasing user engagement by 25%."
-        ]
-      },
-      {
-        "company": "BrightWave Technologies",
-        "location": "Remote",
-        "position": "Software Engineer",
-        "start_date": "August 2018",
-        "end_date": "January 2021",
-        "responsibilities": [
-          "Developed enterprise-level Android applications using Java and Kotlin.",
-          "Integrated RESTful APIs for seamless backend communication.",
-          "Optimized mobile app performance, reducing crash rates by 30%."
-        ]
-      }
-    ],
-    "skills": {
-      "mobile_development": [
-        "Flutter",
-        "Dart",
-        "Kotlin",
-        "Swift",
-        "React Native"
-      ],
-      "backend": [
-        "Firebase",
-        "Node.js",
-        "FastAPI",
-        "PostgreSQL"
-      ],
-      "tools": [
-        "Git",
-        "Jenkins",
-        "Docker",
-        "Jira",
-        "Android Studio",
-        "Xcode"
-      ],
-      "cloud": [
-        "AWS (Lambda, DynamoDB, S3)",
-        "Google Cloud",
-        "Firebase"
-      ]
-    },
-    "certifications": [
-      {
-        "name": "Google Associate Android Developer",
-        "year": 2023
-      },
-      {
-        "name": "Flutter & Dart Advanced Development",
-        "year": 2022
-      }
-    ],
-    "projects": [
-      {
-        "name": "HealthSync",
-        "description": "AI-Powered Fitness App",
-        "technologies": [
-          "Flutter",
-          "Firebase"
-        ],
-        "details": [
-          "Built a fitness tracking app with AI-based workout recommendations.",
-          "Integrated Google Fit and Apple Health for real-time health data synchronization.",
-          "Implemented a subscription-based model, increasing revenue by 20%."
-        ]
-      },
-      {
-        "name": "EduBridge",
-        "description": "E-Learning Platform",
-        "technologies": [
-          "React Native",
-          "Node.js"
-        ],
-        "details": [
-          "Developed a mobile-first e-learning platform with interactive video courses.",
-          "Integrated live streaming capabilities using WebRTC and AWS Media Services.",
-          "Created an AI-powered chatbot for instant student support."
-        ]
-      }
-    ]
+    "ats_score": 85
   },
   {
     "personal_information": {
       "name": "Vikram Singh",
-      "location": "Mumbai, India",
       "email": "vikram.singh@example.com",
       "phone": "+91 98765 43210",
-      "linkedin": "linkedin.com/in/vikramsingh"
+      "linkedin": "linkedin.com/in/vikramsingh",
+      "location": "Mumbai, India"
     },
     "education": [
       {
@@ -1116,6 +1220,308 @@
           "Integrated Supabase authentication for user logins"
         ]
       }
-    ]
+    ],
+    "ats_score": 85
+  },
+  {
+    "personal_information": {
+      "name": "Vikram Singh",
+      "email": "vikram.singh@example.com",
+      "phone": "+91 98765 43210",
+      "linkedin": "linkedin.com/in/vikramsingh",
+      "location": "Mumbai, India"
+    },
+    "education": [
+      {
+        "degree": "Bachelor of Technology in Computer Science",
+        "institution": "Indian Institute of Technology (IIT) Bombay",
+        "graduation_year": 2020,
+        "cgpa": 9.21
+      }
+    ],
+    "work_experience": [
+      {
+        "company": "Soares Tech",
+        "location": "Mumbai, India",
+        "position": "Software Engineer",
+        "start_date": "January 2022",
+        "end_date": "Present",
+        "responsibilities": [
+          "Developed and optimized React.js applications, improving performance by 30%.",
+          "Built REST APIs with Node.js and Express.js, enhancing data retrieval efficiency.",
+          "Migrated codebase to TypeScript, reducing production errors by 25%.",
+          "Collaborated with Agile teams to deliver scalable web applications."
+        ]
+      },
+      {
+        "company": "Thomas Corp",
+        "location": "Remote",
+        "position": "Web Developer",
+        "start_date": "June 2020",
+        "end_date": "December 2021",
+        "responsibilities": [
+          "Designed and developed responsive web applications using JavaScript, HTML, and CSS.",
+          "Optimized website speed by 40% using lazy loading and image compression techniques.",
+          "Integrated multiple third-party APIs for enhanced functionality."
+        ]
+      }
+    ],
+    "skills": {
+      "frontend": [
+        "React.js",
+        "Next.js",
+        "JavaScript",
+        "TypeScript",
+        "Redux",
+        "Tailwind CSS"
+      ],
+      "backend": [
+        "Node.js",
+        "Express.js",
+        "MongoDB",
+        "PostgreSQL",
+        "REST APIs"
+      ],
+      "tools": [
+        "Git",
+        "Docker",
+        "CI/CD",
+        "Jest",
+        "Postman",
+        "Webpack"
+      ],
+      "cloud": [
+        "AWS (Lambda, S3, EC2)",
+        "Firebase",
+        "Supabase"
+      ]
+    },
+    "certifications": [
+      {
+        "name": "AWS Certified Developer",
+        "year": 2023
+      },
+      {
+        "name": "Full-Stack Web Development",
+        "year": 2022
+      }
+    ],
+    "projects": [
+      {
+        "name": "UniJobs \u2013 Job Portal for Students",
+        "description": "Developed a job listing platform for students using React.js, Node.js, and MongoDB. Implemented resume parsing with Supabase for ATS automation. Created a real-time chat system for clients and companies.",
+        "technologies": [
+          "MERN Stack"
+        ]
+      },
+      {
+        "name": "Carbon Emission Calculator",
+        "description": "Built an interactive carbon footprint tracker using Next.js and Tailwind CSS. Integrated Supabase authentication for user logins.",
+        "technologies": [
+          "Next.js",
+          "Supabase"
+        ]
+      }
+    ],
+    "ats_score": 85
+  },
+  {
+    "personal_information": {
+      "name": "Vikram Singh",
+      "email": "vikram.singh@example.com",
+      "phone": "+91 98765 43210",
+      "linkedin": "linkedin.com/in/vikramsingh",
+      "location": "Mumbai, India"
+    },
+    "education": [
+      {
+        "degree": "Bachelor of Technology in Computer Science",
+        "institution": "Indian Institute of Technology (IIT) Bombay",
+        "graduation_year": 2020,
+        "cgpa": 9.21
+      }
+    ],
+    "work_experience": [
+      {
+        "company": "Soares Tech",
+        "location": "Mumbai, India",
+        "position": "Software Engineer",
+        "start_date": "January 2022",
+        "end_date": "Present",
+        "responsibilities": [
+          "Developed and optimized React.js applications, improving performance by 30%.",
+          "Built REST APIs with Node.js and Express.js, enhancing data retrieval efficiency.",
+          "Migrated codebase to TypeScript, reducing production errors by 25%.",
+          "Collaborated with Agile teams to deliver scalable web applications."
+        ]
+      },
+      {
+        "company": "Thomas Corp",
+        "location": "Remote",
+        "position": "Web Developer",
+        "start_date": "June 2020",
+        "end_date": "December 2021",
+        "responsibilities": [
+          "Designed and developed responsive web applications using JavaScript, HTML, and CSS.",
+          "Optimized website speed by 40% using lazy loading and image compression techniques.",
+          "Integrated multiple third-party APIs for enhanced functionality."
+        ]
+      }
+    ],
+    "skills": {
+      "frontend": [
+        "React.js",
+        "Next.js",
+        "JavaScript",
+        "TypeScript",
+        "Redux",
+        "Tailwind CSS"
+      ],
+      "backend": [
+        "Node.js",
+        "Express.js",
+        "MongoDB",
+        "PostgreSQL",
+        "REST APIs"
+      ],
+      "tools": [
+        "Git",
+        "Docker",
+        "CI/CD",
+        "Jest",
+        "Postman",
+        "Webpack"
+      ],
+      "cloud": [
+        "AWS (Lambda, S3, EC2)",
+        "Firebase",
+        "Supabase"
+      ]
+    },
+    "certifications": [
+      {
+        "name": "AWS Certified Developer",
+        "year": 2023
+      },
+      {
+        "name": "Full-Stack Web Development",
+        "year": 2022
+      }
+    ],
+    "projects": [
+      {
+        "name": "UniJobs \u2013 Job Portal for Students",
+        "technologies": "MERN Stack",
+        "description": "Developed a job listing platform for students using React.js, Node.js, and MongoDB. Implemented resume parsing with Supabase for ATS automation. Created a real-time chat system for clients and companies."
+      },
+      {
+        "name": "Carbon Emission Calculator",
+        "technologies": "Next.js & Supabase",
+        "description": "Built an interactive carbon footprint tracker using Next.js and Tailwind CSS. Integrated Supabase authentication for user logins."
+      }
+    ],
+    "ats_score": 85
+  },
+  {
+    "personal_information": {
+      "name": "Vikram Singh",
+      "email": "vikram.singh@example.com",
+      "phone": "+91 98765 43210",
+      "linkedin": "linkedin.com/in/vikramsingh",
+      "location": "Mumbai, India"
+    },
+    "education": [
+      {
+        "degree": "Bachelor of Technology in Computer Science",
+        "institution": "Indian Institute of Technology (IIT) Bombay",
+        "graduation_year": 2020,
+        "cgpa": 9.21
+      }
+    ],
+    "work_experience": [
+      {
+        "company": "Soares Tech",
+        "location": "Mumbai, India",
+        "position": "Software Engineer",
+        "start_date": "January 2022",
+        "end_date": "Present",
+        "responsibilities": [
+          "Developed and optimized React.js applications, improving performance by 30%",
+          "Built REST APIs with Node.js and Express.js, enhancing data retrieval efficiency",
+          "Migrated codebase to TypeScript, reducing production errors by 25%",
+          "Collaborated with Agile teams to deliver scalable web applications"
+        ]
+      },
+      {
+        "company": "Thomas Corp",
+        "location": "Remote",
+        "position": "Web Developer",
+        "start_date": "June 2020",
+        "end_date": "December 2021",
+        "responsibilities": [
+          "Designed and developed responsive web applications using JavaScript, HTML, and CSS",
+          "Optimized website speed by 40% using lazy loading and image compression techniques",
+          "Integrated multiple third-party APIs for enhanced functionality"
+        ]
+      }
+    ],
+    "skills": {
+      "frontend": [
+        "React.js",
+        "Next.js",
+        "JavaScript",
+        "TypeScript",
+        "Redux",
+        "Tailwind CSS"
+      ],
+      "backend": [
+        "Node.js",
+        "Express.js",
+        "MongoDB",
+        "PostgreSQL",
+        "REST APIs"
+      ],
+      "tools": [
+        "Git",
+        "Docker",
+        "CI/CD",
+        "Jest",
+        "Postman",
+        "Webpack"
+      ],
+      "cloud": [
+        "AWS (Lambda, S3, EC2)",
+        "Firebase",
+        "Supabase"
+      ]
+    },
+    "certifications": [
+      {
+        "name": "AWS Certified Developer",
+        "year": 2023
+      },
+      {
+        "name": "Full-Stack Web Development",
+        "year": 2022
+      }
+    ],
+    "projects": [
+      {
+        "name": "UniJobs \u2013 Job Portal for Students",
+        "description": "Developed a job listing platform for students using React.js, Node.js, and MongoDB. Implemented resume parsing with Supabase for ATS automation. Created a real-time chat system for clients and companies.",
+        "technologies": [
+          "MERN Stack"
+        ]
+      },
+      {
+        "name": "Carbon Emission Calculator",
+        "description": "Built an interactive carbon footprint tracker using Next.js and Tailwind CSS. Integrated Supabase authentication for user logins.",
+        "technologies": [
+          "Next.js",
+          "Supabase"
+        ]
+      }
+    ],
+    "ats_score": 85
   }
 ]
