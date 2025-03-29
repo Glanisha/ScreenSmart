@@ -97,6 +97,13 @@ async def process_with_gemini(raw_text: str) -> Dict[str, Any]:
     - Certifications
     - Any other relevant information
     
+    Also calculate an ATS (Applicant Tracking System) score from 0-100 based on:
+    - Resume formatting and structure
+    - Keyword relevance and density
+    - Completeness of information
+    - Professional language use
+    - Overall quality and readability
+    
     Structure the output in a professional, standardized format.
     Correct any typos or inconsistencies you find.
     
@@ -105,6 +112,7 @@ async def process_with_gemini(raw_text: str) -> Dict[str, Any]:
     
     Return ONLY the JSON output. Do not include any additional text or explanations.
     The JSON should be properly formatted with all fields correctly named.
+    Include the ATS score in a field called "ats_score".
     """
     
     try:
@@ -117,7 +125,7 @@ async def process_with_gemini(raw_text: str) -> Dict[str, Any]:
             status_code=500,
             detail=f"Gemini processing failed: {str(e)}"
         )
-
+    
 RESUMES_JSON_FILE = "resumes_data.json"
 
 def initialize_resumes_file():
