@@ -1,33 +1,21 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  FileIcon, 
-  UsersIcon, 
-import { useState } from "react";
+import React, { useState } from "react";
+import axios from "axios";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   FileIcon,
   UsersIcon,
   StarIcon,
   FileTextIcon,
-  AlertCircleIcon, 
-  InfoIcon,
-  ChevronDownIcon,
-  ChevronUpIcon
-} from 'lucide-react';
-import Background from './components/Background';
-import Footer from './components/Footer';
-import ComparisonView from './ComparisonView'; // Make sure to create this component
   AlertCircleIcon,
   InfoIcon,
+  ChevronDownIcon,
+  ChevronUpIcon,
   BrainIcon,
   LoaderIcon,
 } from "lucide-react";
-import { motion } from "framer-motion";
-import axios from "axios";
 import Background from "./components/Background";
 import Footer from "./components/Footer";
-
+import ComparisonView from "./ComparisonView";
 
 const ResumeParser = () => {
   const [aiAnalysis, setAiAnalysis] = useState(null);
@@ -82,7 +70,7 @@ const ResumeParser = () => {
   const [expandedCandidate, setExpandedCandidate] = useState(null);
   const [alreadyParsedFiles, setAlreadyParsedFiles] = useState([]);
   const [expandedSkillCategories, setExpandedSkillCategories] = useState({});
-  
+
   // Comparison state
   const [candidatesForComparison, setCandidatesForComparison] = useState([]);
   const [isComparisonMode, setIsComparisonMode] = useState(false);
@@ -105,19 +93,18 @@ const ResumeParser = () => {
   };
 
   const extractNameFromRawText = (rawText) => {
-    const lines = rawText.split('\n');
-    // Typically, the name is the first line of the raw text
     const lines = rawText.split("\n");
     return lines[0].trim();
   };
 
-  // Comparison functions
   const handleCandidateComparisonToggle = (candidate) => {
-    if (candidatesForComparison.some(c => c.name === candidate.name)) {
-      setCandidatesForComparison(prev => prev.filter(c => c.name !== candidate.name));
+    if (candidatesForComparison.some((c) => c.name === candidate.name)) {
+      setCandidatesForComparison((prev) =>
+        prev.filter((c) => c.name !== candidate.name)
+      );
     } else {
       if (candidatesForComparison.length < 2) {
-        setCandidatesForComparison(prev => [...prev, candidate]);
+        setCandidatesForComparison((prev) => [...prev, candidate]);
       }
     }
   };
@@ -195,28 +182,10 @@ const ResumeParser = () => {
 
       setProcessedResults(uploadResults);
 
-      const rankingResponse = await axios.get('http://localhost:8080/process-and-match-resumes');
-      
-      const combinedCandidates = rankingResponse.data.candidates.map(ranking => {
-        const matchedResume = uploadResults.find(result => {
-          const extractedName = extractNameFromRawText(result.raw_text);
-          return extractedName.toLowerCase() === ranking.name.toLowerCase();
-        });
-        
-        return {
-          ...ranking,
-          fullDetails: matchedResume ? {
-            raw_text: matchedResume.raw_text,
-            processed_data: matchedResume.processed_data
-          } : null
-        };
-      });
-      // Fetch candidate rankings
       const rankingResponse = await axios.get(
         "http://localhost:8080/process-and-match-resumes"
       );
 
-      // Combine processed results with rankings
       const combinedCandidates = rankingResponse.data.candidates.map(
         (ranking) => {
           const matchedResume = uploadResults.find((result) => {
@@ -259,9 +228,9 @@ const ResumeParser = () => {
   };
 
   const toggleSkillCategory = (category) => {
-    setExpandedSkillCategories(prev => ({
+    setExpandedSkillCategories((prev) => ({
       ...prev,
-      [category]: !prev[category]
+      [category]: !prev[category],
     }));
   };
 
@@ -293,21 +262,14 @@ const ResumeParser = () => {
           className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800 rounded-xl p-8 shadow-xl"
         >
           <div className="flex justify-between items-center mb-8">
-            <h1
-              className="text-4xl font-bold 
-              font-bricolage bg-gradient-to-b from-neutral-50 to-neutral-400 
-              bg-clip-text text-transparent "
-            >
+            <h1 className="text-4xl font-bold font-bricolage bg-gradient-to-b from-neutral-50 to-neutral-400 bg-clip-text text-transparent">
               HR Resume Dashboard
             </h1>
             <div className="flex items-center space-x-4">
-              <span className="text-xl font-inter text-neutral-300">
-                {/* Total Candidates: {candidateRankings.length} */}
-              </span>
+              <span className="text-xl font-inter text-neutral-300"></span>
             </div>
           </div>
 
-          {/* Tabs */}
           <div className="flex mb-6 space-x-4 border-b border-zinc-800 pb-2">
             {tabs.map((tab) => (
               <motion.button
@@ -315,15 +277,11 @@ const ResumeParser = () => {
                 onClick={() => handleTabChange(tab.name)}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className={`
-                  flex items-center space-x-2 px-4 py-2 rounded-full 
-                  transition duration-300 
-                  ${
-                    activeTab === tab.name
-                      ? "bg-blue-800/50 text-white"
-                      : "bg-zinc-800/50 text-neutral-400 hover:bg-zinc-800/70"
-                  }
-                `}
+                className={`flex items-center space-x-2 px-4 py-2 rounded-full transition duration-300 ${
+                  activeTab === tab.name
+                    ? "bg-blue-800/50 text-white"
+                    : "bg-zinc-800/50 text-neutral-400 hover:bg-zinc-800/70"
+                }`}
               >
                 <tab.icon className="w-5 h-5" />
                 <span className="font-inter">{tab.label}</span>
@@ -333,19 +291,16 @@ const ResumeParser = () => {
               </motion.button>
             ))}
 
-            {/* Comparison toggle button */}
-            {activeTab === 'rankings' && candidateRankings.length >= 2 && (
+            {activeTab === "rankings" && candidateRankings.length >= 2 && (
               <motion.button
                 onClick={() => setIsComparisonMode(!isComparisonMode)}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className={`
-                  flex items-center space-x-2 px-4 py-2 rounded-full 
-                  transition duration-300 
-                  ${isComparisonMode 
-                    ? 'bg-purple-800/50 text-white' 
-                    : 'bg-zinc-800/50 text-neutral-400 hover:bg-zinc-800/70'}
-                `}
+                className={`flex items-center space-x-2 px-4 py-2 rounded-full transition duration-300 ${
+                  isComparisonMode
+                    ? "bg-purple-800/50 text-white"
+                    : "bg-zinc-800/50 text-neutral-400 hover:bg-zinc-800/70"
+                }`}
               >
                 <UsersIcon className="w-5 h-5" />
                 <span className="font-inter">Compare Candidates</span>
@@ -358,9 +313,8 @@ const ResumeParser = () => {
             )}
           </div>
 
-          {/* Comparison action button */}
           {isComparisonMode && candidatesForComparison.length === 2 && (
-            <motion.div 
+            <motion.div
               className="flex justify-end mb-4"
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -376,7 +330,6 @@ const ResumeParser = () => {
             </motion.div>
           )}
 
-          {/* File Upload Section */}
           <form onSubmit={handleSubmit} className="mb-8">
             <div className="flex flex-col space-y-4">
               <div>
@@ -447,7 +400,6 @@ const ResumeParser = () => {
             </div>
           </form>
 
-          {/* Already parsed resumes notification */}
           {alreadyParsedFiles.length > 0 && (
             <motion.div
               initial={{ opacity: 0, y: -10 }}
@@ -473,7 +425,6 @@ const ResumeParser = () => {
             </motion.div>
           )}
 
-          {/* Error messages */}
           {error && (
             <motion.div
               initial={{ opacity: 0, y: -10 }}
@@ -488,9 +439,7 @@ const ResumeParser = () => {
             </motion.div>
           )}
 
-          {/* Content Sections */}
           <div className="space-y-6">
-            {/* Uploaded Resumes Tab */}
             {activeTab === "uploaded" &&
               files.map((file, index) => (
                 <motion.div
@@ -531,17 +480,15 @@ const ResumeParser = () => {
                 </motion.div>
               ))}
 
-            {/* Candidate Rankings Tab */}
-            {activeTab === 'rankings' && (
+            {activeTab === "rankings" && (
               <>
                 {showComparisonView ? (
-                  <ComparisonView 
-                    candidates={candidatesForComparison} 
-                    onBack={handleBackFromComparison} 
+                  <ComparisonView
+                    candidates={candidatesForComparison}
+                    onBack={handleBackFromComparison}
                   />
                 ) : (
                   <div className="grid md:grid-cols-[1fr_2fr] gap-6">
-                    {/* Ranking List */}
                     <div className="space-y-4">
                       {candidateRankings.length > 0 ? (
                         candidateRankings.map((candidate, index) => (
@@ -554,18 +501,25 @@ const ResumeParser = () => {
                             className={`
                               border-l-4 rounded-lg cursor-pointer
                               ${getMatchColorClass(candidate.match)}
-                              ${selectedCandidate?.name === candidate.name ? 'ring-2 ring-blue-500' : ''}
+                              ${
+                                selectedCandidate?.name === candidate.name
+                                  ? "ring-2 ring-blue-500"
+                                  : ""
+                              }
                               bg-zinc-900/50 backdrop-blur-sm border border-zinc-800 
                               p-6 transition-all duration-300 relative
                               hover:shadow-xl hover:border-opacity-70
                             `}
                           >
                             {isComparisonMode && (
-                              <div 
+                              <div
                                 className={`absolute top-2 right-2 w-6 h-6 rounded-full border-2 cursor-pointer
-                                  ${candidatesForComparison.some(c => c.name === candidate.name)
-                                    ? 'bg-purple-500 border-purple-300'
-                                    : 'bg-transparent border-neutral-400'
+                                  ${
+                                    candidatesForComparison.some(
+                                      (c) => c.name === candidate.name
+                                    )
+                                      ? "bg-purple-500 border-purple-300"
+                                      : "bg-transparent border-neutral-400"
                                   }`}
                                 onClick={(e) => {
                                   e.stopPropagation();
@@ -575,73 +529,35 @@ const ResumeParser = () => {
                             )}
                             <div className="flex justify-between items-center">
                               <div className="flex items-center space-x-4">
-
                                 <div>
                                   <h2 className="text-xl font-semibold text-neutral-100">
                                     {candidate.name}
                                   </h2>
-                                  {candidate.fullDetails?.processed_data?.note === "Resume already exists in database" && (
+                                  {candidate.fullDetails?.processed_data
+                                    ?.note ===
+                                    "Resume already exists in database" && (
                                     <span className="text-xs bg-amber-900/50 text-amber-300 px-2 py-0.5 rounded-full">
                                       Previously parsed
                                     </span>
                                   )}
                                 </div>
                               </div>
-            {activeTab === "rankings" && (
-              <div className="grid md:grid-cols-[1fr_2fr] gap-6">
-                {/* Ranking List */}
-                <div className="space-y-4">
-                  {candidateRankings.length > 0 ? (
-                    candidateRankings.map((candidate, index) => (
-                      <motion.div
-                        key={candidate.name}
-                        onClick={() => handleCandidateSelect(candidate)}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: index * 0.2 }}
-                        className={`
-                          border-l-4 rounded-lg cursor-pointer
-                          ${getMatchColorClass(candidate.match)}
-                          ${
-                            selectedCandidate?.name === candidate.name
-                              ? "ring-2 ring-blue-500"
-                              : ""
-                          }
-                          bg-zinc-900/50 backdrop-blur-sm border border-zinc-800 
-                          p-6 transition-all duration-300 
-                          hover:shadow-xl hover:border-opacity-70
-                        `}
-                      >
-                        <div className="flex justify-between items-center">
-                          <div className="flex items-center space-x-4">
-                            {index === 0 ? (
-                              <StarIcon
-                                className="w-8 h-8 text-yellow-500"
-                                fill="currentColor"
-                              />
-                            ) : (
-                              <UsersIcon className="w-8 h-8 text-blue-500" />
-                            )}
-                            <div>
-                              <h2 className="text-xl font-semibold text-neutral-100">
-                                {candidate.name}
-                              </h2>
-                              {candidate.fullDetails?.processed_data?.note ===
-                                "Resume already exists in database" && (
-                                <span className="text-xs bg-amber-900/50 text-amber-300 px-2 py-0.5 rounded-full">
-                                  Previously parsed
-                                </span>
-                              )}
-                            </div>
-                          </div>
 
                               <div className="flex items-center space-x-2">
-                                <span className={`
+                                <span
+                                  className={`
                                   text-2xl font-bold 
-                                  ${candidate.match >= 90 ? 'text-green-400' : 
-                                    candidate.match >= 75 ? 'text-lime-400' : 
-                                    candidate.match >= 60 ? 'text-yellow-400' : 'text-red-400'}
-                                `}>
+                                  ${
+                                    candidate.match >= 90
+                                      ? "text-green-400"
+                                      : candidate.match >= 75
+                                      ? "text-lime-400"
+                                      : candidate.match >= 60
+                                      ? "text-yellow-400"
+                                      : "text-red-400"
+                                  }
+                                `}
+                                >
                                   {candidate.match}%
                                 </span>
                                 <FileTextIcon className="w-6 h-6 text-neutral-500" />
@@ -651,483 +567,323 @@ const ResumeParser = () => {
                         ))
                       ) : (
                         <div className="text-center py-10 bg-zinc-800/50 rounded-lg">
-                          <p className="text-xl text-neutral-400">No candidate rankings available</p>
+                          <p className="text-xl text-neutral-400">
+                            No candidate rankings available
+                          </p>
                         </div>
                       )}
                     </div>
-                          <div className="flex items-center space-x-2">
-                            <span
-                              className={`
-                              text-2xl font-bold 
-                              ${
-                                candidate.match >= 90
-                                  ? "text-green-400"
-                                  : candidate.match >= 75
-                                  ? "text-lime-400"
-                                  : candidate.match >= 60
-                                  ? "text-yellow-400"
-                                  : "text-red-400"
-                              }
-                            `}
-                            >
-                              {candidate.match}%
-                            </span>
-                            <FileTextIcon className="w-6 h-6 text-neutral-500" />
-                          </div>
-                        </div>
-                      </motion.div>
-                    ))
-                  ) : (
-                    <div className="text-center py-10 bg-zinc-800/50 rounded-lg">
-                      <p className="text-xl text-neutral-400">
-                        No candidate rankings available
-                      </p>
-                    </div>
-                  )}
-                </div>
 
-                    {/* Candidate Details */}
                     {selectedCandidate && selectedCandidate.fullDetails && (
                       <motion.div
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.5 }}
-                        className="bg-zinc-800/50 rounded-lg p-6 space-y-6 overflow-hidden"
+                        className="bg-zinc-800/50 rounded-lg p-6 space-y-6"
                       >
                         <div className="flex justify-between items-center border-b border-zinc-700 pb-4">
                           <div>
                             <h2 className="text-2xl font-bold text-white">
                               {selectedCandidate.name}
                             </h2>
-                            {selectedCandidate.fullDetails?.processed_data?.note === "Resume already exists in database" && (
+                            {selectedCandidate.fullDetails?.processed_data
+                              ?.note ===
+                              "Resume already exists in database" && (
                               <span className="text-xs bg-amber-900/50 text-amber-300 px-2 py-0.5 rounded-full">
                                 Previously parsed
                               </span>
                             )}
                           </div>
-                          <span className={`
+                          <span
+                            className={`
                             text-2xl font-bold 
-                            ${selectedCandidate.match >= 90 ? 'text-green-400' : 
-                              selectedCandidate.match >= 75 ? 'text-lime-400' : 
-                              selectedCandidate.match >= 60 ? 'text-yellow-400' : 'text-red-400'}
-                          `}>
+                            ${
+                              selectedCandidate.match >= 90
+                                ? "text-green-400"
+                                : selectedCandidate.match >= 75
+                                ? "text-lime-400"
+                                : selectedCandidate.match >= 60
+                                ? "text-yellow-400"
+                                : "text-red-400"
+                            }
+                          `}
+                          >
                             {selectedCandidate.match}% Match
                           </span>
                         </div>
 
-                        {/* Main content grid with guaranteed overflow control */}
-                        <div className="grid grid-cols-1 gap-6">
-                          {/* Top row - split into two columns */}
-                          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            {/* Personal Information */}
-                            <div className="overflow-hidden">
-                              <h3 className="text-neutral-400 mb-2 text-lg font-semibold">
-                                Personal Information
-                              </h3>
-                              {selectedCandidate.fullDetails.processed_data.personal_information ? (
-                                <>
-                                  <p className="text-neutral-200 truncate">
-                                    <strong>Name:</strong> {selectedCandidate.fullDetails.processed_data.personal_information.name || 'N/A'}
-                                  </p>
-                                  <p className="text-neutral-300 text-sm truncate">
-                                    <strong>Email:</strong> {selectedCandidate.fullDetails.processed_data.personal_information.email || 'No email'}
-                                  </p>
-                                  <p className="text-neutral-300 text-sm truncate">
-                                    <strong>Location:</strong> {selectedCandidate.fullDetails.processed_data.personal_information.location || 'N/A'}
-                                  </p>
-                                </>
-                              ) : (
-                                <p className="text-neutral-300">No personal information available</p>
-                              )}
-                            </div>
-                {/* Candidate Details */}
-                {selectedCandidate && selectedCandidate.fullDetails && (
-                  <motion.div
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.5 }}
-                    className="bg-zinc-800/50 rounded-lg p-6 space-y-6"
-                  >
-                    <div className="flex justify-between items-center border-b border-zinc-700 pb-4">
-                      <div>
-                        <h2 className="text-2xl font-bold text-white">
-                          {selectedCandidate.name}
-                        </h2>
-                        {selectedCandidate.fullDetails?.processed_data?.note ===
-                          "Resume already exists in database" && (
-                          <span className="text-xs bg-amber-900/50 text-amber-300 px-2 py-0.5 rounded-full">
-                            Previously parsed
-                          </span>
-                        )}
-                      </div>
-                      <span
-                        className={`
-                        text-2xl font-bold 
-                        ${
-                          selectedCandidate.match >= 90
-                            ? "text-green-400"
-                            : selectedCandidate.match >= 75
-                            ? "text-lime-400"
-                            : selectedCandidate.match >= 60
-                            ? "text-yellow-400"
-                            : "text-red-400"
-                        }
-                      `}
-                      >
-                        {selectedCandidate.match}% Match
-                      </span>
-                    </div>
-                    <div className="grid md:grid-cols-2 gap-6">
-                      {/* Personal Information */}
-                      <div>
-                        <h3 className="text-neutral-400 mb-2 text-lg font-semibold">
-                          Personal Information
-                        </h3>
-                        {selectedCandidate.fullDetails.processed_data
-                          .personal_information ? (
-                          <>
-                            <p className="text-neutral-200">
-                              <strong>Name:</strong>{" "}
-                              {selectedCandidate.fullDetails.processed_data
-                                .personal_information.name || "N/A"}
-                            </p>
-                            <p className="text-neutral-300 text-sm">
-                              <strong>Email:</strong>{" "}
-                              {selectedCandidate.fullDetails.processed_data
-                                .personal_information.email || "No email"}
-                            </p>
-                            <p className="text-neutral-300 text-sm">
-                              <strong>Location:</strong>{" "}
-                              {selectedCandidate.fullDetails.processed_data
-                                .personal_information.location || "N/A"}
-                            </p>
-                          </>
-                        ) : (
-                          <p className="text-neutral-300">
-                            No personal information available
-                          </p>
-                        )}
-                      </div>
+                        <div className="grid md:grid-cols-2 gap-6">
+                          <div>
+                            <h3 className="text-neutral-400 mb-2 text-lg font-semibold">
+                              Personal Information
+                            </h3>
+                            {selectedCandidate.fullDetails.processed_data
+                              .personal_information ? (
+                              <>
+                                <p className="text-neutral-200">
+                                  <strong>Name:</strong>{" "}
+                                  {selectedCandidate.fullDetails.processed_data
+                                    .personal_information.name || "N/A"}
+                                </p>
+                                <p className="text-neutral-300 text-sm">
+                                  <strong>Email:</strong>{" "}
+                                  {selectedCandidate.fullDetails.processed_data
+                                    .personal_information.email || "No email"}
+                                </p>
+                                <p className="text-neutral-300 text-sm">
+                                  <strong>Location:</strong>{" "}
+                                  {selectedCandidate.fullDetails.processed_data
+                                    .personal_information.location || "N/A"}
+                                </p>
+                              </>
+                            ) : (
+                              <p className="text-neutral-300">
+                                No personal information available
+                              </p>
+                            )}
+                          </div>
 
-                            {/* Education */}
-                            <div className="overflow-hidden">
-                              <h3 className="text-neutral-400 mb-2 text-lg font-semibold">
-                                Education
-                              </h3>
-                              {selectedCandidate.fullDetails.processed_data.education && 
-                              selectedCandidate.fullDetails.processed_data.education.length > 0 ? (
-                                selectedCandidate.fullDetails.processed_data.education.map((edu, index) => (
+                          <div>
+                            <h3 className="text-neutral-400 mb-2 text-lg font-semibold">
+                              Education
+                            </h3>
+                            {selectedCandidate.fullDetails.processed_data
+                              .education &&
+                            selectedCandidate.fullDetails.processed_data
+                              .education.length > 0 ? (
+                              selectedCandidate.fullDetails.processed_data.education.map(
+                                (edu, index) => (
                                   <div key={index} className="mb-2">
-                                    <p className="text-neutral-200 truncate">
+                                    <p className="text-neutral-200">
                                       <strong>{edu.degree}</strong>
                                     </p>
-                                    <p className="text-neutral-300 text-sm truncate">
+                                    <p className="text-neutral-300 text-sm">
                                       {edu.institution}
                                     </p>
-                                    <p className="text-neutral-300 text-sm truncate">
+                                    <p className="text-neutral-300 text-sm">
                                       {edu.graduation_year}
                                     </p>
                                   </div>
-                                ))
-                              ) : (
-                                <p className="text-neutral-300">No education details</p>
-                              )}
-                            </div>
+                                )
+                              )
+                            ) : (
+                              <p className="text-neutral-300">
+                                No education details
+                              </p>
+                            )}
                           </div>
-                      {/* Education */}
-                      <div>
-                        <h3 className="text-neutral-400 mb-2 text-lg font-semibold">
-                          Education
-                        </h3>
-                        {selectedCandidate.fullDetails.processed_data
-                          .education &&
-                        selectedCandidate.fullDetails.processed_data.education
-                          .length > 0 ? (
-                          selectedCandidate.fullDetails.processed_data.education.map(
-                            (edu, index) => (
-                              <div key={index} className="mb-2">
-                                <p className="text-neutral-200">
-                                  <strong>{edu.degree}</strong>
-                                </p>
-                                <p className="text-neutral-300 text-sm">
-                                  {edu.institution}
-                                </p>
-                                <p className="text-neutral-300 text-sm">
-                                  {edu.graduation_year}
-                                </p>
-                              </div>
-                            )
-                          )
-                        ) : (
-                          <p className="text-neutral-300">
-                            No education details
-                          </p>
-                        )}
-                      </div>
 
-                          {/* Second row - split into two columns */}
-                          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            {/* Work Experience */}
-                            <div className="overflow-hidden">
-                              <h3 className="text-neutral-400 mb-2 text-lg font-semibold">
-                                Work Experience
-                              </h3>
-                              {selectedCandidate.fullDetails.processed_data.work_experience && 
-                              selectedCandidate.fullDetails.processed_data.work_experience.length > 0 ? (
-                                selectedCandidate.fullDetails.processed_data.work_experience.map((job, index) => (
+                          <div>
+                            <h3 className="text-neutral-400 mb-2 text-lg font-semibold">
+                              Work Experience
+                            </h3>
+                            {selectedCandidate.fullDetails.processed_data
+                              .work_experience &&
+                            selectedCandidate.fullDetails.processed_data
+                              .work_experience.length > 0 ? (
+                              selectedCandidate.fullDetails.processed_data.work_experience.map(
+                                (job, index) => (
                                   <div key={index} className="mb-2">
-                                    <p className="text-neutral-200 truncate">
+                                    <p className="text-neutral-200">
                                       <strong>{job.title}</strong>
                                     </p>
-                                    <p className="text-neutral-300 text-sm truncate">
+                                    <p className="text-neutral-300 text-sm">
                                       {job.company}
                                     </p>
-                                    <p className="text-neutral-300 text-sm truncate">
-                                      {job.start_date} - {job.end_date || 'Present'}
+                                    <p className="text-neutral-300 text-sm">
+                                      {job.start_date} -{" "}
+                                      {job.end_date || "Present"}
                                     </p>
                                   </div>
-                                ))
-                              ) : (
-                                <p className="text-neutral-300">No work experience details</p>
-                              )}
-                            </div>
-                      {/* Work Experience */}
-                      <div>
-                        <h3 className="text-neutral-400 mb-2 text-lg font-semibold">
-                          Work Experience
-                        </h3>
-                        {selectedCandidate.fullDetails.processed_data
-                          .work_experience &&
-                        selectedCandidate.fullDetails.processed_data
-                          .work_experience.length > 0 ? (
-                          selectedCandidate.fullDetails.processed_data.work_experience.map(
-                            (job, index) => (
-                              <div key={index} className="mb-2">
-                                <p className="text-neutral-200">
-                                  <strong>{job.title}</strong>
-                                </p>
-                                <p className="text-neutral-300 text-sm">
-                                  {job.company}
-                                </p>
-                                <p className="text-neutral-300 text-sm">
-                                  {job.start_date} - {job.end_date || "Present"}
-                                </p>
-                              </div>
-                            )
-                          )
-                        ) : (
-                          <p className="text-neutral-300">
-                            No work experience details
-                          </p>
-                        )}
-                      </div>
+                                )
+                              )
+                            ) : (
+                              <p className="text-neutral-300">
+                                No work experience details
+                              </p>
+                            )}
+                          </div>
 
-                            {/* Skills - Completely Redesigned with "show more" functionality */}
-                            <div>
-                              <h3 className="text-neutral-400 mb-2 text-lg font-semibold">
-                                Skills
-                              </h3>
-                              {selectedCandidate.fullDetails.processed_data.skills ? (
-                                <div className="space-y-2">
-                                  {Object.entries(selectedCandidate.fullDetails.processed_data.skills).map(([category, skills]) => (
-                                    <div key={category} className="mb-4">
-                                      <div className="flex justify-between items-center mb-1">
-                                        <p className="text-neutral-300 text-sm font-semibold capitalize">
-                                          {category}:
-                                        </p>
-                                        {skills.length > 8 && (
-                                          <motion.button
-                                            onClick={() => toggleSkillCategory(category)}
-                                            whileHover={{ scale: 1.05 }}
-                                            whileTap={{ scale: 0.95 }}
-                                            className="text-blue-400 text-xs flex items-center"
-                                          >
-                                            {expandedSkillCategories[category] ? (
-                                              <>Show Less <ChevronUpIcon className="w-4 h-4 ml-1" /></>
-                                            ) : (
-                                              <>Show All <ChevronDownIcon className="w-4 h-4 ml-1" /></>
-                                            )}
-                                          </motion.button>
-                                        )}
-                                      </div>
-                                      <div className="flex flex-wrap gap-1">
-                                        <AnimatePresence>
-                                          {(expandedSkillCategories[category] ? skills : skills.slice(0, 8)).map((skill, idx) => (
-                                            <motion.span
-                                              key={idx}
-                                              initial={idx >= 8 ? { opacity: 0, scale: 0.8 } : false}
-                                              animate={{ opacity: 1, scale: 1 }}
-                                              exit={{ opacity: 0, scale: 0.8 }}
-                                              transition={{ duration: 0.2 }}
-                                              className="inline-block px-2 py-0.5 bg-blue-900/30 text-blue-300 text-xs rounded-full whitespace-nowrap"
-                                            >
-                                              {skill}
-                                            </motion.span>
-                                          ))}
-                                        </AnimatePresence>
-                                      </div>
-                                    </div>
-                                  ))}
-                                </div>
-                              ) : (
-                                <p className="text-neutral-300">No skills listed</p>
-                              )}
-                            </div>
-                          </div>
-                        </div>
-                      {/* Skills */}
-                      <div>
-                        <h3 className="text-neutral-400 mb-2 text-lg font-semibold">
-                          Skills
-                        </h3>
-                        {selectedCandidate.fullDetails.processed_data.skills ? (
-                          <div className="flex flex-wrap gap-2">
-                            {Object.entries(
-                              selectedCandidate.fullDetails.processed_data
-                                .skills
-                            ).map(([category, skills]) => (
-                              <div key={category} className="mb-2">
-                                <p className="text-neutral-300 text-sm font-semibold capitalize">
-                                  {category}:
-                                </p>
-                                <p className="text-neutral-200">
-                                  {skills.join(", ")}
-                                </p>
-                              </div>
-                            ))}
-                          </div>
-                        ) : (
-                          <p className="text-neutral-300">No skills listed</p>
-                        )}
-                      </div>
-                    </div>
-                    // Find the Candidate Details section and add this component
-                    after the grid but before Raw Text Preview:
-                    {/* AI Analysis */}
-                    {selectedCandidate && (
-                      <div className="mt-6 border-t border-zinc-700 pt-4">
-                        <div className="flex items-center gap-2 mb-4">
-                          <BrainIcon className="w-6 h-6 text-purple-400" />
-                          <h3 className="text-xl font-semibold text-purple-300">
-                            AI Candidate Analysis
-                          </h3>
-                        </div>
-
-                        {isAnalysisLoading ? (
-                          <div className="flex items-center justify-center p-6 bg-zinc-900/50 rounded-lg">
-                            <LoaderIcon className="w-6 h-6 text-purple-400 animate-spin mr-2" />
-                            <span className="text-neutral-300">
-                              Analyzing candidate profile...
-                            </span>
-                          </div>
-                        ) : analysisError ? (
-                          <div className="p-4 bg-red-900/20 border border-red-800 rounded-lg">
-                            <p className="text-red-300 text-sm">
-                              {analysisError}
-                            </p>
-                          </div>
-                        ) : aiAnalysis ? (
-                          <div className="bg-zinc-900/50 rounded-lg p-4">
-                            <div className="grid md:grid-cols-2 gap-6">
-                              {/* Strengths */}
-                              <div>
-                                <h4 className="text-green-400 font-medium mb-2 flex items-center">
-                                  <StarIcon
-                                    className="w-4 h-4 mr-1"
-                                    fill="currentColor"
-                                  />{" "}
-                                  Key Strengths
-                                </h4>
-                                <ul className="space-y-1">
-                                  {aiAnalysis.strengths &&
-                                    aiAnalysis.strengths.map(
-                                      (strength, idx) => (
-                                        <li
-                                          key={idx}
-                                          className="text-neutral-200 text-sm flex items-start"
+                          <div>
+                            <h3 className="text-neutral-400 mb-2 text-lg font-semibold">
+                              Skills
+                            </h3>
+                            {selectedCandidate.fullDetails.processed_data
+                              .skills ? (
+                              <div className="space-y-2">
+                                {Object.entries(
+                                  selectedCandidate.fullDetails.processed_data
+                                    .skills
+                                ).map(([category, skills]) => (
+                                  <div key={category} className="mb-4">
+                                    <div className="flex justify-between items-center mb-1">
+                                      <p className="text-neutral-300 text-sm font-semibold capitalize">
+                                        {category}:
+                                      </p>
+                                      {skills.length > 8 && (
+                                        <motion.button
+                                          onClick={() =>
+                                            toggleSkillCategory(category)
+                                          }
+                                          whileHover={{ scale: 1.05 }}
+                                          whileTap={{ scale: 0.95 }}
+                                          className="text-blue-400 text-xs flex items-center"
                                         >
-                                          <span className="text-green-500 mr-2">
-                                            •
-                                          </span>
-                                          <span>{strength}</span>
-                                        </li>
-                                      )
-                                    )}
-                                </ul>
+                                          {expandedSkillCategories[category] ? (
+                                            <>
+                                              Show Less{" "}
+                                              <ChevronUpIcon className="w-4 h-4 ml-1" />
+                                            </>
+                                          ) : (
+                                            <>
+                                              Show All{" "}
+                                              <ChevronDownIcon className="w-4 h-4 ml-1" />
+                                            </>
+                                          )}
+                                        </motion.button>
+                                      )}
+                                    </div>
+                                    <div className="flex flex-wrap gap-1">
+                                      <AnimatePresence>
+                                        {(expandedSkillCategories[category]
+                                          ? skills
+                                          : skills.slice(0, 8)
+                                        ).map((skill, idx) => (
+                                          <motion.span
+                                            key={idx}
+                                            initial={
+                                              idx >= 8
+                                                ? { opacity: 0, scale: 0.8 }
+                                                : false
+                                            }
+                                            animate={{ opacity: 1, scale: 1 }}
+                                            exit={{ opacity: 0, scale: 0.8 }}
+                                            transition={{ duration: 0.2 }}
+                                            className="inline-block px-2 py-0.5 bg-blue-900/30 text-blue-300 text-xs rounded-full"
+                                          >
+                                            {skill}
+                                          </motion.span>
+                                        ))}
+                                      </AnimatePresence>
+                                    </div>
+                                  </div>
+                                ))}
                               </div>
+                            ) : (
+                              <p className="text-neutral-300">
+                                No skills listed
+                              </p>
+                            )}
+                          </div>
+                        </div>
 
-                              {/* Areas for Improvement */}
-                              <div>
-                                <h4 className="text-amber-400 font-medium mb-2 flex items-center">
-                                  <InfoIcon className="w-4 h-4 mr-1" /> Areas
-                                  for Growth
-                                </h4>
-                                <ul className="space-y-1">
-                                  {aiAnalysis.improvements &&
-                                    aiAnalysis.improvements.map((area, idx) => (
-                                      <li
-                                        key={idx}
-                                        className="text-neutral-200 text-sm flex items-start"
-                                      >
-                                        <span className="text-amber-500 mr-2">
-                                          •
-                                        </span>
-                                        <span>{area}</span>
-                                      </li>
-                                    ))}
-                                </ul>
-                              </div>
+                        {selectedCandidate && (
+                          <div className="mt-6 border-t border-zinc-700 pt-4">
+                            <div className="flex items-center gap-2 mb-4">
+                              <BrainIcon className="w-6 h-6 text-purple-400" />
+                              <h3 className="text-xl font-semibold text-purple-300">
+                                AI Candidate Analysis
+                              </h3>
                             </div>
 
-                        {/* Raw Text Preview - IMPROVED VERSION with maximized space utilization */}
+                            {isAnalysisLoading ? (
+                              <div className="flex items-center justify-center p-6 bg-zinc-900/50 rounded-lg">
+                                <LoaderIcon className="w-6 h-6 text-purple-400 animate-spin mr-2" />
+                                <span className="text-neutral-300">
+                                  Analyzing candidate profile...
+                                </span>
+                              </div>
+                            ) : analysisError ? (
+                              <div className="p-4 bg-red-900/20 border border-red-800 rounded-lg">
+                                <p className="text-red-300 text-sm">
+                                  {analysisError}
+                                </p>
+                              </div>
+                            ) : aiAnalysis ? (
+                              <div className="bg-zinc-900/50 rounded-lg p-4">
+                                <div className="grid md:grid-cols-2 gap-6">
+                                  <div>
+                                    <h4 className="text-green-400 font-medium mb-2 flex items-center">
+                                      <StarIcon
+                                        className="w-4 h-4 mr-1"
+                                        fill="currentColor"
+                                      />{" "}
+                                      Key Strengths
+                                    </h4>
+                                    <ul className="space-y-1">
+                                      {aiAnalysis.strengths &&
+                                        aiAnalysis.strengths.map(
+                                          (strength, idx) => (
+                                            <li
+                                              key={idx}
+                                              className="text-neutral-200 text-sm flex items-start"
+                                            >
+                                              <span className="text-green-500 mr-2">
+                                                •
+                                              </span>
+                                              <span>{strength}</span>
+                                            </li>
+                                          )
+                                        )}
+                                    </ul>
+                                  </div>
+
+                                  <div>
+                                    <h4 className="text-amber-400 font-medium mb-2 flex items-center">
+                                      <InfoIcon className="w-4 h-4 mr-1" />{" "}
+                                      Areas for Growth
+                                    </h4>
+                                    <ul className="space-y-1">
+                                      {aiAnalysis.improvements &&
+                                        aiAnalysis.improvements.map(
+                                          (area, idx) => (
+                                            <li
+                                              key={idx}
+                                              className="text-neutral-200 text-sm flex items-start"
+                                            >
+                                              <span className="text-amber-500 mr-2">
+                                                •
+                                              </span>
+                                              <span>{area}</span>
+                                            </li>
+                                          )
+                                        )}
+                                    </ul>
+                                  </div>
+                                </div>
+
+                                <div className="mt-4 border-t border-zinc-800 pt-4">
+                                  <h4 className="text-blue-400 font-medium mb-2">
+                                    Overall Assessment
+                                  </h4>
+                                  <p className="text-neutral-200 text-sm bg-zinc-800/50 p-3 rounded">
+                                    {aiAnalysis.suitability}
+                                  </p>
+                                </div>
+                              </div>
+                            ) : (
+                              <div className="p-4 bg-zinc-800/50 rounded-lg text-center">
+                                <p className="text-neutral-400">
+                                  Select a candidate to see AI analysis
+                                </p>
+                              </div>
+                            )}
+                          </div>
+                        )}
+
                         <div>
                           <h3 className="text-neutral-400 mb-2 text-lg font-semibold border-t border-zinc-700 pt-4">
                             Raw Resume Text
                           </h3>
-                          <div className="bg-zinc-900 rounded-lg text-neutral-300 text-sm relative overflow-hidden flex flex-col h-64">
-                            <div className="resume-text-container">
-                              <div className="resume-text">
-                                {selectedCandidate.fullDetails.raw_text}
-                              </div>
-                            </div>
-                          </div>
+                          <pre className="bg-zinc-900 p-4 rounded-lg text-neutral-300 text-sm overflow-x-auto max-h-40 overflow-y-auto">
+                            {selectedCandidate.fullDetails.raw_text}
+                          </pre>
                         </div>
                       </motion.div>
                     )}
                   </div>
                 )}
               </>
-                            {/* Overall Assessment */}
-                            <div className="mt-4 border-t border-zinc-800 pt-4">
-                              <h4 className="text-blue-400 font-medium mb-2">
-                                Overall Assessment
-                              </h4>
-                              <p className="text-neutral-200 text-sm bg-zinc-800/50 p-3 rounded">
-                                {aiAnalysis.suitability}
-                              </p>
-                            </div>
-                          </div>
-                        ) : (
-                          <div className="p-4 bg-zinc-800/50 rounded-lg text-center">
-                            <p className="text-neutral-400">
-                              Select a candidate to see AI analysis
-                            </p>
-                          </div>
-                        )}
-                      </div>
-                    )}
-                    {/* Raw Text Preview */}
-                    <div>
-                      <h3 className="text-neutral-400 mb-2 text-lg font-semibold border-t border-zinc-700 pt-4">
-                        Raw Resume Text
-                      </h3>
-                      <pre className="bg-zinc-900 p-4 rounded-lg text-neutral-300 text-sm overflow-x-auto max-h-40 overflow-y-auto">
-                        {selectedCandidate.fullDetails.raw_text}
-                      </pre>
-                    </div>
-                  </motion.div>
-                )}
-              </div>
             )}
           </div>
         </motion.div>

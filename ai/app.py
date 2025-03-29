@@ -203,7 +203,7 @@ except Exception as e:
 try:
     supabase: Client = create_client(
         os.getenv("SUPABASE_URL"),
-        os.getenv("SUPABASE_ANON_KEY")
+        os.getenv("SUPABASE_KEY")
     )
     print("✅ Supabase connection successful")
 except Exception as e:
