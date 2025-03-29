@@ -64,32 +64,34 @@ class HiringPredictionResponse(BaseModel):
     message: str
 
 # Add new prediction endpoint
+# python
 @app.post("/predict-hiring", response_model=HiringPredictionResponse)
 async def predict_hiring(request: HiringPredictionRequest):
-    """
-    Predict if a candidate will be hired based on the trained XGBoost model.
-    """
     if hiring_model is None:
-        raise HTTPException(status_code=503, 
-                           detail="Hiring prediction model is not available")
+        raise HTTPException(status_code=503, detail="Hiring prediction model is not available")
     
-    # Preprocess the data for model input
-    # Clean the text fields using your preprocess_text function
+    # Preprocess the data
     resume_text_clean = preprocess_text(request.resume_text)
     job_description_clean = preprocess_text(request.job_description)
-    
-    # Calculate skill match ratio
     skill_match = get_skill_graph_score(request.skills, request.required_skills) / 100.0
-    
-    # Calculate salary difference
     salary_difference = request.offered_salary - request.salary_expectation
+    salary_diff_percentage = (salary_difference / request.salary_expectation) * 100
+    skill_match_score = get_skills_match_score(request.skills, request.required_skills, [])
     
-    # Prepare input dataframe with the same structure as training data
+    # Derive experience level
+    if request.experience_years < 2:
+        experience_level = "Junior"
+    elif 2 <= request.experience_years < 5:
+        experience_level = "Mid"
+    else:
+        experience_level = "Senior"
+    
+    # Prepare input data
     input_data = {
         'Resume_Text_Clean': resume_text_clean,
         'Job_Description_Clean': job_description_clean,
         'Education': request.education,
-        'Industry': request.industry, 
+        'Industry': request.industry,
         'Work_Type': request.work_type,
         'Location': request.location,
         'Applied_Job_Title': request.applied_job_title,
@@ -98,16 +100,16 @@ async def predict_hiring(request: HiringPredictionRequest):
         'Offered_Salary': request.offered_salary,
         'Salary_Difference': salary_difference,
         'Skill_Match_Ratio': skill_match,
+        'Skill_Match_Score': skill_match_score,
+        'Salary_Diff_Percentage': salary_diff_percentage,
+        'Experience_Level': experience_level,
     }
     
-    # Convert to DataFrame for model input
     input_df = pd.DataFrame([input_data])
     
     try:
-        # Make prediction
         prediction = hiring_model.predict(input_df)[0]
         probability = hiring_model.predict_proba(input_df)[0][1]
-        
         return {
             "hired_prediction": bool(prediction),
             "hiring_probability": float(probability),
@@ -115,8 +117,8 @@ async def predict_hiring(request: HiringPredictionRequest):
         }
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Prediction error: {str(e)}")
-
-# Helper function to preprocess text for the model - similar to your hiring_model.py
+    
+    
 def preprocess_text(text):
     """Clean and preprocess text data using regex"""
     if isinstance(text, str):
