@@ -177,10 +177,6 @@ SKILL_GRAPH = {
     "leadership": {"management", "team lead", "project management", "communication"},
 }
 
-#
-# Matching Functions
-#
-# Load the sentence transformer model once (global)
 model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
 
 def expand_skills(skills: List[str]) -> Set[str]:
@@ -386,8 +382,7 @@ async def process_and_match_resumes():
         
         if not job_description or not candidates:
             raise HTTPException(status_code=400, detail="Could not extract job description or candidates")
-        
-        # Match candidates to job
+ 
         ranked_candidates = match_candidates_to_job(job_description, candidates)
         
         print(f"Ranked candidates: {ranked_candidates}")
@@ -395,28 +390,10 @@ async def process_and_match_resumes():
     
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error processing resumes: {str(e)}")
-#
-# API Endpoints
-#
+
 @app.get("/")
 async def root():
     return {"message": "Resume Matching API is running"}
-
-# @app.post("/match-resumes", response_model=MatchResponse)
-# async def match_resumes(job: JobDescription, candidates: List[Candidate]):
-#     if not job.description or not job.required_skills:
-#         raise HTTPException(status_code=400, detail="Job description and required skills are required")
-    
-#     if len(candidates) == 0:
-#         raise HTTPException(status_code=400, detail="At least one candidate must be provided")
-        
-#     # Match candidates to job
-#     ranked_candidates = match_candidates_to_job(job, candidates)
-    
-#     return {"candidates": ranked_candidates}
-
-# Run the application
-
 
 if __name__ == "__main__":
     uvicorn.run("resume_matcher:app", host="0.0.0.0", port=8080, reload=True)

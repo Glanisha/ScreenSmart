@@ -546,6 +546,53 @@ async def apply_to_job(application: JobApplication):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
+@app.post("/analyze-candidate")
+async def analyze_candidate(request: dict):
+    """
+    Analyze a candidate's resume using Gemini to identify strengths and weaknesses.
+    """
+    try:
+        candidate_data = request.get("candidate_data")
+        if not candidate_data:
+            return {"error": "No candidate data provided"}
+        
+        # Prepare prompt for Gemini
+        prompt = f"""
+        Analyze the following candidate information and provide:
+        1. Three key strengths of the candidate
+        2. Three areas for improvement
+        3. Overall suitability for tech roles
+        
+        Make the analysis concise and specific to their skills and experience.
+        
+        Candidate Data:
+        {candidate_data}
+        
+        Format your response as JSON with these keys:
+        - strengths: [array of strengths]
+        - improvements: [array of areas for improvement]
+        - suitability: A brief assessment of their fit for tech roles
+        """
+        
+        # Generate response from Gemini
+        model = genai.GenerativeModel('gemini-2.0-flash')
+        response = model.generate_content(prompt)
+        
+        # Parse the response (assumes Gemini returns properly formatted JSON)
+        try:
+            analysis = response.text
+            # Clean up the response if it contains markdown code blocks
+            if "```json" in analysis:
+                analysis = analysis.split("```json")[1].split("```")[0].strip()
+            
+            # Return the analysis
+            return {"analysis": analysis}
+        except Exception as e:
+            return {"error": f"Failed to parse Gemini response: {str(e)}"}
+            
+    except Exception as e:
+        return {"error": f"Analysis failed: {str(e)}"}
+
 @app.get("/job-applications/{job_id}", response_model=JobWithCandidates)
 async def get_job_applications(job_id: str):
     try:
