@@ -71,5 +71,115 @@
       "application_deadline": "2023-12-15",
       "hiring_contact": "careers@technovasolutions.com"
     }
+  },
+  {
+    "personal_information": {
+      "name": "James Carter",
+      "email": "james.carter@example.com",
+      "phone": "+1 (415) 789-1234",
+      "linkedin": "linkedin.com/in/jamescarter",
+      "location": "San Francisco, CA"
+    },
+    "education": [
+      {
+        "degree": "Bachelor of Science in Computer Science",
+        "institution": "University of California, Berkeley",
+        "graduation_year": 2017,
+        "gpa": 3.8
+      }
+    ],
+    "work_experience": [
+      {
+        "company": "CodeWave Solutions",
+        "location": "San Francisco, CA",
+        "work_model": "Hybrid",
+        "position": "Senior Frontend Developer",
+        "start_date": "March 2020",
+        "end_date": "Present",
+        "responsibilities": [
+          "Developed and maintained high-performance React.js applications using TypeScript and Next.js.",
+          "Implemented state management solutions with Redux and Context API to improve scalability.",
+          "Optimized component rendering and performance, reducing page load time by 30%.",
+          "Collaborated closely with UI/UX designers to implement pixel-perfect interfaces using Tailwind CSS and SASS.",
+          "Led code reviews and mentored junior developers in best coding practices.",
+          "Integrated Jest and React Testing Library for unit and integration testing."
+        ]
+      },
+      {
+        "company": "DevSpark Technologies",
+        "location": "Remote",
+        "position": "Frontend Developer",
+        "start_date": "July 2017",
+        "end_date": "February 2020",
+        "responsibilities": [
+          "Developed dynamic user interfaces using React.js and TypeScript for SaaS applications.",
+          "Refactored legacy codebases and introduced modular component-based architecture.",
+          "Worked with Git, Webpack, and Figma for efficient development and design collaboration.",
+          "Built responsive layouts and ensured cross-browser compatibility.",
+          "Contributed to Agile development cycles, participating in sprint planning and retrospectives."
+        ]
+      }
+    ],
+    "skills": {
+      "technical": [
+        "React.js",
+        "Next.js",
+        "TypeScript",
+        "Tailwind CSS",
+        "Redux",
+        "Context API",
+        "CSS-in-JS",
+        "SASS",
+        "Jest",
+        "React Testing Library",
+        "Git",
+        "Webpack",
+        "Figma"
+      ],
+      "soft": [
+        "Problem-solving",
+        "Team collaboration",
+        "Agile methodologies"
+      ]
+    },
+    "certifications": [
+      {
+        "name": "React.js Advanced Developer Certification",
+        "year": 2022
+      },
+      {
+        "name": "Frontend Performance Optimization",
+        "year": 2021
+      }
+    ],
+    "projects": [
+      {
+        "name": "TaskMaster",
+        "description": "Productivity App",
+        "technologies": [
+          "Next.js",
+          "Firebase"
+        ],
+        "details": [
+          "Built a task management platform with real-time updates and drag-and-drop functionality.",
+          "Used Firebase Authentication for secure user logins.",
+          "Implemented Redux for efficient state management."
+        ]
+      },
+      {
+        "name": "ShopVista",
+        "description": "E-commerce Platform",
+        "technologies": [
+          "React.js",
+          "Node.js",
+          "TypeScript"
+        ],
+        "details": [
+          "Developed a feature-rich e-commerce website using React.js and TypeScript.",
+          "Integrated Stripe API for seamless payments.",
+          "Optimized frontend performance, reducing page load times by 40%."
+        ]
+      }
+    ]
   }
 ]

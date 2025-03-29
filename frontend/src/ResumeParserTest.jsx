@@ -12,7 +12,7 @@ import {
   ChevronUpIcon,
   BrainIcon,
   LoaderIcon,
-  MailIcon 
+  MailIcon,
 } from "lucide-react";
 import Background from "./components/Background";
 import Footer from "./components/Footer";
@@ -23,53 +23,63 @@ const ResumeParser = () => {
   const [isAnalysisLoading, setIsAnalysisLoading] = useState(false);
   const [analysisError, setAnalysisError] = useState(null);
 
-
   const [isSendingEmail, setIsSendingEmail] = useState(false);
-const [emailStatus, setEmailStatus] = useState(null);
+  const [emailStatus, setEmailStatus] = useState(null);
 
-const sendConfirmationEmail = async () => {
-  if (!selectedCandidate || !selectedCandidate.fullDetails) {
-    setEmailStatus({ type: 'error', message: 'No candidate selected' });
-    return;
-  }
-
-  setIsSendingEmail(true);
-  setEmailStatus(null);
-
-  try {
-    const candidateData = selectedCandidate.fullDetails.processed_data;
-    const email = selectedCandidate.fullDetails.processed_data.personal_information.email;
-    console.log(selectedCandidate.fullDetails.processed_data.personal_information.email)
-    if (!email) {
-      setEmailStatus({ type: 'error', message: 'Candidate has no email address' });
+  const sendConfirmationEmail = async () => {
+    if (!selectedCandidate || !selectedCandidate.fullDetails) {
+      setEmailStatus({ type: "error", message: "No candidate selected" });
       return;
     }
 
-    const response = await axios.post(
-      "http://localhost:8000/send-confirmation-email",
-      {
-        candidate_data: candidateData,
-        email: email
-      }
-    );
+    setIsSendingEmail(true);
+    setEmailStatus(null);
 
-    if (response.data.message) {
-      setEmailStatus({ type: 'success', message: response.data.message });
-    } else {
-      setEmailStatus({ type: 'error', message: response.data.error || 'Email sent but no confirmation received' });
+    try {
+      const candidateData = selectedCandidate.fullDetails.processed_data;
+      const email =
+        selectedCandidate.fullDetails.processed_data.personal_information.email;
+      console.log(
+        selectedCandidate.fullDetails.processed_data.personal_information.email
+      );
+      if (!email) {
+        setEmailStatus({
+          type: "error",
+          message: "Candidate has no email address",
+        });
+        return;
+      }
+
+      const response = await axios.post(
+        "http://localhost:8000/send-confirmation-email",
+        {
+          candidate_data: candidateData,
+          email: email,
+        }
+      );
+
+      if (response.data.message) {
+        setEmailStatus({ type: "success", message: response.data.message });
+      } else {
+        setEmailStatus({
+          type: "error",
+          message:
+            response.data.error || "Email sent but no confirmation received",
+        });
+      }
+    } catch (err) {
+      const errorDetails = err.response?.data || err.message;
+      console.error("Full error details:", errorDetails);
+
+      setEmailStatus({
+        type: "error",
+        message:
+          err.response?.data?.detail ||
+          err.response?.data?.message ||
+          "Failed to send confirmation email",
+      });
     }
-  } catch (err) {
-    const errorDetails = err.response?.data || err.message;
-    console.error("Full error details:", errorDetails);
-    
-    setEmailStatus({ 
-      type: 'error', 
-      message: err.response?.data?.detail || 
-              err.response?.data?.message || 
-              'Failed to send confirmation email' 
-    });
-  }
-};
+  };
   const fetchCandidateAnalysis = async (candidate) => {
     if (!candidate || !candidate.fullDetails) return;
 
@@ -114,8 +124,6 @@ const sendConfirmationEmail = async () => {
   const [candidateRankings, setCandidateRankings] = useState([]);
   const [activeTab, setActiveTab] = useState("uploaded");
   const [selectedCandidate, setSelectedCandidate] = useState(null);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [expandedCandidate, setExpandedCandidate] = useState(null);
   const [alreadyParsedFiles, setAlreadyParsedFiles] = useState([]);
   const [expandedSkillCategories, setExpandedSkillCategories] = useState({});
 
@@ -919,53 +927,68 @@ const sendConfirmationEmail = async () => {
                           </div>
                         )}
 
-                        <div>
+                        {/* Add this after the email status section, right before closing the selected candidate display */}
+                       
+
+
+
+                        {/* <div>
                           <h3 className="text-neutral-400 mb-2 text-lg font-semibold border-t border-zinc-700 pt-4">
                             Raw Resume Text
                           </h3>
                           <pre className="bg-zinc-900 p-4 rounded-lg text-neutral-300 text-sm overflow-x-auto max-h-40 overflow-y-auto">
                             {selectedCandidate.fullDetails.raw_text}
                           </pre>
-                        </div>
+                        </div> */}
                         <div className="mt-6 space-y-2">
                           <motion.button
                             onClick={sendConfirmationEmail}
-                            disabled={isSendingEmail || !selectedCandidate?.fullDetails?.processed_data?.personal_information?.email}
+                            disabled={
+                              isSendingEmail ||
+                              !selectedCandidate?.fullDetails?.processed_data
+                                ?.personal_information?.email
+                            }
                             whileHover={{ scale: isSendingEmail ? 1 : 1.05 }}
                             whileTap={{ scale: isSendingEmail ? 1 : 0.95 }}
                             className={`px-4 py-2 rounded-lg flex items-center gap-2 ${
-                              isSendingEmail 
-                                ? 'bg-gray-600 cursor-not-allowed' 
-                                : 'bg-green-600 hover:bg-green-700 text-white'
+                              isSendingEmail
+                                ? "bg-gray-600 cursor-not-allowed"
+                                : "bg-green-600 hover:bg-green-700 text-white"
                             } ${
-                              !selectedCandidate?.fullDetails?.processed_data?.personal_information?.email
-                                ? 'opacity-50 cursor-not-allowed'
-                                : ''
+                              !selectedCandidate?.fullDetails?.processed_data
+                                ?.personal_information?.email
+                                ? "opacity-50 cursor-not-allowed"
+                                : ""
                             }`}
                           >
                             <>
-                                <MailIcon className="w-4 h-4" />
-                                Send Confirmation Email
-                              </>
+                              <MailIcon className="w-4 h-4" />
+                              Send Confirmation Email
+                            </>
                           </motion.button>
-                          
+
                           {emailStatus && (
                             <motion.div
                               initial={{ opacity: 0, y: -10 }}
                               animate={{ opacity: 1, y: 0 }}
                               className={`p-3 rounded-lg text-sm ${
-                                emailStatus.type === 'success'
-                                  ? 'bg-green-900/30 border border-green-800 text-green-200'
-                                  : 'bg-red-900/30 border border-red-800 text-red-200'
+                                emailStatus.type === "success"
+                                  ? "bg-green-900/30 border border-green-800 text-green-200"
+                                  : "bg-red-900/30 border border-red-800 text-red-200"
                               }`}
                             >
                               {emailStatus.message}
                             </motion.div>
                           )}
 
-                          {selectedCandidate?.fullDetails?.processed_data?.personal_information?.email ? (
+                          {selectedCandidate?.fullDetails?.processed_data
+                            ?.personal_information?.email ? (
                             <p className="text-neutral-400 text-sm mt-1">
-                              Will be sent to: {selectedCandidate.fullDetails.processed_data.personal_information.email}
+                              Will be sent to:{" "}
+                              {
+                                selectedCandidate.fullDetails.processed_data
+                                  .personal_information.email
+                              }
                             </p>
                           ) : (
                             <p className="text-amber-500 text-sm mt-1">
