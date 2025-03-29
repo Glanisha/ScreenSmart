@@ -6,9 +6,9 @@ import traceback
 import PyPDF2
 import spacy
 from spacy.matcher import Matcher, PhraseMatcher
-from fastapi import FastAPI, UploadFile, File, HTTPException
+from fastapi import FastAPI, UploadFile, File, HTTPException,BackgroundTasks
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field,validator 
 from typing import List, Optional, Dict, Any
 import os
 from dotenv import load_dotenv
@@ -17,6 +17,13 @@ from datetime import datetime
 import google.generativeai as genai
 from functools import lru_cache
 from pathlib import Path
+
+from typing import Dict, Any
+
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+from pydantic import BaseModel, EmailStr
 
 
 # Load environment variables
@@ -615,3 +622,163 @@ async def get_job_applications(job_id: str):
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run("app:app", host="0.0.0.0", port=8000, reload=True)
+
+
+# Define a model for the email request without using EmailStr
+class EmailRequest(BaseModel):
+    candidate_data: Dict[str, Any]
+    email: str
+    
+    # Add email validation manually since we're not using EmailStr
+    @validator('email')
+    def validate_email(cls, v):
+        email_regex = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+        if not re.match(email_regex, v):
+            raise ValueError('Invalid email format')
+        return v
+
+# Email sending function to run in the background
+def send_email_background(email_to: str, subject: str, content: str):
+    # Get email credentials from environment variables
+    email_from = os.getenv("SENDER_EMAIL")
+    email_password = os.getenv("SMTP_PASSWORD")
+    smtp_server = os.getenv("SMTP_SERVER", "smtp.gmail.com")
+    smtp_port = int(os.getenv("SMTP_PORT", "587"))
+    
+    if not all([email_from, email_password]):
+        print("Email credentials not properly configured in environment variables")
+        return False
+    
+    # Create message
+    message = MIMEMultipart()
+    message["From"] = email_from
+    message["To"] = email_to
+    message["Subject"] = subject
+    
+    # Attach HTML content
+    message.attach(MIMEText(content, "html"))
+    
+    # Connect to server and send
+    try:
+        with smtplib.SMTP(smtp_server, smtp_port) as server:
+            server.starttls()
+            server.login(email_from, email_password)
+            server.send_message(message)
+        return True
+    except Exception as e:
+        print(f"Failed to send email: {str(e)}")
+        return False
+
+# Add this endpoint to your FastAPI app
+@app.post("/send-confirmation-email")
+async def send_confirmation_email(request: EmailRequest, background_tasks: BackgroundTasks):
+    try:
+        # Extract candidate data
+        candidate_data = request.candidate_data
+        personal_info = candidate_data.get("personal_information", {})
+        name = personal_info.get("name", "Candidate")
+        
+        # Get current date and time
+        submission_date = datetime.now().strftime('%Y-%m-%d %H:%M')
+        
+        # Create email content
+        subject = "Application Confirmation - Please Review Your Details"
+        
+        # Build HTML for candidate details
+        personal_html = ""
+        if personal_info:
+            personal_html += "<h3>Personal Information</h3><ul>"
+            for key, value in personal_info.items():
+                personal_html += f"<li><strong>{key.replace('_', ' ').title()}:</strong> {value}</li>"
+            personal_html += "</ul>"
+        
+        # Education section
+        education_html = ""
+        if "education" in candidate_data:
+            education_html += "<h3>Education</h3><ul>"
+            for edu in candidate_data["education"]:
+                education_html += "<li>"
+                for key, value in edu.items():
+                    education_html += f"<strong>{key.replace('_', ' ').title()}:</strong> {value}<br>"
+                education_html += "</li>"
+            education_html += "</ul>"
+        
+        # Experience section
+        experience_html = ""
+        if "experience" in candidate_data:
+            experience_html += "<h3>Work Experience</h3><ul>"
+            for exp in candidate_data["experience"]:
+                experience_html += "<li>"
+                for key, value in exp.items():
+                    experience_html += f"<strong>{key.replace('_', ' ').title()}:</strong> {value}<br>"
+                experience_html += "</li>"
+            experience_html += "</ul>"
+        
+        # Skills section
+        skills_html = ""
+        if "skills" in candidate_data:
+            skills_html += "<h3>Skills</h3><ul>"
+            for skill in candidate_data["skills"]:
+                skills_html += f"<li>{skill}</li>"
+            skills_html += "</ul>"
+        
+        # Position applied for
+        position_html = ""
+        if "position" in candidate_data:
+            position_html = f"<p><strong>Position Applied For:</strong> {candidate_data['position']}</p>"
+        
+        content = f"""
+        <html>
+        <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+            <div style="max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #eee; border-radius: 10px;">
+                <h2 style="color: #2c3e50; border-bottom: 1px solid #eee; padding-bottom: 10px;">Application Confirmation</h2>
+                
+                <p>Dear {name},</p>
+                
+                <p>Thank you for submitting your application to our system. Please review the information you've provided below:</p>
+                
+                <div style="background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin: 20px 0;">
+                    <p style="margin: 0; font-weight: bold;">Application Details:</p>
+                    <p><strong>Submission Date:</strong> {submission_date}</p>
+                    {position_html}
+                    
+                    {personal_html}
+                    
+                    {education_html}
+                    
+                    {experience_html}
+                    
+                    {skills_html}
+                </div>
+                
+                <p>If any information is incorrect or incomplete, please contact us immediately at <a href="mailto:support@example.com">support@example.com</a>.</p>
+                
+                <p>Our team will review your application and reach out to you soon regarding the next steps.</p>
+                
+                <p>Best regards,<br>Recruitment Team</p>
+            </div>
+        </body>
+        </html>
+        """
+        
+        # Add email task to background to prevent blocking the API
+        background_tasks.add_task(
+            send_email_background,
+            email_to=request.email,
+            subject=subject,
+            content=content
+        )
+        
+        # Log the email attempt
+        print(f"Confirmation email with details queued for {request.email}")
+        
+        # Update the database to record that an email was sent
+        
+        return {"message": f"Confirmation email with application details sent to {request.email}"}
+        
+    except Exception as e:
+        # Handle other errors
+        error_message = f"Failed to send confirmation email: {str(e)}"
+        print(error_message)
+        print(traceback.format_exc())  # Log full traceback
+        return {"error": error_message}
