@@ -1,5 +1,6 @@
 # **ScreenSmart - AI-Powered Resume Screener**  
-### *Team SOS - Vartak Hackathon (AIML Domain)*  
+### *By Team SOS*  
+### *At Coherence-25 hackathon*  
 
 ## **Team Members:**  
 - **Liza Castelino**  
